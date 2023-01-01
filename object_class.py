@@ -55,7 +55,7 @@ class Objekti:
         #muuttaa y sijaintia
         
 
-        self.LiikuY(opposite(int(self.painovoiman_arvo_))) #alaspäin
+        self.LiikuY(opposite(int(self.painovoiman_arvo_))) 
 
     
         
