@@ -1,7 +1,7 @@
 # pygame-simple-object
 
 
-Tarkoitus tehdä kirjastolla pygameen objekti joka lisää seuraavat ominaisuudet:
+Tarkoitus tehdä pygameen objekti joka lisää seuraavat ominaisuudet:
 
 automaattinen törmäyksentunnistus
 painovoima
