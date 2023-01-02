@@ -15,11 +15,12 @@ kello = pygame.time.Clock()
 
 
 robotti = Objekti(robottikuva,sijainti_x=400,sijainti_y=100,painovoiman_voimakkuus=0.5,hypyn_voimakkuus=15)
-taso = Objekti(tasokuva,sijainti_x=50,sijainti_y=200)
+taso = Objekti(tasokuva,sijainti_x=100,sijainti_y=400)
 
 robotti.LisaaTormays(taso)
+taso.LisaaTormays(robotti)
 
-
+tasovasemmalle = False
 vasemmalle = False
 oikealle = False
 ylos = False
@@ -32,7 +33,7 @@ while True: #pääsilmukka
         #tutkitaan näppäinpainalluksia
         if tapahtuma.type == pygame.KEYDOWN: #pohjaan
             if tapahtuma.key  == pygame.K_UP:
-                ylos = True
+                robotti.Hyppy()
             if tapahtuma.key  == pygame.K_DOWN:
                 alas = True
             if tapahtuma.key == pygame.K_LEFT:
@@ -41,8 +42,8 @@ while True: #pääsilmukka
                 oikealle = True
 
         if tapahtuma.type == pygame.KEYUP: #ylös
-            if tapahtuma.key  == pygame.K_UP:
-                ylos = False
+
+                
             if tapahtuma.key  == pygame.K_DOWN:
                 alas = False
             if tapahtuma.key == pygame.K_LEFT:
@@ -62,12 +63,20 @@ while True: #pääsilmukka
         robotti.LiikuX(-2)
     if alas:
         robotti.LiikuY(2)
-    if ylos:
-        robotti.LiikuY(-2)
 
 
 
-    #robotti.Painovoima()
+    if taso.sijainti_x_ == 500:
+       tasovasemmalle = True
+    if taso.sijainti_x_ < 0:
+        tasovasemmalle = False
+        
+    if tasovasemmalle:
+        taso.LiikuX(-1)
+    else:
+        taso.LiikuX(1)
+        
+    robotti.Painovoima()
     
     naytto.fill((0,0,0)) #täytetään ruutu mustalla
     naytto.blit(robotti.kuva_,(robotti.sijainti_x_,robotti.sijainti_y_))
