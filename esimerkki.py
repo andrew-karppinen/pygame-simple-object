@@ -14,7 +14,7 @@ tasokuva = pygame.image.load("kuvat/taso.png")
 kello = pygame.time.Clock()
 
 
-robotti = Objekti(robottikuva,sijainti_x=300,sijainti_y=100,painovoiman_voimakkuus=0.5,hypyn_voimakkuus=15)
+robotti = Objekti(robottikuva,sijainti_x=400,sijainti_y=100,painovoiman_voimakkuus=0.5,hypyn_voimakkuus=15)
 taso = Objekti(tasokuva,sijainti_x=50,sijainti_y=200)
 
 robotti.LisaaTormays(taso)
@@ -53,7 +53,7 @@ while True: #pääsilmukka
 
 
         if tapahtuma.type == pygame.QUIT: #jos ohjelma suljetaan
-            exit() #lopetetaan ohjelma
+            exit() 
         
 
     if oikealle:
@@ -65,7 +65,6 @@ while True: #pääsilmukka
     if ylos:
         robotti.LiikuY(-2)
 
- 
 
 
     #robotti.Painovoima()
