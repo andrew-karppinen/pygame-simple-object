@@ -26,28 +26,44 @@ class Objekti:
     
     #nämä metodit toteuttavat objektin liikuttamisen
     def LiikuX(self,matka: int):
-        for i in range(self.sijainti_x_,self.sijainti_x_+matka):
-            self.sijainti_x_ += 1
+        for i in range(abs(matka)):
+
+            if matka > 0:
+                self.sijainti_x_ += 1
+            else:
+                self.sijainti_x_ += -1
 
             if self.TunnistaTormays() == True: #jos tapahtuu törmäys
-                self.sijainti_x_ -= 1 #peruu liikkeen
+
+                if matka > 0:
+                    self.sijainti_x_ += -1 #peruu liikkeen
+                else:
+                    self.sijainti_x_ += 1 #peruu liikkeen
                 return None
 
 
-        self.sijainti_x_ += matka
 
     
     def LiikuY(self,matka: int):
 
-        for i in range(self.sijainti_y_,self.sijainti_y_+matka):
-            self.sijainti_y_ += 1
+        for i in range(abs(matka)):
+
+            if matka > 0:
+                self.sijainti_y_ += 1
+            else:
+                self.sijainti_y_ += -1
 
             if self.TunnistaTormays() == True: #jos tapahtuu törmäys
-                self.sijainti_y_ -= 1 #peruu liikkeen
+
+                if matka > 0:
+                    self.sijainti_y_ += -1 #peruu liikkeen
+                else:
+                    self.sijainti_y_ += 1 #peruu liikkeen
                 return None
 
 
-        self.sijainti_y_ += matka
+
+
 
     
         
