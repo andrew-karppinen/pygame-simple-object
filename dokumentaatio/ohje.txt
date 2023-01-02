@@ -1,0 +1,70 @@
+
+
+OBJEKTIN LUONTI:
+
+obj = Objekti()
+
+parametrit:
+kuva: pygame kuva olio (ei pakollinen)
+sijainti_x: int (oletus 0)
+sijainty_y: int (oletus 0)
+
+painovoiman_voimakkuus: float(oletus 0.2)
+hypyn_voimakkuus: float(oletus 20.0)
+hyppy_tapa: int : (oletus 1) #selitetty alhaalla
+
+
+
+
+LIIKKUMINEN:
+
+obj.LiikuX(matka: int)
+liikuttaa objektia annetun matkan verran oikealle tai vasemmalle jos luku negatiivinen
+
+obj.LiikuY(matka: int)
+Tekee saman pystysuunnassa
+
+
+PAINOVOIMA:
+
+seuraava toteuttaa painovoiman:
+
+obj.painovoima()
+
+metodia kutsutaan silmukassa
+
+
+
+HYPPY:
+
+obj.Hyppy()
+
+
+Hyppy toimii yhdessä painovoiman kanssa
+
+objekti voi hypätä kolmella eri tavalla
+ja tapaa säätelee kokonaisluku muuttuja hyppy_tapa
+
+0 = ei hyppyä
+1 = hyppää vain jos objekti on toisen objektin päällä
+2 = hyppää edellisestä riippumatta
+
+muuttujalle voi antaa uuden arvon:
+obj.hyppy_tapa = 2
+
+
+
+
+TÖRMÄYKSET:
+
+objektille voi lisätä törmäyksen toisen objektin kanssa:
+
+obj.LisaaTormays(toisen objektin nimi)
+
+Tällöin objekti ei voi liikkua toisen objkektin läpi,
+mutta toinen voi edelleen liikkua tämän läpi jos sitä ei ole erikseen estetty.
+
+Törmäyksen voi poistaa:
+
+obj.PoistaTormays(toisen objektin nimi)
+
