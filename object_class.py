@@ -33,8 +33,8 @@ class Objekti:
             else:
                 self.sijainti_x_ += -1
 
-            if self.TunnistaTormays() == True: #jos tapahtuu törmäys
-
+            tormays = self.TunnistaTormays()
+            if tormays: #jos tapahtuu törmäys
                 if matka > 0:
                     self.sijainti_x_ += -1 #peruu liikkeen
                 else:
@@ -53,7 +53,8 @@ class Objekti:
             else:
                 self.sijainti_y_ += -1
 
-            if self.TunnistaTormays() == True: #jos tapahtuu törmäys
+            tormays = self.TunnistaTormays()
+            if tormays: #jos tapahtuu törmäys
 
                 if matka > 0:
                     self.sijainti_y_ += -1 #peruu liikkeen
@@ -79,7 +80,13 @@ class Objekti:
 
     
     def Hyppy(self): #metodi toteuttaa hypyn
-        self.painovoiman_arvo_ = self.hypyn_voimakkuus_
+
+        #hyppy vain jos ollaan toisen objektin päällä
+        self.sijainti_y_ += 1
+        tormays = self.TunnistaTormays()
+
+        if tormays:
+            self.painovoiman_arvo_ = self.hypyn_voimakkuus_
         
 
 
@@ -94,6 +101,7 @@ class Objekti:
 
     def TunnistaTormays(self):
         #palauttaa True/False jos objekti päällekkäin jonkun muun objektin kanssa
+        #palauttaa myös sen objektin jonka kanssa törmäys tapahtui
 
         for i in range(len(self.muut_objektit_)):
             obj = self.muut_objektit_[i]
@@ -103,7 +111,7 @@ class Objekti:
                     
                     if self.sijainti_x_<= obj.sijainti_x_ + obj.kuva_koko_x_:
                         if self.sijainti_x_ + self.kuva_koko_x_ >= obj.sijainti_x_:
-                            return True
+                            return True,self.muut_objektit_[i]
 
         return False
 
