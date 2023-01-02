@@ -1,5 +1,15 @@
 
 
+
+
+
+MODUULEJEN IMPORTTAUS:
+
+from PygameSimpleObject import Objekti, TunnistaTormays
+
+
+
+
 OBJEKTIN LUONTI:
 
 obj = Objekti()
