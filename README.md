@@ -7,3 +7,6 @@ automaattinen törmäyksentunnistus,
 painovoima,
 hyppy,
 jne
+
+
+https://github.com/andrew-karppinen/pygame-simple-object/blob/main/dokumentaatio/ohje.txt
