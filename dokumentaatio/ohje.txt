@@ -61,7 +61,7 @@ objektille voi lisätä törmäyksen toisen objektin kanssa:
 
 obj.LisaaTormays(toisen objektin nimi)
 
-Tällöin objekti ei voi liikkua toisen objkektin läpi,
+Tällöin objekti ei voi liikkua toisen objektin läpi,
 mutta toinen voi edelleen liikkua tämän läpi jos sitä ei ole erikseen estetty.
 
 Törmäyksen voi poistaa:
