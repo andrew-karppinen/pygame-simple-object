@@ -57,10 +57,10 @@ class Objekti:
 
         self.LiikuY(opposite(int(self.painovoiman_arvo_))) 
 
-    
-        
         if self.painovoiman_arvo_ > -5.0:
             self.painovoiman_arvo_ -= self.painovoiman_voimakkuus_  
+    
+
     
     def Hyppy(self): #metodi toteuttaa hypyn
         self.painovoiman_arvo_ = self.hypyn_voimakkuus_
