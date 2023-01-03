@@ -99,6 +99,17 @@ class Objekti:
         self.muut_objektit_.append(obj) #lisää objektin listaan
 
 
+    def PoistaTormays(self,obj):
+        '''
+        Poistaa törmäyksen parametriksi saadun objektin kanssa
+        '''
+        
+        for i in range(len(self.muut_objektit_)):
+            if obj == self.muut_objektit_[i]:
+                self.muut_objektit_.pop(i)
+                break
+
+
     def Tormays(self):
         #palauttaa True/False jos objekti päällekkäin jonkun muun objektin kanssa
 
