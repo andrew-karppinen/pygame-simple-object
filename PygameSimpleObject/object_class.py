@@ -101,7 +101,7 @@ class Objekti:
 
     def Tormays(self):
         #palauttaa True/False jos objekti päällekkäin jonkun muun objektin kanssa
-        #palauttaa myös sen objektin jonka kanssa törmäys tapahtui
+
 
         for i in range(len(self.muut_objektit_)):
             obj = self.muut_objektit_[i]
@@ -111,7 +111,7 @@ class Objekti:
                     
                     if self.sijainti_x_<= obj.sijainti_x_ + obj.kuva_koko_x_:
                         if self.sijainti_x_ + self.kuva_koko_x_ >= obj.sijainti_x_:
-                            return True,self.muut_objektit_[i]
+                            return True
 
         return False
 
