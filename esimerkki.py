@@ -41,18 +41,12 @@ while True: #pääsilmukka
         if tapahtuma.type == pygame.KEYDOWN: #pohjaan
             if tapahtuma.key  == pygame.K_UP:
                 robotti.Hyppy()
-            if tapahtuma.key  == pygame.K_DOWN:
-                alas = True
             if tapahtuma.key == pygame.K_LEFT:
                 vasemmalle = True
             if tapahtuma.key == pygame.K_RIGHT:
                 oikealle = True
 
         if tapahtuma.type == pygame.KEYUP: #ylös
-
-                
-            if tapahtuma.key  == pygame.K_DOWN:
-                alas = False
             if tapahtuma.key == pygame.K_LEFT:
                 vasemmalle = False
             if tapahtuma.key == pygame.K_RIGHT:
