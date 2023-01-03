@@ -2,28 +2,32 @@ import pygame
 
 from PygameSimpleObject import *
 
+
+
+
 pygame.init() #alustetaan pygame moduuli
 naytto = pygame.display.set_mode((850, 700)) #luodaan ikkuna
 
 
 
-robottikuva = pygame.image.load("kuvat/robotti.png") #ladataan kuvat
-tasokuva = pygame.image.load("kuvat/taso.png")
-maalikuva = pygame.image.load("kuvat/maali.png")
+robottikuva = pygame.image.load("images/robotti.png") #ladataan imaget
+tasokuva = pygame.image.load("images/taso.png")
+maalikuva = pygame.image.load("images/maali.png")
 
 #luodaan kello jolla rajoitetaan pelin nopeutta
 kello = pygame.time.Clock()
 
-#luodaan objektit
-robotti = Objekti(robottikuva,sijainti_x=200,sijainti_y=100,painovoiman_voimakkuus=0.5,hypyn_voimakkuus=15)
-taso = Objekti(tasokuva,sijainti_x=100,sijainti_y=600)
-taso2 = Objekti(tasokuva,sijainti_x=600,sijainti_y=400)
-maali = Objekti(maalikuva,sijainti_x=700,sijainti_y=335)
+#luodaan Objektit
+robotti = Object(robottikuva,position_x=200,position_y=100)
+taso = Object(tasokuva,position_x=100,position_y=600)
+taso2 = Object(tasokuva,position_x=600,position_y=400)
+maali = Object(maalikuva,position_x=700,position_y=335)
 
 #lisätään törmäykset
-robotti.LisaaTormays(taso)
-robotti.LisaaTormays(taso2)
-taso.LisaaTormays(robotti)
+robotti.AddCollision(taso)
+robotti.AddCollision(taso2)
+taso.AddCollision(robotti)
+
 
 
 
@@ -40,7 +44,7 @@ while True: #pääsilmukka
         #tutkitaan näppäinpainalluksia
         if tapahtuma.type == pygame.KEYDOWN: #pohjaan
             if tapahtuma.key  == pygame.K_UP:
-                robotti.Hyppy()
+                robotti.Jump()
             if tapahtuma.key == pygame.K_LEFT:
                 vasemmalle = True
             if tapahtuma.key == pygame.K_RIGHT:
@@ -57,34 +61,33 @@ while True: #pääsilmukka
         
 
     if oikealle:
-        robotti.LiikuX(4)
+        robotti.MoveX(4)
     if vasemmalle:
-        robotti.LiikuX(-4)
-    if alas:
-        robotti.LiikuY(4)
+        robotti.MoveX(-4)
 
 
-    if taso.sijainti_x_ == 500:
+    if taso.position_x_ == 500:
        tasovasemmalle = True
-    if taso.sijainti_x_ < 0:
+    if taso.position_x_ < 0:
         tasovasemmalle = False
         
     if tasovasemmalle:
-        taso.LiikuX(-1)
+        taso.MoveX(-1)
     else:
-        taso.LiikuX(1)
+        taso.MoveX(1)
         
-    robotti.Painovoima()
+    robotti.Gravity()
     
-    if TunnistaTormays(robotti,maali): #tunnistetaan kahden objektin törmäys
-        robotti.sijainti_x_ = 200
-        robotti.sijainti_y_ = 100
+    if CollisionCheck(robotti,maali): #tunnistetaan kahden Objectin törmäys
+
+        robotti.position_x_ = 200
+        robotti.position_y_ = 100
     
     naytto.fill((0,0,0)) #täytetään ruutu mustalla
-    naytto.blit(robotti.kuva_,(robotti.sijainti_x_,robotti.sijainti_y_))
-    naytto.blit(taso.kuva_,(taso.sijainti_x_,taso.sijainti_y_))
-    naytto.blit(taso2.kuva_,(taso2.sijainti_x_,taso2.sijainti_y_))
-    naytto.blit(maali.kuva_,(maali.sijainti_x_,maali.sijainti_y_))
+    naytto.blit(robotti.image_,(robotti.position_x_,robotti.position_y_))
+    naytto.blit(taso.image_,(taso.position_x_,taso.position_y_))
+    naytto.blit(taso2.image_,(taso2.position_x_,taso2.position_y_))
+    naytto.blit(maali.image_,(maali.position_x_,maali.position_y_))
 
     pygame.display.flip() #päivittää näytön
     
