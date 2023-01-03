@@ -1,6 +1,6 @@
 import pygame
 
-from PygameSimpleObject import Objekti, TunnistaTormays
+from PygameSimpleObject import *
 
 pygame.init() #alustetaan pygame moduuli
 naytto = pygame.display.set_mode((850, 700)) #luodaan ikkuna
