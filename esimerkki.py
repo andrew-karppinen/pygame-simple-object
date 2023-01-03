@@ -4,10 +4,10 @@ from PygameSimpleObject import *
 
 pygame.init() #alustetaan pygame moduuli
 naytto = pygame.display.set_mode((850, 700)) #luodaan ikkuna
-pygame.display.set_caption("pygame") #nimetään ikkuna
 
 
-robottikuva = pygame.image.load("kuvat/robotti.png") #ladataan kuva robotti
+
+robottikuva = pygame.image.load("kuvat/robotti.png") #ladataan kuvat
 tasokuva = pygame.image.load("kuvat/taso.png")
 maalikuva = pygame.image.load("kuvat/maali.png")
 
