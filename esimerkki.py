@@ -10,9 +10,9 @@ naytto = pygame.display.set_mode((850, 700)) #luodaan ikkuna
 
 
 
-robottikuva = pygame.image.load("images/robotti.png") #ladataan imaget
-tasokuva = pygame.image.load("images/taso.png")
-maalikuva = pygame.image.load("images/maali.png")
+robottikuva = pygame.image.load("kuvat/robotti.png") #ladataan imaget
+tasokuva = pygame.image.load("kuvat/taso.png")
+maalikuva = pygame.image.load("kuvat/maali.png")
 
 #luodaan kello jolla rajoitetaan pelin nopeutta
 kello = pygame.time.Clock()
