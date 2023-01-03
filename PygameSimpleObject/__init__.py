@@ -1,4 +1,4 @@
  
-from PygameSimpleObject.object_class import Objekti
+from PygameSimpleObject.object_class import Object
 
-from PygameSimpleObject.object_törmäys import TunnistaTormays
+from PygameSimpleObject.object_collision import CollisionCheck

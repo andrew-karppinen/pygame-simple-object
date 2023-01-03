@@ -6,122 +6,122 @@ def opposite(number):
 
 
 
-#otsikkotiedosto
+class Object:
+    def __init__(self,image:pygame.Surface,position_x: int = 0, position_y: int = 0,gravity_strength: float = 0.2,jump_strength: float = 20.0): #constructor
+        self.position_x_ = position_x
+        self.position_y_ = position_y
+        self.gravity_value = 0.0 #gravity value   < 0 = downwards > 0 = upwards
+        self.jump_strength_ = jump_strength
+        self.gravity_strength_ = gravity_strength
+        
+        self.image_ = image #pygame image object
+        self.image_size_y_ = image.get_height()
+        self.image_size_x_ = image.get_width()
 
-class Objekti:
-    def __init__(self,kuva:pygame.Surface,sijainti_x: int = 0, sijainti_y: int = 0,painovoiman_voimakkuus: float = 0.2,hypyn_voimakkuus: float = 20.0): #konstruktori
-        self.sijainti_x_ = sijainti_x
-        self.sijainti_y_ = sijainti_y
-        self.painovoiman_arvo_ = 0.0 #painovoiman arvo   < 0 = alaspäin > 0 = ylöspäin
-        self.hypyn_voimakkuus_ = hypyn_voimakkuus
-        self.painovoiman_voimakkuus_ = painovoiman_voimakkuus
-        
-        self.kuva_ = kuva #pygame kuva olio
-        self.kuva_koko_y_ = kuva.get_height() #kuvan mitat
-        self.kuva_koko_x_ = kuva.get_width()
-        
-        self.muut_objektit_ = []
+        self.other_object_ = []
 
 
     
-    #nämä metodit toteuttavat objektin liikuttamisen
-    def LiikuX(self,matka: int):
-        for i in range(abs(matka)):
+    #object moving methods
+    def MoveX(self,distance: int):
+        for i in range(abs(distance)):
 
-            if matka > 0:
-                self.sijainti_x_ += 1
+            if distance > 0:
+                self.position_x_ += 1
             else:
-                self.sijainti_x_ += -1
+                self.position_x_ += -1
 
-            tormays = self.Tormays()
-            if tormays: #jos tapahtuu törmäys
-                if matka > 0:
-                    self.sijainti_x_ += -1 #peruu liikkeen
+
+            if self.Collision(): #if collision
+                if distance > 0:
+                    self.position_x_ += -1 #retract move
                 else:
-                    self.sijainti_x_ += 1 #peruu liikkeen
+                    self.position_x_ += 1 #retract move
                 return None
 
 
 
     
-    def LiikuY(self,matka: int):
+    def MoveY(self,distance: int):
 
-        for i in range(abs(matka)):
+        for i in range(abs(distance)):
 
-            if matka > 0:
-                self.sijainti_y_ += 1
+            if distance > 0:
+                self.position_y_ += 1
             else:
-                self.sijainti_y_ += -1
+                self.position_y_ += -1
 
-            tormays = self.Tormays()
-            if tormays: #jos tapahtuu törmäys
+            
+            if self.Collision(): #if collision
 
-                if matka > 0:
-                    self.sijainti_y_ += -1 #peruu liikkeen
+                if distance > 0:
+                    self.position_y_ += -1 #retract move
                 else:
-                    self.sijainti_y_ += 1 #peruu liikkeen
+                    self.position_y_ += 1 #retract move
                 return None
 
 
-
-
-
     
         
-    def Painovoima(self): #metodi toteuttaa painovoiman
-        #muuttaa y sijaintia
+    def Gravity(self): #method makes gravity
         
 
-        self.LiikuY(opposite(int(self.painovoiman_arvo_))) 
+        self.MoveY(opposite(int(self.gravity_value))) 
 
-        if self.painovoiman_arvo_ > -5.0:
-            self.painovoiman_arvo_ -= self.painovoiman_voimakkuus_  
+        if self.gravity_value > -5.0:
+            self.gravity_value -= self.gravity_strength_ 
     
 
     
-    def Hyppy(self): #metodi toteuttaa hypyn
+    def Jump(self): #method makes jump
 
-        #hyppy vain jos ollaan toisen objektin päällä
-        self.sijainti_y_ += 1
-        tormays = self.Tormays()
+        #jump only object is on other object
+        self.position_y_ += 1
 
-        if tormays:
-            self.painovoiman_arvo_ = self.hypyn_voimakkuus_
+
+        if self.Collision():
+            self.gravity_value = self.jump_strength_
         
 
 
 
-    def LisaaTormays(self,obj):
+    def AddCollision(self,obj):
         '''
-        Saa parametrina viittauksen toiseen objektiin
+        parameter is reference other object 
+        add collision on this
         '''
+
         
-        self.muut_objektit_.append(obj) #lisää objektin listaan
+        self.other_object_.append(obj) #add object list
 
 
-    def PoistaTormays(self,obj):
+    def DeleteCollision(self,obj):
         '''
-        Poistaa törmäyksen parametriksi saadun objektin kanssa
+        Delete object in list
         '''
+
         
-        for i in range(len(self.muut_objektit_)):
-            if obj == self.muut_objektit_[i]:
-                self.muut_objektit_.pop(i)
+        for i in range(len(self.other_object_)):
+            if obj == self.other_object_[i]:
+                self.other_object_.pop(i)
                 break
 
 
-    def Tormays(self):
-        #palauttaa True/False jos objekti päällekkäin jonkun muun objektin kanssa
+    def Collision(self):
+        #return True/False
+        #if two object collision
 
 
-        for i in range(len(self.muut_objektit_)):
-            obj = self.muut_objektit_[i]
 
-            if self.sijainti_y_ <= obj.sijainti_y_ + obj.kuva_koko_y_:
-                if self.sijainti_y_+ self.kuva_koko_y_>= obj.sijainti_y_:
+        for i in range(len(self.other_object_)):
+            obj = self.other_object_[i]
+
+
+            if self.position_y_ <= obj.position_y_ + obj.image_size_y_:
+                if self.position_y_+ self.image_size_y_ >= obj.position_y_:
                     
-                    if self.sijainti_x_<= obj.sijainti_x_ + obj.kuva_koko_x_:
-                        if self.sijainti_x_ + self.kuva_koko_x_ >= obj.sijainti_x_:
+                    if self.position_x_<= obj.position_x_ + obj.image_size_x_:
+                        if self.position_x_ + self.image_size_x_ >= obj.position_x_:
                             return True
 
         return False
@@ -130,6 +130,6 @@ class Objekti:
 
 
 
-    def TulostaMuut(self):
-        for i in range(len(self.muut_objektit_)):
-            print(self.muut_objektit_[i])
+    def PrintOther(self):
+        for i in range(len(self.other_object_)):
+            print(self.other_object_[i])
