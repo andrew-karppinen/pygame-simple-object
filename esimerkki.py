@@ -14,12 +14,13 @@ maalikuva = pygame.image.load("kuvat/maali.png")
 #luodaan kello jolla rajoitetaan pelin nopeutta
 kello = pygame.time.Clock()
 
-
+#luodaan objektit
 robotti = Objekti(robottikuva,sijainti_x=200,sijainti_y=100,painovoiman_voimakkuus=0.5,hypyn_voimakkuus=15)
 taso = Objekti(tasokuva,sijainti_x=100,sijainti_y=600)
 taso2 = Objekti(tasokuva,sijainti_x=600,sijainti_y=400)
 maali = Objekti(maalikuva,sijainti_x=700,sijainti_y=335)
 
+#lisätään törmäykset
 robotti.LisaaTormays(taso)
 robotti.LisaaTormays(taso2)
 taso.LisaaTormays(robotti)
@@ -81,7 +82,7 @@ while True: #pääsilmukka
         
     robotti.Painovoima()
     
-    if TunnistaTormays(robotti,maali):
+    if TunnistaTormays(robotti,maali): #tunnistetaan kahden objektin törmäys
         robotti.sijainti_x_ = 200
         robotti.sijainti_y_ = 100
     
