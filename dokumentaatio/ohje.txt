@@ -5,7 +5,7 @@
 
 MODUULEJEN IMPORTTAUS:
 
-from PygameSimpleObject import Objekti, TunnistaTormays
+from PygameSimpleObject import * 
 
 
 
