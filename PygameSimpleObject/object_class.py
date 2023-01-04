@@ -109,7 +109,7 @@ class Object:
 
     def Collision(self):
         #return True/False
-        #if two object collision
+        #if this object collision
 
 
 
