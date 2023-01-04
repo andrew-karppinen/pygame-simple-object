@@ -75,7 +75,7 @@ class Object:
     
     def Jump(self): #method makes jump
 
-        #jump only if object is on other object
+        #jumps only if the object is above another object
         self.position_y_ += 1
 
 
