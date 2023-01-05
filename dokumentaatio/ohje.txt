@@ -20,7 +20,8 @@ kuva: pygame kuva olio (ei pakollinen)
 sijainti x: int (oletus 0)
 sijaintyy: int (oletus 0)
 
-painovoiman voimakkuus: float(oletus 0.0)
+painovoiman nopeus float (oletus 0.0)
+painovoiman voimakkuus: float(oletus 6.0)
 hypyn voimakkuus: float(oletus 0.0)
 hyppy tapa: int : (oletus 1) #selitetty alhaalla
 
@@ -43,6 +44,18 @@ seuraava toteuttaa painovoiman:
 obj.Gravity()
 
 metodia kutsutaan silmukassa
+
+Painovoiman voimakkuutta säätelee kaksi muuttujaa:
+
+gravity_speed_ 
+ja
+gravity_strength_
+
+ensimmäinen säätelee kiihtyvyyttä
+ja jälkimmäinen nopeutta johon kiihdytetään
+
+painovoiman saa "väärinpäin" laittamalla kiihtyvyyden negatiiviseksi
+gravity_strength_ muuttujaan ei laiteta negatiiviseksi
 
 
 
