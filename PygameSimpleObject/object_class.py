@@ -58,6 +58,7 @@ class   NewObject:
                     self.position_y_ += -1 #retract move
                 else:
                     self.position_y_ += 1 #retract move
+                    self.gravity_value = 0.0 #retract jump
                 return None
 
 
