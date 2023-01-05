@@ -12,7 +12,7 @@ from PygameSimpleObject import *
 
 OBJEKTIN LUONTI:
 
-obj = Object()
+obj = NewObject()
 
 parametrit:
 kuva: pygame kuva olio (ei pakollinen)
