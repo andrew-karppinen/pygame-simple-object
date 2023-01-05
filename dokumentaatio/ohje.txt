@@ -20,8 +20,8 @@ kuva: pygame kuva olio (ei pakollinen)
 sijainti x: int (oletus 0)
 sijaintyy: int (oletus 0)
 
-painovoiman voimakkuus: float(oletus 0.2)
-hypyn voimakkuus: float(oletus 20.0)
+painovoiman voimakkuus: float(oletus 0.0)
+hypyn voimakkuus: float(oletus 0.0)
 hyppy tapa: int : (oletus 1) #selitetty alhaalla
 
 
