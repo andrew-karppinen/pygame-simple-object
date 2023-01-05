@@ -59,7 +59,7 @@ ja tapaa säätelee kokonaisluku muuttuja hyppy_tapa
 0 = ei hyppyä
 1 = hyppää vain jos objekti on toisen objektin päällä tai mikäli painovoima "väärinpäin" niin tutkitaan onko toisen objektin alapuolella
 
-
+Hyppykin tehdään automaattisesti painvoiman kanssa eri suuntaan
 
 
 
