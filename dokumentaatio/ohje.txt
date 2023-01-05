@@ -58,7 +58,8 @@ ja tapaa säätelee kokonaisluku muuttuja hyppy_tapa
 
 0 = ei hyppyä
 1 = hyppää vain jos objekti on toisen objektin päällä
-2 = hyppää edellisestä riippumatta
+2 = hyppää jos yläpuolella toinen objekti, käytetään silloin kuin painovoima "väärinpäin"
+3 = hyppää edellisistä riippumatta
 
 
 
