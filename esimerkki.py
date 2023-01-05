@@ -10,7 +10,7 @@ naytto = pygame.display.set_mode((850, 700)) #luodaan ikkuna
 
 
 
-robottikuva = pygame.image.load("kuvat/robotti.png") #ladataan imaget
+robottikuva = pygame.image.load("kuvat/robotti.png") #ladataan kuvat
 tasokuva = pygame.image.load("kuvat/taso.png")
 maalikuva = pygame.image.load("kuvat/maali.png")
 
