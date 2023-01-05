@@ -6,13 +6,16 @@ def opposite(number):
 
 
 
-class   NewObject:
-    def __init__(self,image:pygame.Surface,position_x: int = 0, position_y: int = 0,gravity_strength: float = 0.2,jump_strength: float = 20.0): #constructor
+class NewObject:
+    def __init__(self,image:pygame.Surface,position_x: int = 0, position_y: int = 0,gravity_speed: float = 0.0,gravity_strength: float = 6.0,jump_strength: float = 0.0,jump_mode: int = 1): #constructor
         self.position_x_ = position_x
         self.position_y_ = position_y
-        self.gravity_value = 0.0 #gravity value   < 0 = downwards > 0 = upwards
-        self.jump_strength_ = jump_strength
+        self.gravity_value_ = 0.0 
         self.gravity_strength_ = gravity_strength
+        self.gravity_speed_ = gravity_speed #gravity  < 0 = downwards > 0 = upwards
+        self.jump_strength_ = jump_strength
+        self.jump_mode_ = jump_mode
+        
         
         self.image_ = image #pygame image object
         self.image_size_y_ = image.get_height()
@@ -37,7 +40,7 @@ class   NewObject:
                     self.position_x_ += -1 #retract move
                 else:
                     self.position_x_ += 1 #retract move
-                return None
+                return 
 
 
 
@@ -51,6 +54,7 @@ class   NewObject:
             else:
                 self.position_y_ += -1
 
+
             
             if self.Collision(): #if collision
 
@@ -58,30 +62,50 @@ class   NewObject:
                     self.position_y_ += -1 #retract move
                 else:
                     self.position_y_ += 1 #retract move
-                    self.gravity_value = 0.0 #retract jump
-                return None
+                return
 
 
     
         
     def Gravity(self): #method makes gravity
+
+        self.MoveY(int(self.gravity_value_))
         
-
-        self.MoveY(opposite(int(self.gravity_value))) 
-
-        if self.gravity_value > -5.0:
-            self.gravity_value -= self.gravity_strength_ 
-    
+        
+        if self.gravity_speed_ > 0:
+            if self.gravity_value_ < self.gravity_strength_:
+                self.gravity_value_ += self.gravity_speed_
+        elif self.gravity_speed_ < 0:
+            if self.gravity_value_ > opposite(self.gravity_strength_):
+                self.gravity_value_ += self.gravity_speed_
 
     
     def Jump(self): #method makes jump
 
-        #jumps only if the object is above another object
-        self.position_y_ += 1
+        if self.jump_mode_ != 0:
+
+            if self.jump_mode_ == 1: #jumps only if the object is above another object
+                if self.gravity_speed_ > 0:
+                    self.position_y_ += 1
+                    if self.Collision():
+                        self.gravity_value_ = opposite(self.jump_strength_)
+                        self.position_y_ -= 1 #retract move
+                        
+                if self.gravity_speed_ < 0:
+                    self.position_y_ -= 1
+                    if self.Collision():
+                        self.gravity_value_ = self.jump_strength_
+                        self.position_y_ += 1 #retract move
+
+            elif self.jump_mode_ == 2:
+                if self.gravity_speed_ > 0:
+                    self.gravity_value_ = opposite(self.jump_strength_)
+                else:
+                    self.gravity_value_ = self.jump_strength_
+                return
 
 
-        if self.Collision():
-            self.gravity_value = self.jump_strength_
+
         
 
 
