@@ -37,9 +37,9 @@ class NewObject:
 
             if self.Collision(): #if collision
                 if distance > 0:
-                    self.position_x_ += -1 #retract move
+                    self.position_x_ += -1 #cancel move
                 else:
-                    self.position_x_ += 1 #retract move
+                    self.position_x_ += 1 #cancel move
                 return 
 
 
@@ -59,9 +59,9 @@ class NewObject:
             if self.Collision(): #if collision
 
                 if distance > 0:
-                    self.position_y_ += -1 #retract move
+                    self.position_y_ += -1 #cancel move
                 else:
-                    self.position_y_ += 1 #retract move
+                    self.position_y_ += 1 #cancel move
                 return
 
 
@@ -89,13 +89,13 @@ class NewObject:
                     self.position_y_ += 1
                     if self.Collision():
                         self.gravity_value_ = opposite(self.jump_strength_)
-                        self.position_y_ -= 1 #retract move
+                        self.position_y_ -= 1 #cancel move
                         
                 if self.gravity_speed_ < 0:
                     self.position_y_ -= 1
                     if self.Collision():
                         self.gravity_value_ = self.jump_strength_
-                        self.position_y_ += 1 #retract move
+                        self.position_y_ += 1 #cancel move
 
             elif self.jump_mode_ == 2:
                 if self.gravity_speed_ > 0:
