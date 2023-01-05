@@ -56,6 +56,8 @@ Hyppy toimii yhdessä painovoiman kanssa
 hypyn toimintaa voi muuttaa:
 jump_mode_ = 0,1 tai 2
 
+oletuksena 1
+
 0 = ei hyppyä
 1 = hyppää vain jos objekti on toisen objektin päällä tai mikäli painovoima "väärinpäin" niin tutkitaan onko toisen objektin alapuolella
 2 = hyppää edellisestä riippumatta
