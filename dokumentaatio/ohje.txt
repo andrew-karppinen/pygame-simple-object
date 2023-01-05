@@ -1,6 +1,7 @@
 
 
-
+Huom, nämä ovat suunniteltuja ominaisuuksia eikä kaikki viellä toimi
+Lisäksi nämä saattaa muuttua ja ominaisuuksia tulla lisää!
 
 
 MODUULEJEN IMPORTTAUS:
