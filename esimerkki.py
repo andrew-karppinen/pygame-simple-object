@@ -18,7 +18,7 @@ maalikuva = pygame.image.load("kuvat/maali.png")
 kello = pygame.time.Clock()
 
 #luodaan Objektit
-robotti = NewObject(robottikuva,position_x=200,position_y=100,jump_strength = 10.0)
+robotti = NewObject(robottikuva,position_x=200,position_y=100,gravity_speed = 0.2,jump_strength = 10.0)
 taso = NewObject(tasokuva,position_x=100,position_y=600)
 taso2 = NewObject(tasokuva,position_x=600,position_y=400)
 maali = NewObject(maalikuva,position_x=700,position_y=335)
@@ -27,8 +27,6 @@ maali = NewObject(maalikuva,position_x=700,position_y=335)
 robotti.AddCollision(taso)
 robotti.AddCollision(taso2)
 taso.AddCollision(robotti)
-
-
 
 
 tasovasemmalle = False
