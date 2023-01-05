@@ -6,7 +6,7 @@ def opposite(number):
 
 
 
-class Object:
+class   NewObject:
     def __init__(self,image:pygame.Surface,position_x: int = 0, position_y: int = 0,gravity_strength: float = 0.2,jump_strength: float = 20.0): #constructor
         self.position_x_ = position_x
         self.position_y_ = position_y
