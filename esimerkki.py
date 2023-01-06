@@ -29,6 +29,8 @@ robotti.AddCollision(taso2)
 taso.AddCollision(robotti)
 
 
+
+
 tasovasemmalle = False
 vasemmalle = False
 oikealle = False
