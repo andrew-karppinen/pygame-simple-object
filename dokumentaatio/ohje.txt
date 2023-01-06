@@ -15,15 +15,10 @@ OBJEKTIN LUONTI:
 
 obj = NewObject()
 
-parametrit:
-kuva: pygame kuva olio (ei pakollinen)
-sijainti x: int (oletus 0)
-sijaintyy: int (oletus 0)
+objektille voi antaa ominaisuuksia luonnin yhteydessä (ja myöhemmin)
 
-painovoiman nopeus float (oletus 0.0)
-painovoiman voimakkuus: float(oletus 6.0)
-hypyn voimakkuus: float(oletus 0.0)
-hyppy tapa: int : (oletus 1) #selitetty alhaalla
+tämänhetkiset parametrit construktorille:
+(image:pygame.Surface,position_x: int = 0, position_y: int = 0,gravity_speed: float = 0.0,gravity_strength: float = 6.0,jump_strength: float = 0.0,jump_mode: int = 1,jump_collision_mode = 1)
 
 
 
@@ -96,4 +91,12 @@ obj.DeleteCollision(toisen objektin nimi)
 
 Seuraava tarkista törmääkö kaksi objektia:
 CollisionCheck(obj1, obj2)
+
+
+oletuksena törmäys kattoon hypätessä lopettaa hypyn
+tämän voi halutessaan poistaa asettamalla:
+
+obj.jump_collision_mode_ = 0 (1 niin päällä)
+
+tällöin objekti "liimautuu" kattoon kunnes painovoima alkaa taas vaikuttamaan
 
