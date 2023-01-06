@@ -7,14 +7,15 @@ def opposite(number):
 
 
 class NewObject:
-    def __init__(self,image:pygame.Surface,position_x: int = 0, position_y: int = 0,gravity_speed: float = 0.0,gravity_strength: float = 6.0,jump_strength: float = 0.0,jump_mode: int = 1): #constructor
+    def __init__(self,image:pygame.Surface,position_x: int = 0, position_y: int = 0,gravity_speed: float = 0.0,gravity_strength: float = 6.0,jump_strength: float = 0.0,jump_mode: int = 1,jump_collision_mode = 1): #constructor
         self.position_x_ = position_x
         self.position_y_ = position_y
         self.gravity_value_ = 0.0 
         self.gravity_strength_ = gravity_strength
         self.gravity_speed_ = gravity_speed #gravity  < 0 = downwards > 0 = upwards
         self.jump_strength_ = jump_strength
-        self.jump_mode_ = jump_mode
+        self.jump_mode_ = jump_mode = 1
+        self.jump_collision_mode_  = jump_collision_mode
         
         
         self.image_ = image #pygame image object
@@ -56,10 +57,14 @@ class NewObject:
 
 
             
-            if self.Collision(): #if collision
+            if self.Collision(): #if collision 
+
+                if self.jump_collision_mode_ == 1: #stop jump
+                    self.gravity_value_= 0.0
 
                 if distance > 0:
                     self.position_y_ += -1 #cancel move
+
                 else:
                     self.position_y_ += 1 #cancel move
                 return
