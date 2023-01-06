@@ -6,7 +6,7 @@ Tarkoitus tehdä pygameen objekti järjestelmä joka lisää esim seuraavat omin
 automaattinen törmäyksentunnistus,
 painovoima,
 hyppy,
-objectia seuraava kamera,
+objektia seuraava kamera,
 jne
 
 
