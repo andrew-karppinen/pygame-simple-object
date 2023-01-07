@@ -36,7 +36,7 @@ class NewObject:
                 self.position_x_ += -1
 
 
-            if self.Collision(): #if collision
+            if self.__Collision(): #if collision
                 if distance > 0:
                     self.position_x_ += -1 #cancel move
                 else:
@@ -57,7 +57,7 @@ class NewObject:
 
 
             
-            if self.Collision(): #if collision 
+            if self.__Collision(): #if collision 
 
                 if self.jump_collision_mode_ == 1: #stop jump
                     self.gravity_value_= 0.0
@@ -92,13 +92,13 @@ class NewObject:
             if self.jump_mode_ == 1: #jumps only if the object is above another object
                 if self.gravity_speed_ > 0:
                     self.position_y_ += 1
-                    if self.Collision():
+                    if self.__Collision():
                         self.gravity_value_ = opposite(self.jump_strength_)
                         self.position_y_ -= 1 #cancel move
                         
                 if self.gravity_speed_ < 0:
                     self.position_y_ -= 1
-                    if self.Collision():
+                    if self.__Collision():
                         self.gravity_value_ = self.jump_strength_
                         self.position_y_ += 1 #cancel move
 
@@ -137,7 +137,7 @@ class NewObject:
                 break
 
 
-    def Collision(self):
+    def __Collision(self): #private method
         #return True/False
         #if this object collision
 
