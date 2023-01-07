@@ -94,6 +94,10 @@ obj.DeleteCollision(toisen objektin nimi)
 Seuraava tarkista törmääkö kaksi objektia:
 CollisionCheck(obj1, obj2)
 
+funktio käyttää oletuksena objektin sen hetkistä sijaintia mutta sille voi myös antaa sijainnit:
+CollisionCheck(obj1, obj2, obj1_x, obj1_y, obj2_x, obj2_y)
+
+
 
 oletuksena törmäys kattoon hypätessä lopettaa hypyn
 tämän voi halutessaan poistaa asettamalla:
