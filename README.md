@@ -6,8 +6,8 @@ Tarkoitus tehdä pygameen objekti järjestelmä joka lisää esim seuraavat omin
 automaattinen törmäyksentunnistus,
 painovoima,
 hyppy,
-objektia seuraava kamera,
-jne
+
+lisäksi ehkä tilekartta järjestelmä ja ojektia seuraava kamera
 
 
 https://github.com/andrew-karppinen/pygame-simple-object/blob/main/dokumentaatio/ohje.txt
