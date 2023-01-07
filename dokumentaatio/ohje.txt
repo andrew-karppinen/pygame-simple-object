@@ -31,6 +31,8 @@ liikuttaa objektia annetun matkan verran oikealle tai vasemmalle jos luku negati
 obj.MoveY(matka: int)
 Tekee saman pystysuunnassa
 
+objekille voi tietenkin antaa myös sijainnin:
+obj.Position_x_ = int
 
 PAINOVOIMA:
 
