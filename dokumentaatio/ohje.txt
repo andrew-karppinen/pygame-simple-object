@@ -85,9 +85,9 @@ objektille voi lisätä törmäyksen toisen objektin kanssa:
 AddCollision(obj1,obj2)
 tällöin kumpikaan objekti ei voi liikkua kummankaan läpi
 
-
 Törmäyksen voi poistaa:
 DelteCollision(obj1,obj2)
+
 
 Seuraava tarkista törmääkö kaksi objektia:
 CollisionCheck(obj1, obj2)
