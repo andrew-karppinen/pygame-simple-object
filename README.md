@@ -1,5 +1,5 @@
 # pygame-simple-object-system
-# Camera test branch
+# Camera follow object test branch
 
 
 
