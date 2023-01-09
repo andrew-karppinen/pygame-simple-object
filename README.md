@@ -7,7 +7,7 @@ automaattinen törmäyksentunnistus,
 painovoima,
 hyppy,
 
-lisäksi ehkä tilekartta järjestelmä ja ojektia seuraava kamera
+lisäksi objektia seuraava kamera ja ehkä tilekarttajärjestelmä
 
 
 https://github.com/andrew-karppinen/pygame-simple-object/blob/main/dokumentaatio/ohje.txt
