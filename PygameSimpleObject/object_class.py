@@ -30,9 +30,9 @@ class NewObject:
     def MoveX(self,distance: int):
         for i in range(abs(distance)):
 
-            if distance > 0: #left
+            if distance > 0: #right
                 self.position_x_ += 1
-            else: #right
+            else: #left
                 self.position_x_ += -1
 
 
