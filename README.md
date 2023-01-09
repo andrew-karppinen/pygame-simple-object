@@ -1,4 +1,5 @@
 # pygame-simple-object-system
+# Camera test
 
 
 Tarkoitus tehdä pygameen objekti järjestelmä joka lisää esim seuraavat ominaisuudet:
