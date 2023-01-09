@@ -22,7 +22,7 @@ class NewObject:
         self.image_size_y_ = image.get_height()
         self.image_size_x_ = image.get_width()
 
-        self.other_object_ = []
+        self.collision_objects_ = []
 
 
     
@@ -122,7 +122,7 @@ class NewObject:
         '''
 
         
-        self.other_object_.append(obj) #add object list
+        self.collision_objects_.append(obj) #add object list
 
 
     def DeleteCollision(self,obj):
@@ -131,9 +131,9 @@ class NewObject:
         '''
 
         
-        for i in range(len(self.other_object_)):
-            if obj == self.other_object_[i]:
-                self.other_object_.pop(i)
+        for i in range(len(self.collision_objects_)):
+            if obj == self.collision_objects_[i]:
+                self.collision_objects_.pop(i)
                 break
 
 
@@ -143,8 +143,8 @@ class NewObject:
 
 
 
-        for i in range(len(self.other_object_)):
-            obj = self.other_object_[i]
+        for i in range(len(self.collision_objects_)):
+            obj = self.collision_objects_[i]
 
 
             if self.position_y_ <= obj.position_y_ + obj.image_size_y_:
@@ -161,5 +161,5 @@ class NewObject:
 
 
     def PrintOther(self):
-        for i in range(len(self.other_object_)):
-            print(self.other_object_[i])
+        for i in range(len(self.collision_objects_)):
+            print(self.collision_objects_[i])
