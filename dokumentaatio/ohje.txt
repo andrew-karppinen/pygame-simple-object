@@ -82,14 +82,12 @@ TÖRMÄYKSET:
 
 objektille voi lisätä törmäyksen toisen objektin kanssa:
 
-obj.AddCollision(toisen objektin nimi)
+AddCollision(obj1,obj2)
+tällöin kumpikaan objekti ei voi liikkua kummankaan läpi
 
-Tällöin objekti ei voi liikkua toisen objektin läpi,
-mutta toinen voi edelleen liikkua tämän läpi jos sitä ei ole erikseen estetty.
 
 Törmäyksen voi poistaa:
-
-obj.DeleteCollision(toisen objektin nimi)
+DelteCollision(obj1,obj2)
 
 Seuraava tarkista törmääkö kaksi objektia:
 CollisionCheck(obj1, obj2)
