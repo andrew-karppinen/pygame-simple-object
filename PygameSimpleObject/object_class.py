@@ -36,7 +36,8 @@ class NewObject:
 
 
 
-    #object moving methods camera test
+    #test moving methods
+    #camera follow object
     def CameraMoveX(self,distance: int):
 
         for i in range(len(self.other_objects_)):
@@ -79,7 +80,8 @@ class NewObject:
                         self.other_objects_[i].position_y_ -= 1 #cancel move
                     return 
 
-        #object moving methods
+    #test moving methods
+    #camera follow object
     def MoveX(self,distance: int):
         for i in range(abs(distance)):
 
