@@ -29,8 +29,7 @@ AddCollision(robotti,taso)
 AddCollision(robotti,taso2)
 
 kameralista = [taso,taso2,maali]
-
-robotti.AddCamera(kameralista)
+robotti.AddCamera(kameralista) 
 
 
 tasovasemmalle = False
