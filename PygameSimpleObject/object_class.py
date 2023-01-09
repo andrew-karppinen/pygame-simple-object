@@ -14,7 +14,7 @@ class NewObject:
         self.gravity_strength_ = gravity_strength
         self.gravity_speed_ = gravity_speed #gravity  < 0 = downwards > 0 = upwards
         self.jump_strength_ = jump_strength
-        self.jump_mode_ = jump_mode = 1
+        self.jump_mode_ = jump_mode
         self.jump_collision_mode_  = jump_collision_mode
         
         
