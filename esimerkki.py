@@ -24,10 +24,8 @@ taso2 = NewObject(tasokuva,position_x=600,position_y=400)
 maali = NewObject(maalikuva,position_x=700,position_y=335)
 
 #lisätään törmäykset
-robotti.AddCollision(taso)
-robotti.AddCollision(taso2)
-taso.AddCollision(robotti)
-
+AddCollision(robotti,taso)
+AddCollision(robotti,taso2)
 
 
 
