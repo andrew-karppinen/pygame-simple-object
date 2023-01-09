@@ -123,11 +123,11 @@ class NewObject:
             obj = self.collision_objects_[i]
 
 
-            if self.position_y_ <= obj.position_y_ + obj.image_size_y_:
-                if self.position_y_+ self.image_size_y_ >= obj.position_y_:
+            if self.position_y_ < obj.position_y_ + obj.image_size_y_:
+                if self.position_y_+ self.image_size_y_ > obj.position_y_:
                     
-                    if self.position_x_<= obj.position_x_ + obj.image_size_x_:
-                        if self.position_x_ + self.image_size_x_ >= obj.position_x_:
+                    if self.position_x_< obj.position_x_ + obj.image_size_x_:
+                        if self.position_x_ + self.image_size_x_ > obj.position_x_:
                             return True
 
         return False
