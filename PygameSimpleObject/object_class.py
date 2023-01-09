@@ -1,5 +1,9 @@
 import pygame
 
+#TEST
+#camera follow object test
+
+
 def opposite(number):
     return -1 * number
 
@@ -23,10 +27,59 @@ class NewObject:
         self.image_size_x_ = image.get_width()
 
         self.collision_objects_ = []
+        self.other_objects_ = []
+
+
+    def AddCamera(self,objectslist: list):
+        self.other_objects_ = objectslist
+            
+
+
+
+    #object moving methods camera test
+    def CameraMoveX(self,distance: int):
+
+        for i in range(len(self.other_objects_)):
+            
+            for j in range(abs(distance)):
+
+                if distance > 0:
+                    
+                    self.other_objects_[i].position_x_ -= 1
+                else:
+                    self.other_objects_[i].position_x_ += 1
+
+
+                if self.__Collision(): #if collision
+                    if distance > 0:
+                        self.other_objects_[i].position_x_ += 1 #cancel move
+                    else:
+                        self.other_objects_[i].position_x_ -= 1 #cancel move
+                    return 
+
 
 
     
-    #object moving methods
+    def CameraMoveY(self,distance: int):
+
+        for i in range(len(self.other_objects_)):
+
+            for j in range(abs(distance)):
+
+                if distance > 0:
+                    self.other_objects_[i].position_y_ -= 1
+                else:
+                    self.other_objects_[i].position_y_ += 1
+
+
+                if self.__Collision(): #if collision
+                    if distance > 0:
+                        self.other_objects_[i].position_y_ += 1 #cancel move
+                    else:
+                        self.other_objects_[i].position_y_ -= 1 #cancel move
+                    return 
+
+        #object moving methods
     def MoveX(self,distance: int):
         for i in range(abs(distance)):
 
@@ -68,8 +121,6 @@ class NewObject:
                 else:
                     self.position_y_ += 1 #cancel move
                 return
-
-
     
         
     def Gravity(self): #method makes gravity
