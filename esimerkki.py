@@ -18,15 +18,19 @@ maalikuva = pygame.image.load("kuvat/maali.png")
 kello = pygame.time.Clock()
 
 #luodaan Objektit
-robotti = NewObject(robottikuva,position_x=200,position_y=100,gravity_speed = 0.2,jump_strength = 10.0)
-taso = NewObject(tasokuva,position_x=100,position_y=600)
+robotti = NewObject(robottikuva,position_x=425,position_y=350,gravity_speed = 0.2,jump_strength = 10.0)
+taso = NewObject(tasokuva,position_x=200,position_y=600)
 taso2 = NewObject(tasokuva,position_x=600,position_y=400)
 maali = NewObject(maalikuva,position_x=700,position_y=335)
 
 #lisätään törmäykset
+
 AddCollision(robotti,taso)
 AddCollision(robotti,taso2)
 
+kameralista = [taso,taso2,maali]
+
+robotti.AddCamera(kameralista)
 
 
 tasovasemmalle = False
@@ -59,9 +63,9 @@ while True: #pääsilmukka
         
 
     if oikealle:
-        robotti.MoveX(4)
+        robotti.CameraMoveX(4)
     if vasemmalle:
-        robotti.MoveX(-4)
+        robotti.CameraMoveX(-4)
 
 
     if taso.position_x_ == 500:
