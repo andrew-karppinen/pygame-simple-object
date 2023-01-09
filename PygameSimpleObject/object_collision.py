@@ -34,3 +34,26 @@ def CollisionCheck(obj1, obj2, obj1_x = None, obj1_y = None, obj2_x = None, obj2
 
 
     return False
+
+
+
+
+def AddCollision(obj1,obj2):
+    obj1.collision_objects_.append(obj2) #add object list
+    obj2.collision_objects_.append(obj1) #add object list
+
+def DelteCollision(obj1,obj2):
+    #Delete object in list
+
+
+    #obj1
+    for i in range(len(obj1.collision_objects_)):
+        if obj2 == obj1.collision_objects_[i]:
+            obj1.collision_objects_.pop(i)
+            break
+    
+    #obj2
+    for i in range(len(obj2.collision_objects_)):
+        if obj1 == obj2.collision_objects_[i]:
+            obj2.collision_objects_.pop(i)
+            break

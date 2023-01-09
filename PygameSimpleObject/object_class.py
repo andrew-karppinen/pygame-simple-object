@@ -10,12 +10,12 @@ class NewObject:
     def __init__(self,image:pygame.Surface,position_x: int = 0, position_y: int = 0,gravity_speed: float = 0.0,gravity_strength: float = 6.0,jump_strength: float = 0.0,jump_mode: int = 1,jump_collision_mode = 1): #constructor
         self.position_x_ = position_x
         self.position_y_ = position_y
-        self.gravity_value_ = 0.0 
+        self.gravity_value_ = 0.0
         self.gravity_strength_ = gravity_strength
         self.gravity_speed_ = gravity_speed #gravity  < 0 = downwards > 0 = upwards
         self.jump_strength_ = jump_strength
         self.jump_mode_ = jump_mode
-        self.jump_collision_mode_  = jump_collision_mode
+        self.jump_collision_mode_ = jump_collision_mode
         
         
         self.image_ = image #pygame image object
@@ -111,30 +111,6 @@ class NewObject:
 
 
 
-        
-
-
-
-    def AddCollision(self,obj):
-        '''
-        parameter is reference other object 
-        add collision on this
-        '''
-
-        
-        self.collision_objects_.append(obj) #add object list
-
-
-    def DeleteCollision(self,obj):
-        '''
-        Delete object in list
-        '''
-
-        
-        for i in range(len(self.collision_objects_)):
-            if obj == self.collision_objects_[i]:
-                self.collision_objects_.pop(i)
-                break
 
 
     def __Collision(self): #private method
