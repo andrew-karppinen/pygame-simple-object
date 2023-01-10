@@ -39,25 +39,29 @@ class NewObject:
     #test moving methods
     #camera follow object
     def CameraMoveX(self,distance: int):
+        counter = 0
 
         for i in range(len(self.other_objects_)):
             
-            for j in range(abs(distance)):
-
-                if distance > 0:
-                    
-                    self.other_objects_[i].position_x_ -= 1
-                else:
-                    self.other_objects_[i].position_x_ += 1
+            #for j in range(abs(distance)):
 
 
-                if self.__Collision(): #if collision
-                    if distance > 0:
-                        self.other_objects_[i].position_x_ += 1 #cancel move
-                    else:
-                        self.other_objects_[i].position_x_ -= 1 #cancel move
-                    return 
+            self.other_objects_[i].position_x_ += opposite(distance)
+            counter += 1
 
+            if self.__Collision(): #if collision
+                def CancelMove(): #canceling all objects moves
+                    for j in range(counter,-1,-1):
+                        print(j)
+                        if distance > 0:
+                            self.other_objects_[j].position_x_ += distance #cancel move
+                        else:
+                            self.other_objects_[j].position_x_ -= opposite(distance) #cancel move
+                    return                     
+
+
+                CancelMove()
+                return
 
 
     #test moving method
