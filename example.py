@@ -10,9 +10,9 @@ naytto = pygame.display.set_mode((850, 700)) #create window
 
 
 
-robottikuva = pygame.image.load("kuvat/robotti.png") #download images
-tasokuva = pygame.image.load("kuvat/taso.png")
-maalikuva = pygame.image.load("kuvat/maali.png")
+robottikuva = pygame.image.load("images/robotti.png") #download images
+tasokuva = pygame.image.load("images/taso.png")
+maalikuva = pygame.image.load("images/maali.png")
 
 
 kello = pygame.time.Clock()
