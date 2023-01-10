@@ -10,4 +10,4 @@ hyppy,
 lisäksi objektia seuraava kamera ja ehkä tilekarttajärjestelmä
 
 Ohje/suunnitelma suomeksi:
-https://github.com/andrew-karppinen/pygame-simple-object/blob/main/dokumentaatio/ohje.txt
+https://github.com/andrew-karppinen/pygame-simple-object/blob/main/documentation/ohje.txt
