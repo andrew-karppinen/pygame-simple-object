@@ -1,9 +1,8 @@
 import pygame
 
+
 def opposite(number):
     return -1 * number
-
-
 
 
 class NewObject:

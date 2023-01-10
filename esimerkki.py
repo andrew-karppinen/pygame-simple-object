@@ -5,25 +5,25 @@ from PygameSimpleObject import *
 
 
 
-pygame.init() #alustetaan pygame moduuli
-naytto = pygame.display.set_mode((850, 700)) #luodaan ikkuna
+pygame.init()
+naytto = pygame.display.set_mode((850, 700)) #create window
 
 
 
-robottikuva = pygame.image.load("kuvat/robotti.png") #ladataan kuvat
+robottikuva = pygame.image.load("kuvat/robotti.png") #download images
 tasokuva = pygame.image.load("kuvat/taso.png")
 maalikuva = pygame.image.load("kuvat/maali.png")
 
-#luodaan kello jolla rajoitetaan pelin nopeutta
+
 kello = pygame.time.Clock()
 
-#luodaan Objektit
+#create objects
 robotti = NewObject(robottikuva,position_x=200,position_y=100,gravity_speed = 0.2,jump_strength = 10.0)
 taso = NewObject(tasokuva,position_x=100,position_y=600)
 taso2 = NewObject(tasokuva,position_x=600,position_y=400)
 maali = NewObject(maalikuva,position_x=700,position_y=335)
 
-#lisätään törmäykset
+#add collisions
 AddCollision(robotti,taso)
 AddCollision(robotti,taso2)
 
@@ -35,12 +35,12 @@ oikealle = False
 ylos = False
 alas = False
 
-while True: #pääsilmukka
-    #tapahtuma silmukka
+while True: #main loop
+    #event lopp
     for tapahtuma in pygame.event.get():
         
-        #tutkitaan näppäinpainalluksia
-        if tapahtuma.type == pygame.KEYDOWN: #pohjaan
+        #keyboards event
+        if tapahtuma.type == pygame.KEYDOWN: 
             if tapahtuma.key  == pygame.K_UP:
                 robotti.Jump()
             if tapahtuma.key == pygame.K_LEFT:
@@ -48,13 +48,13 @@ while True: #pääsilmukka
             if tapahtuma.key == pygame.K_RIGHT:
                 oikealle = True
 
-        if tapahtuma.type == pygame.KEYUP: #ylös
+        if tapahtuma.type == pygame.KEYUP: 
             if tapahtuma.key == pygame.K_LEFT:
                 vasemmalle = False
             if tapahtuma.key == pygame.K_RIGHT:
                 oikealle = False
 
-        if tapahtuma.type == pygame.QUIT: #jos ohjelma suljetaan
+        if tapahtuma.type == pygame.QUIT: 
             exit() 
         
 
@@ -76,17 +76,18 @@ while True: #pääsilmukka
         
     robotti.Gravity()
     
-    if CollisionCheck(robotti,maali): #tunnistetaan kahden Objectin törmäys
+    if CollisionCheck(robotti,maali): #if two object collision
 
         robotti.position_x_ = 200
         robotti.position_y_ = 100
     
-    naytto.fill((0,0,0)) #täytetään ruutu mustalla
+    #draw all
+    naytto.fill((0,0,0)) #
     naytto.blit(robotti.image_,(robotti.position_x_,robotti.position_y_))
     naytto.blit(taso.image_,(taso.position_x_,taso.position_y_))
     naytto.blit(taso2.image_,(taso2.position_x_,taso2.position_y_))
     naytto.blit(maali.image_,(maali.position_x_,maali.position_y_))
 
-    pygame.display.flip() #päivittää näytön
+    pygame.display.flip() #update screen
     
-    kello.tick(60) #rajoittaa pelin nopeuden
+    kello.tick(60) #fps limit
