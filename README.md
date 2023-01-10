@@ -9,5 +9,5 @@ hyppy,
 
 lisäksi objektia seuraava kamera ja ehkä tilekarttajärjestelmä
 
-
+Ohje/suunntielma suomeksi:
 https://github.com/andrew-karppinen/pygame-simple-object/blob/main/dokumentaatio/ohje.txt
