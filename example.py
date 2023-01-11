@@ -27,7 +27,8 @@ maali = NewObject(maalikuva,position_x=700,position_y=335)
 AddCollision(robotti,taso)
 AddCollision(robotti,taso2)
 
-
+lista = [taso,taso2,maali]
+robotti.AddCamera(lista)
 
 tasovasemmalle = False
 vasemmalle = False
@@ -59,9 +60,9 @@ while True: #main loop
         
 
     if oikealle:
-        robotti.MoveX(4)
+        robotti.CameraMoveX(4)
     if vasemmalle:
-        robotti.MoveX(-4)
+        robotti.CameraMoveX(-4)
 
 
     if taso.position_x_ == 500:
