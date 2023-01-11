@@ -1,5 +1,8 @@
 import pygame
 
+try: from PygameSimpleObject.object_collision import CollisionCheck #import CollisionCheck function other file
+except: from object_collision import CollisionCheck
+
 #TEST
 #camera follow object test
 
@@ -35,54 +38,20 @@ class NewObject:
             
 
 
-
     #test moving methods
     #camera follow object
     def CameraMoveX(self,distance: int):
-        counter = 0
 
         for i in range(len(self.other_objects_)):
             
-            #for j in range(abs(distance)):
-
-
-            self.other_objects_[i].position_x_ += opposite(distance)
-            counter += 1
-
-            if self.__Collision(): #if collision
-                def CancelMove(): #canceling all objects moves
-                    for j in range(counter,-1,-1):
-                        print(j)
-                        if distance > 0:
-                            self.other_objects_[j].position_x_ += distance #cancel move
-                        else:
-                            self.other_objects_[j].position_x_ -= opposite(distance) #cancel move
-                    return                     
-
-
-                CancelMove()
-                return
-
-
-    #test moving method
-    def CameraMoveY(self,distance: int):
+            if CollisionCheck(self,self.other_objects_[i],self.position_x_ + opposite(distance)): #if collision
+                return #exit function
 
         for i in range(len(self.other_objects_)):
-
-            for j in range(abs(distance)):
-
-                if distance > 0:
-                    self.other_objects_[i].position_y_ -= 1
-                else:
-                    self.other_objects_[i].position_y_ += 1
+            self.other_objects_[i].position_x_ += opposite(distance)
 
 
-                if self.__Collision(): #if collision
-                    if distance > 0:
-                        self.other_objects_[i].position_y_ += 1 #cancel move
-                    else:
-                        self.other_objects_[i].position_y_ -= 1 #cancel move
-                    return 
+
 
     def MoveX(self,distance: int):
         for i in range(abs(distance)):
@@ -166,28 +135,34 @@ class NewObject:
 
 
 
-
-
-    def __Collision(self): #private method
+    def __Collision(self,position_x = None,position_y = None): #private method
         #return True/False
         #if this object collision
+        if position_x == None: 
+            obj1_x = self.position_x_
+        else:
+            obj1_x = position_x #if location give
 
+        if position_y == None: 
+            obj1_y = self.position_y_
+        else:
+            obj1_y = position_y #if location give
 
 
         for i in range(len(self.collision_objects_)):
-            obj = self.collision_objects_[i]
+            obj2 = self.collision_objects_[i]
 
 
-            if self.position_y_ < obj.position_y_ + obj.image_size_y_:
-                if self.position_y_+ self.image_size_y_ > obj.position_y_:
-                    
-                    if self.position_x_< obj.position_x_ + obj.image_size_x_:
-                        if self.position_x_ + self.image_size_x_ > obj.position_x_:
+            if obj1_y < obj2.position_y_ + obj2.image_size_y_:
+                if obj1_y + self.image_size_y_ > obj2.position_y_:
+
+                    if obj1_x < obj2.position_x_ + obj2.image_size_x_:
+                        if obj1_x + self.image_size_x_ > obj2.position_x_:
                             return True
-
         return False
 
-        
+
+
 
 
 
