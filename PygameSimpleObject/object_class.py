@@ -1,8 +1,16 @@
 import pygame
 
+try: from PygameSimpleObject.object_collision import CollisionCheck #import CollisionCheck function other file
+except: from object_collision import CollisionCheck
+
+#TEST
+#camera follow object test
+
 
 def opposite(number):
     return -1 * number
+
+
 
 
 class NewObject:
@@ -22,16 +30,36 @@ class NewObject:
         self.image_size_x_ = image.get_width()
 
         self.collision_objects_ = []
+        self.other_objects_ = []
 
 
-    
-    #object moving methods
+    def AddCamera(self,objectslist: list):
+        self.other_objects_ = objectslist
+            
+
+
+    #test moving methods
+    #camera follow object
+
+    def CameraMoveX(self,distance: int):
+
+        for i in range(len(self.other_objects_)):
+            
+            if CollisionCheck(self,self.other_objects_[i],obj2_x = self.other_objects_[i].position_x_ + opposite(distance)): #if collision
+                return #exit function
+
+        for i in range(len(self.other_objects_)):
+            self.other_objects_[i].position_x_ += opposite(distance)
+
+
+
+
     def MoveX(self,distance: int):
         for i in range(abs(distance)):
 
-            if distance > 0: #right
+            if distance > 0:
                 self.position_x_ += 1
-            else: #left
+            else:
                 self.position_x_ += -1
 
 
@@ -49,9 +77,9 @@ class NewObject:
 
         for i in range(abs(distance)):
 
-            if distance > 0: #downwards
+            if distance > 0:
                 self.position_y_ += 1
-            else: #upwards
+            else:
                 self.position_y_ += -1
 
 
@@ -67,8 +95,6 @@ class NewObject:
                 else:
                     self.position_y_ += 1 #cancel move
                 return
-
-
     
         
     def Gravity(self): #method makes gravity
@@ -110,28 +136,34 @@ class NewObject:
 
 
 
-
-
-    def __Collision(self): #private method
+    def __Collision(self,position_x = None,position_y = None): #private method
         #return True/False
         #if this object collision
+        if position_x == None: 
+            obj1_x = self.position_x_
+        else:
+            obj1_x = position_x #if location give
 
+        if position_y == None: 
+            obj1_y = self.position_y_
+        else:
+            obj1_y = position_y #if location give
 
 
         for i in range(len(self.collision_objects_)):
-            obj = self.collision_objects_[i]
+            obj2 = self.collision_objects_[i]
 
 
-            if self.position_y_ < obj.position_y_ + obj.image_size_y_:
-                if self.position_y_+ self.image_size_y_ > obj.position_y_:
-                    
-                    if self.position_x_< obj.position_x_ + obj.image_size_x_:
-                        if self.position_x_ + self.image_size_x_ > obj.position_x_:
+            if obj1_y < obj2.position_y_ + obj2.image_size_y_:
+                if obj1_y + self.image_size_y_ > obj2.position_y_:
+
+                    if obj1_x < obj2.position_x_ + obj2.image_size_x_:
+                        if obj1_x + self.image_size_x_ > obj2.position_x_:
                             return True
-
         return False
 
-        
+
+
 
 
 
