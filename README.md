@@ -1,13 +1,14 @@
 # pygame-simple-object-system
 
 
-Tarkoitus tehdä pygameen objekti järjestelmä joka lisää esim seuraavat ominaisuudet:
+# pygame obejct system
 
-automaattinen törmäyksentunnistus,
-painovoima,
-hyppy,
+pygame object system, who add next features:
+automatic collision check system,
+gravitation,
+camera follow the object,
+tilemap system
 
-lisäksi objektia seuraava kamera ja ehkä tilekarttajärjestelmä
 
 Ohje/suunnitelma suomeksi:
 https://github.com/andrew-karppinen/pygame-simple-object/blob/main/documentation/ohje.txt
