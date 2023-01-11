@@ -43,13 +43,13 @@ class NewObject:
 
     def CameraMoveX(self,distance: int):
 
-        for i in range(len(self.other_objects_)):
-            
-            if CollisionCheck(self,self.other_objects_[i],obj2_x = self.other_objects_[i].position_x_ + opposite(distance)): #if collision
+        for i in range(len(self.collision_objects_)):
+            if CollisionCheck(self,self.collision_objects_[i],obj2_x = self.other_objects_[i].position_x_ + opposite(distance)): #if collision
                 return #exit function
 
         for i in range(len(self.other_objects_)):
             self.other_objects_[i].position_x_ += opposite(distance)
+
 
 
 
