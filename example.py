@@ -18,8 +18,8 @@ maalikuva = pygame.image.load("images/maali.png")
 kello = pygame.time.Clock()
 
 #create objects
-robotti = NewObject(robottikuva,position_x=200,position_y=100,gravity_speed = 0.2,jump_strength = 10.0)
-taso = NewObject(tasokuva,position_x=100,position_y=600)
+robotti = NewObject(robottikuva,position_x=425,position_y=350,gravity_speed = 0.2,jump_strength = 10.0)
+taso = NewObject(tasokuva,position_x=350,position_y=600)
 taso2 = NewObject(tasokuva,position_x=600,position_y=400)
 maali = NewObject(maalikuva,position_x=700,position_y=335)
 
@@ -30,7 +30,7 @@ AddCollision(robotti,taso2)
 lista = [taso,taso2,maali]
 robotti.AddCamera(lista)
 
-tasovasemmalle = False
+tasovasemmalle = True
 vasemmalle = False
 oikealle = False
 ylos = False
@@ -83,7 +83,7 @@ while True: #main loop
         robotti.position_y_ = 100
     
     #draw all
-    naytto.fill((0,0,0)) #
+    naytto.fill((0,0,0))
     naytto.blit(robotti.image_,(robotti.position_x_,robotti.position_y_))
     naytto.blit(taso.image_,(taso.position_x_,taso.position_y_))
     naytto.blit(taso2.image_,(taso2.position_x_,taso2.position_y_))

@@ -42,14 +42,37 @@ class NewObject:
     #camera follow object
 
     def CameraMoveX(self,distance: int):
+        if distance > 0:
+            number = -1
+        if distance < 0:
+            number = 1
 
-        for i in range(len(self.collision_objects_)):
-            if CollisionCheck(self,self.collision_objects_[i],obj2_x = self.other_objects_[i].position_x_ + opposite(distance)): #if collision
-                return #exit function
+        for i in range(abs(distance)):
+            for j in range(len(self.collision_objects_)): #collison check
 
-        for i in range(len(self.other_objects_)):
-            self.other_objects_[i].position_x_ += opposite(distance)
+                if CollisionCheck(self,self.collision_objects_[j],obj2_x = self.other_objects_[j].position_x_ + number): #if collision
+                    return #exit function
 
+            for i in range(len(self.other_objects_)): #move
+                self.other_objects_[i].position_x_ += number
+
+
+    def CameraMoveY(self,distance: int):
+        if distance > 0:
+            number = -1
+        if distance < 0:
+            number = 1
+
+        for i in range(abs(distance)):
+            for j in range(len(self.collision_objects_)): #collison check
+
+                if CollisionCheck(self,self.collision_objects_[j],obj2_y = self.other_objects_[j].position_y_ + number): #if collision
+                    if self.jump_collision_mode_ == 1:  # stop jump
+                        self.gravity_value_ = 0.0
+                    return #exit function
+
+            for i in range(len(self.other_objects_)): #move
+                self.other_objects_[i].position_y_ += number
 
 
 
@@ -99,7 +122,7 @@ class NewObject:
         
     def Gravity(self): #method makes gravity
 
-        self.MoveY(int(self.gravity_value_))
+        self.CameraMoveY(int(self.gravity_value_))
         
         
         if self.gravity_speed_ > 0:
