@@ -36,6 +36,7 @@ oikealle = False
 ylos = False
 alas = False
 
+
 while True: #main loop
     #event lopp
     for tapahtuma in pygame.event.get():
@@ -58,7 +59,7 @@ while True: #main loop
         if tapahtuma.type == pygame.QUIT: 
             exit() 
         
-
+    #print(robotti.jump_collision_mode_)
     if oikealle:
         robotti.CameraMoveX(4)
     if vasemmalle:
@@ -76,18 +77,22 @@ while True: #main loop
         taso.MoveX(1)
         
     robotti.Gravity()
-    
+
+
+
+
     if CollisionCheck(robotti,maali): #if two object collision
 
-        robotti.position_x_ = 200
-        robotti.position_y_ = 100
-    
+        robotti.position_x_,robotti.position_y_ = 100,100
+
+
     #draw all
     naytto.fill((0,0,0))
     naytto.blit(robotti.image_,(robotti.position_x_,robotti.position_y_))
     naytto.blit(taso.image_,(taso.position_x_,taso.position_y_))
     naytto.blit(taso2.image_,(taso2.position_x_,taso2.position_y_))
     naytto.blit(maali.image_,(maali.position_x_,maali.position_y_))
+    pygame.draw.circle(naytto,(50,50,50),robotti.ReturnCoordinate(50,50),50)
 
     pygame.display.flip() #update screen
     

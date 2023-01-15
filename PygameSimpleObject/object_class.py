@@ -32,15 +32,30 @@ class NewObject:
         self.collision_objects_ = []
         self.other_objects_ = []
 
+        self.coordinate_x_ = 0 #moving coordinate system
+        self.coordinate_y_ = 0
+
+
+
+
+
+    def ReturnCoordinate(self,x,y):
+        #moving coordinate system
+        #return screen coordinatte
+
+        x = opposite(x)
+        y = opposite(y)
+
+        return(opposite(x-self.coordinate_x_), opposite(y - self.coordinate_y_))
+
+
+
 
     def AddCamera(self,objectslist: list):
         self.other_objects_ = objectslist
-            
-
 
     #test moving methods
     #camera follow object
-
     def CameraMoveX(self,distance: int):
         if distance > 0:
             number = -1
@@ -55,6 +70,8 @@ class NewObject:
 
             for i in range(len(self.other_objects_)): #move
                 self.other_objects_[i].position_x_ += number
+        for i in range(abs(distance)):
+            self.coordinate_x_ += number
 
 
     def CameraMoveY(self,distance: int):
@@ -73,6 +90,10 @@ class NewObject:
 
             for i in range(len(self.other_objects_)): #move
                 self.other_objects_[i].position_y_ += number
+
+        for i in range(abs(distance)):
+            self.coordinate_y_ += number
+
 
 
 
@@ -134,9 +155,7 @@ class NewObject:
 
     
     def Jump(self): #method makes jump
-
         if self.jump_mode_ != 0:
-
             if self.jump_mode_ == 1: #jumps only if the object is above another object
                 if self.gravity_speed_ > 0:
                     self.position_y_ += 1
@@ -150,7 +169,7 @@ class NewObject:
                         self.gravity_value_ = self.jump_strength_
                         self.position_y_ += 1 #cancel move
 
-            elif self.jump_mode_ == 2:
+            elif self.jump_mode_ == 2: #jump in any case
                 if self.gravity_speed_ > 0:
                     self.gravity_value_ = opposite(self.jump_strength_)
                 else:
