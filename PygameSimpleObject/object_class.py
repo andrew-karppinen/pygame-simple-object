@@ -1,12 +1,9 @@
 import pygame
 
-try: from PygameSimpleObject.object_collision import CollisionCheck #import CollisionCheck function other file
-except: from object_collision import CollisionCheck
 
 
 def opposite(number):
     return -1 * number
-
 
 
 
