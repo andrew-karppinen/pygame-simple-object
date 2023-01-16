@@ -3,9 +3,6 @@ import pygame
 try: from PygameSimpleObject.object_collision import CollisionCheck #import CollisionCheck function other file
 except: from object_collision import CollisionCheck
 
-#TEST
-#camera follow object test
-
 
 def opposite(number):
     return -1 * number
@@ -30,27 +27,9 @@ class NewObject:
         self.image_size_x_ = image.get_width()
 
         self.collision_objects_ = []
-        self.other_objects_ = []
 
 
-    def AddCamera(self,objectslist: list):
-        self.other_objects_ = objectslist
             
-
-
-    #test moving methods
-    #camera follow object
-
-    def CameraMoveX(self,distance: int):
-
-        for i in range(len(self.other_objects_)):
-            
-            if CollisionCheck(self,self.other_objects_[i],obj2_x = self.other_objects_[i].position_x_ + opposite(distance)): #if collision
-                return #exit function
-
-        for i in range(len(self.other_objects_)):
-            self.other_objects_[i].position_x_ += opposite(distance)
-
 
 
 
