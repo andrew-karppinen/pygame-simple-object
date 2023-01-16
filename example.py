@@ -3,7 +3,6 @@ import pygame
 from PygameSimpleObject import *
 
 
-###
 
 pygame.init()
 naytto = pygame.display.set_mode((850, 700)) #create window
