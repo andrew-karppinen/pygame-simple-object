@@ -84,8 +84,7 @@ while True: #main loop
 
 
     if CollisionCheck(robot, block3): #if two object collision
-
-        robot.position_x_,robot.position_y_ = 100,100
+        robot.PlaceObject(200, 100)
 
 
     #draw all

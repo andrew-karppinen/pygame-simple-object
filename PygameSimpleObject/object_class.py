@@ -30,7 +30,7 @@ class NewObject:
         self.image_size_x_ = image.get_width()
 
         self.collision_objects_ = []
-        self.other_objects_ = []
+        self.camera_objects_ = []
 
         self.coordinate_x_ = 0 #moving coordinate system
         self.coordinate_y_ = 0
@@ -49,10 +49,25 @@ class NewObject:
         return(opposite(x-self.coordinate_x_), opposite(y - self.coordinate_y_))
 
 
+    def PlaceObject(self,x,y):
 
+        x,y = self.ReturnCoordinate(x,y)
+
+        distance_x = self.position_x_ - x
+        distance_y = self.position_y_ - y
+
+        print(distance_x,distance_y)
+        self.coordinate_x_ += distance_x
+        self.coordinate_y_ += distance_y
+
+        for i in range(len(self.camera_objects_)):
+
+
+            self.camera_objects_[i].position_x_ += distance_x  #place object new location
+            self.camera_objects_[i].position_y_ += distance_y
 
     def AddCamera(self,objectslist: list):
-        self.other_objects_ = objectslist
+        self.camera_objects_ = objectslist
 
     #test moving methods
     #camera follow object
@@ -65,11 +80,11 @@ class NewObject:
         for i in range(abs(distance)):
             for j in range(len(self.collision_objects_)): #collison check
 
-                if CollisionCheck(self,self.collision_objects_[j],obj2_x = self.other_objects_[j].position_x_ + number): #if collision
+                if CollisionCheck(self, self.collision_objects_[j], obj2_x =self.camera_objects_[j].position_x_ + number): #if collision
                     return #exit function
 
-            for i in range(len(self.other_objects_)): #move
-                self.other_objects_[i].position_x_ += number
+            for i in range(len(self.camera_objects_)): #move
+                self.camera_objects_[i].position_x_ += number
         for i in range(abs(distance)):
             self.coordinate_x_ += number
 
@@ -83,13 +98,13 @@ class NewObject:
         for i in range(abs(distance)):
             for j in range(len(self.collision_objects_)): #collison check
 
-                if CollisionCheck(self,self.collision_objects_[j],obj2_y = self.other_objects_[j].position_y_ + number): #if collision
+                if CollisionCheck(self, self.collision_objects_[j], obj2_y =self.camera_objects_[j].position_y_ + number): #if collision
                     if self.jump_collision_mode_ == 1:  # stop jump
                         self.gravity_value_ = 0.0
                     return #exit function
 
-            for i in range(len(self.other_objects_)): #move
-                self.other_objects_[i].position_y_ += number
+            for i in range(len(self.camera_objects_)): #move
+                self.camera_objects_[i].position_y_ += number
 
         for i in range(abs(distance)):
             self.coordinate_y_ += number
@@ -141,10 +156,12 @@ class NewObject:
                 return
     
         
-    def Gravity(self): #method makes gravity
+    def Gravity(self,camera = True): #method makes gravity
 
-        self.CameraMoveY(int(self.gravity_value_))
-        
+        if camera:
+            self.CameraMoveY(int(self.gravity_value_))
+        else:
+            self.MoveY(int(self.gravity_value_))
         
         if self.gravity_speed_ > 0:
             if self.gravity_value_ < self.gravity_strength_:
