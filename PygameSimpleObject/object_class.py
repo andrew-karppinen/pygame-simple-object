@@ -3,8 +3,8 @@ import pygame
 try: from PygameSimpleObject.object_collision import CollisionCheck #import CollisionCheck function other file
 except: from object_collision import CollisionCheck
 
-#TEST
-#camera follow object test
+
+#camera follow object
 
 
 def opposite(number):
@@ -50,6 +50,7 @@ class NewObject:
 
 
     def PlaceObject(self,x,y):
+        #sets object
 
         x,y = self.ReturnCoordinate(x,y)
 
