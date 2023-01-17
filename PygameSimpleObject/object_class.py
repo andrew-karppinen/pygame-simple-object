@@ -1,5 +1,11 @@
 import pygame
 
+try: from PygameSimpleObject.object_collision import CollisionCheck #import CollisionCheck function other file
+except: from object_collision import CollisionCheck
+
+
+#camera follow object
+
 
 
 def opposite(number):
@@ -9,7 +15,7 @@ def opposite(number):
 
 class NewObject:
     def __init__(self,image:pygame.Surface,position_x: int = 0, position_y: int = 0,gravity_speed: float = 0.0,gravity_strength: float = 6.0,jump_strength: float = 0.0,jump_mode: int = 1,jump_collision_mode = 1): #constructor
-        self.position_x_ = position_x
+        self.position_x_ = position_x #screen position
         self.position_y_ = position_y
         self.gravity_value_ = 0.0
         self.gravity_strength_ = gravity_strength
@@ -24,6 +30,88 @@ class NewObject:
         self.image_size_x_ = image.get_width()
 
         self.collision_objects_ = []
+        self.camera_objects_ = []
+
+        self.coordinate_x_ = 0 #moving coordinate system
+        self.coordinate_y_ = 0
+
+
+
+
+
+    def ReturnCoordinate(self,x,y):
+        #moving coordinate system
+        #return screen coordinatte
+
+        x = opposite(x)
+        y = opposite(y)
+
+        return(opposite(x-self.coordinate_x_), opposite(y - self.coordinate_y_))
+
+
+    def PlaceObject(self,x,y):
+        #sets object new position
+
+        x,y = self.ReturnCoordinate(x,y)
+
+        distance_x = self.position_x_ - x
+        distance_y = self.position_y_ - y
+
+        print(distance_x,distance_y)
+        self.coordinate_x_ += distance_x
+        self.coordinate_y_ += distance_y
+
+        for i in range(len(self.camera_objects_)):
+
+            self.camera_objects_[i].position_x_ += distance_x  #place object new location
+            self.camera_objects_[i].position_y_ += distance_y
+
+    def AddCamera(self,objectslist: list):
+        self.camera_objects_ = objectslist
+
+    #test moving methods
+    #camera follow object
+    def CameraMoveX(self,distance: int):
+        if distance > 0:
+            number = -1
+        if distance < 0:
+            number = 1
+
+        for i in range(abs(distance)):
+            for j in range(len(self.collision_objects_)): #collison check
+
+                if CollisionCheck(self, self.collision_objects_[j], obj2_x =self.camera_objects_[j].position_x_ + number): #if collision
+                    return #exit function
+
+            for i in range(len(self.camera_objects_)): #move
+                self.camera_objects_[i].position_x_ += number
+        for i in range(abs(distance)):
+            self.coordinate_x_ += number
+
+
+    def CameraMoveY(self,distance: int):
+        if distance > 0:
+            number = -1
+        if distance < 0:
+            number = 1
+
+        for i in range(abs(distance)):
+            for j in range(len(self.collision_objects_)): #collison check
+
+                if CollisionCheck(self, self.collision_objects_[j], obj2_y =self.camera_objects_[j].position_y_ + number): #if collision
+                    if self.jump_collision_mode_ == 1:  # stop jump
+                        self.gravity_value_ = 0.0
+                    return #exit function
+
+            for i in range(len(self.camera_objects_)): #move
+                self.camera_objects_[i].position_y_ += number
+
+        for i in range(abs(distance)):
+            self.coordinate_y_ += number
+
+
+
+
 
 
             
@@ -73,10 +161,12 @@ class NewObject:
                 return
     
         
-    def Gravity(self): #method makes gravity
+    def Gravity(self,camera = True): #method makes gravity
 
-        self.MoveY(int(self.gravity_value_))
-        
+        if camera:
+            self.CameraMoveY(int(self.gravity_value_))
+        else:
+            self.MoveY(int(self.gravity_value_))
         
         if self.gravity_speed_ > 0:
             if self.gravity_value_ < self.gravity_strength_:
@@ -87,9 +177,7 @@ class NewObject:
 
     
     def Jump(self): #method makes jump
-
         if self.jump_mode_ != 0:
-
             if self.jump_mode_ == 1: #jumps only if the object is above another object
                 if self.gravity_speed_ > 0:
                     self.position_y_ += 1
@@ -103,7 +191,7 @@ class NewObject:
                         self.gravity_value_ = self.jump_strength_
                         self.position_y_ += 1 #cancel move
 
-            elif self.jump_mode_ == 2:
+            elif self.jump_mode_ == 2: #jump in any case
                 if self.gravity_speed_ > 0:
                     self.gravity_value_ = opposite(self.jump_strength_)
                 else:

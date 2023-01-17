@@ -5,7 +5,7 @@ from PygameSimpleObject import *
 
 
 pygame.init()
-naytto = pygame.display.set_mode((850, 700)) #create window
+screen = pygame.display.set_mode((850, 700)) #create window
 
 
 
@@ -14,79 +14,86 @@ tasokuva = pygame.image.load("images/taso.png")
 maalikuva = pygame.image.load("images/maali.png")
 
 
-kello = pygame.time.Clock()
+clock = pygame.time.Clock()
 
 #create objects
-robotti = NewObject(robottikuva,position_x=200,position_y=100,gravity_speed = 0.2,jump_strength = 10.0)
-taso = NewObject(tasokuva,position_x=100,position_y=600)
-taso2 = NewObject(tasokuva,position_x=600,position_y=400)
-maali = NewObject(maalikuva,position_x=700,position_y=335)
+robot = NewObject(robottikuva, position_x=425, position_y=350, gravity_speed = 0.2, jump_strength = 10.0)
+block = NewObject(tasokuva, position_x=350, position_y=600)
+block2 = NewObject(tasokuva, position_x=600, position_y=400)
+block3 = NewObject(maalikuva, position_x=700, position_y=335)
 
 #add collisions
-AddCollision(robotti,taso)
-AddCollision(robotti,taso2)
+AddCollision(robot, block)
+AddCollision(robot, block2)
 
+lista = [block, block2, block3]
+robot.AddCamera(lista)
 
-
-tasovasemmalle = False
-vasemmalle = False
-oikealle = False
+block_left = True
+robot_left = False
+robot_right = False
 ylos = False
 alas = False
 
+
 while True: #main loop
     #event lopp
-    for tapahtuma in pygame.event.get():
+    for event in pygame.event.get():
         
         #keyboards event
-        if tapahtuma.type == pygame.KEYDOWN: 
-            if tapahtuma.key  == pygame.K_UP:
-                robotti.Jump()
-            if tapahtuma.key == pygame.K_LEFT:
-                vasemmalle = True
-            if tapahtuma.key == pygame.K_RIGHT:
-                oikealle = True
+        if event.type == pygame.KEYDOWN:
+            if event.key  == pygame.K_UP:
+                robot.Jump()
+            if event.key == pygame.K_LEFT:
+                robot_left = True
+            if event.key == pygame.K_RIGHT:
+                robot_right = True
 
-        if tapahtuma.type == pygame.KEYUP: 
-            if tapahtuma.key == pygame.K_LEFT:
-                vasemmalle = False
-            if tapahtuma.key == pygame.K_RIGHT:
-                oikealle = False
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT:
+                robot_left = False
+            if event.key == pygame.K_RIGHT:
+                robot_right = False
 
-        if tapahtuma.type == pygame.QUIT: 
+        if event.type == pygame.QUIT:
             exit() 
         
 
-    if oikealle:
-        robotti.MoveX(4)
-    if vasemmalle:
-        robotti.MoveX(-4)
+    if robot_right:
+        robot.CameraMoveX(4)
+    if robot_left:
+        robot.CameraMoveX(-4)
 
 
-    if taso.position_x_ == 500:
-       tasovasemmalle = True
-    if taso.position_x_ < 0:
-        tasovasemmalle = False
+    x,y = robot.ReturnCoordinate(0, 0) #coordinate system
+
+    if block.position_x_ == x + 850:
+       block_left = True
+    if block.position_x_ == x:
+        block_left = False
         
-    if tasovasemmalle:
-        taso.MoveX(-1)
+    if block_left:
+        block.MoveX(-1)
     else:
-        taso.MoveX(1)
+        block.MoveX(1)
         
-    robotti.Gravity()
-    
-    if CollisionCheck(robotti,maali): #if two object collision
+    robot.Gravity()
 
-        robotti.position_x_ = 200
-        robotti.position_y_ = 100
-    
+
+
+
+    if CollisionCheck(robot, block3): #if two object collision
+        robot.PlaceObject(100, 100)
+
+
     #draw all
-    naytto.fill((0,0,0)) #
-    naytto.blit(robotti.image_,(robotti.position_x_,robotti.position_y_))
-    naytto.blit(taso.image_,(taso.position_x_,taso.position_y_))
-    naytto.blit(taso2.image_,(taso2.position_x_,taso2.position_y_))
-    naytto.blit(maali.image_,(maali.position_x_,maali.position_y_))
+    screen.fill((0, 0, 0))
+    screen.blit(robot.image_, (robot.position_x_, robot.position_y_))
+    screen.blit(block.image_, (block.position_x_, block.position_y_))
+    screen.blit(block2.image_, (block2.position_x_, block2.position_y_))
+    screen.blit(block3.image_, (block3.position_x_, block3.position_y_))
+    pygame.draw.circle(screen, (50, 50, 50), robot.ReturnCoordinate(50, 50), 50)
 
     pygame.display.flip() #update screen
     
-    kello.tick(60) #fps limit
+    clock.tick(60) #fps limit
