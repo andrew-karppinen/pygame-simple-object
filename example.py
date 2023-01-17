@@ -96,4 +96,4 @@ while True: #main loop
 
     pygame.display.flip() #update screen
     
-    klock.tick(60) #fps limit
+    clock.tick(60) #fps limit
