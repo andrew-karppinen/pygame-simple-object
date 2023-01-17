@@ -6,7 +6,7 @@ from PygameSimpleObject import *
 
 
 pygame.init()
-naytto = pygame.display.set_mode((850, 700)) #create window
+screen = pygame.display.set_mode((850, 700)) #create window
 
 
 
@@ -87,12 +87,12 @@ while True: #main loop
 
 
     #draw all
-    naytto.fill((0,0,0))
-    naytto.blit(robot.image_, (robot.position_x_, robot.position_y_))
-    naytto.blit(block.image_, (block.position_x_, block.position_y_))
-    naytto.blit(block2.image_, (block2.position_x_, block2.position_y_))
-    naytto.blit(block3.image_, (block3.position_x_, block3.position_y_))
-    pygame.draw.circle(naytto, (50,50,50), robot.ReturnCoordinate(50, 50), 50)
+    screen.fill((0, 0, 0))
+    screen.blit(robot.image_, (robot.position_x_, robot.position_y_))
+    screen.blit(block.image_, (block.position_x_, block.position_y_))
+    screen.blit(block2.image_, (block2.position_x_, block2.position_y_))
+    screen.blit(block3.image_, (block3.position_x_, block3.position_y_))
+    pygame.draw.circle(screen, (50, 50, 50), robot.ReturnCoordinate(50, 50), 50)
 
     pygame.display.flip() #update screen
     
