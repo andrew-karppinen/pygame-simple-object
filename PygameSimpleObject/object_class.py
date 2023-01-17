@@ -7,9 +7,9 @@ except: from object_collision import CollisionCheck
 #camera follow object
 
 
+
 def opposite(number):
     return -1 * number
-
 
 
 
@@ -110,6 +110,11 @@ class NewObject:
             self.coordinate_y_ += number
 
 
+
+
+
+
+            
 
 
 

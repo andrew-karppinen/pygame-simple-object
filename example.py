@@ -4,7 +4,6 @@ from PygameSimpleObject import *
 
 
 
-
 pygame.init()
 screen = pygame.display.set_mode((850, 700)) #create window
 
@@ -13,6 +12,7 @@ screen = pygame.display.set_mode((850, 700)) #create window
 robottikuva = pygame.image.load("images/robotti.png") #download images
 tasokuva = pygame.image.load("images/taso.png")
 maalikuva = pygame.image.load("images/maali.png")
+
 
 clock = pygame.time.Clock()
 
