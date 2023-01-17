@@ -1,7 +1,6 @@
 # pygame-simple-object-system
 
 
-# pygame obejct system
 
 pygame object system, add next features:
 automatic collision check system,
