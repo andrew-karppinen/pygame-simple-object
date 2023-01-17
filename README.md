@@ -3,7 +3,7 @@
 
 # pygame obejct system
 
-pygame object system, who add next features:
+pygame object system, add next features:
 automatic collision check system,
 gravitation,
 camera follow the object,
