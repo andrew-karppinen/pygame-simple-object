@@ -14,8 +14,7 @@ robottikuva = pygame.image.load("images/robotti.png") #download images
 tasokuva = pygame.image.load("images/taso.png")
 maalikuva = pygame.image.load("images/maali.png")
 
-
-klock = pygame.time.Clock()
+clock = pygame.time.Clock()
 
 #create objects
 robot = NewObject(robottikuva, position_x=425, position_y=350, gravity_speed = 0.2, jump_strength = 10.0)
@@ -84,7 +83,7 @@ while True: #main loop
 
 
     if CollisionCheck(robot, block3): #if two object collision
-        robot.PlaceObject(200, 100)
+        robot.PlaceObject(100, 100)
 
 
     #draw all

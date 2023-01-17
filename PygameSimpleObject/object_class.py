@@ -50,7 +50,7 @@ class NewObject:
 
 
     def PlaceObject(self,x,y):
-        #sets object
+        #sets object new position
 
         x,y = self.ReturnCoordinate(x,y)
 
@@ -62,7 +62,6 @@ class NewObject:
         self.coordinate_y_ += distance_y
 
         for i in range(len(self.camera_objects_)):
-
 
             self.camera_objects_[i].position_x_ += distance_x  #place object new location
             self.camera_objects_[i].position_y_ += distance_y
