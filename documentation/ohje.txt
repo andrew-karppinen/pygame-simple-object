@@ -18,7 +18,7 @@ obj = NewObject()
 objektille voi antaa ominaisuuksia luonnin yhteydessä (ja myöhemmin)
 
 tämänhetkiset parametrit construktorille:
-(image:pygame.Surface,position_x: int = 0, position_y: int = 0,gravity_speed: float = 0.0,gravity_strength: float = 6.0,jump_strength: float = 0.0,jump_mode: int = 1,jump_collision_mode = 1)
+(image = None,object_size_x:int = None,object_size_y:int = None,position_x: int = 0, position_y: int = 0,gravity_speed: float = 0.0,gravity_strength: float = 6.0,jump_strength: float = 0.0,jump_mode: int = 1,jump_collision_mode = 1)
 
 
 
