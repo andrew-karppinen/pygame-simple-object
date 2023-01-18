@@ -14,7 +14,7 @@ def opposite(number):
 
 
 class NewObject:
-    def __init__(self,image:pygame.Surface,position_x: int = 0, position_y: int = 0,gravity_speed: float = 0.0,gravity_strength: float = 6.0,jump_strength: float = 0.0,jump_mode: int = 1,jump_collision_mode = 1): #constructor
+    def __init__(self,image = None,object_size_x:int = None,object_size_y:int = None,position_x: int = 0, position_y: int = 0,gravity_speed: float = 0.0,gravity_strength: float = 6.0,jump_strength: float = 0.0,jump_mode: int = 1,jump_collision_mode = 1): #constructor
         self.position_x_ = position_x #screen position
         self.position_y_ = position_y
         self.gravity_value_ = 0.0
@@ -23,11 +23,6 @@ class NewObject:
         self.jump_strength_ = jump_strength
         self.jump_mode_ = jump_mode
         self.jump_collision_mode_ = jump_collision_mode
-        
-        
-        self.image_ = image #pygame image object
-        self.image_size_y_ = image.get_height()
-        self.image_size_x_ = image.get_width()
 
         self.collision_objects_ = []
         self.camera_objects_ = []
@@ -35,8 +30,28 @@ class NewObject:
         self.coordinate_x_ = 0 #moving coordinate system
         self.coordinate_y_ = 0
 
+        self.SetImage(image,object_size_x,object_size_y) #sets object image and object size
 
 
+
+    def SetImage(self,image = None,object_size_x:int = None,object_size_y:int = None):
+
+        if image != None: #if image given
+            self.image_ = image
+            if object_size_y != None and object_size_x != None: #if size given
+                self.object_size_y_ = object_size_y
+                self.object_size_x_ = object_size_x
+            else: #if size no given
+                self.object_size_y_ = image.get_height() #set object size to image size
+                self.object_size_x_ = image.get_width()
+
+        else: #if image no given
+            if object_size_y != None and object_size_x != None: #if size given
+                self.object_size_y_ = object_size_y
+                self.object_size_x_ = object_size_x
+            else:
+                self.object_size_y_ = 1
+                self.object_size_x_ = 1
 
 
     def ReturnCoordinate(self,x,y):
@@ -218,11 +233,11 @@ class NewObject:
             obj2 = self.collision_objects_[i]
 
 
-            if obj1_y < obj2.position_y_ + obj2.image_size_y_:
-                if obj1_y + self.image_size_y_ > obj2.position_y_:
+            if obj1_y < obj2.position_y_ + obj2.object_size_y_:
+                if obj1_y + self.object_size_y_ > obj2.position_y_:
 
-                    if obj1_x < obj2.position_x_ + obj2.image_size_x_:
-                        if obj1_x + self.image_size_x_ > obj2.position_x_:
+                    if obj1_x < obj2.position_x_ + obj2.object_size_x_:
+                        if obj1_x + self.object_size_x_ > obj2.position_x_:
                             return True
         return False
 
