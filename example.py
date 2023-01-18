@@ -59,6 +59,7 @@ while True: #main loop
             exit() 
         
 
+
     if robot_right:
         robot.CameraMoveX(4)
     if robot_left:
