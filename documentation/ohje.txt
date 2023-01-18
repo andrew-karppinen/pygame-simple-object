@@ -31,8 +31,32 @@ liikuttaa objektia annetun matkan verran oikealle tai vasemmalle jos luku negati
 obj.MoveY(matka: int)
 Tekee saman pystysuunnassa
 
-objekille voi tietenkin antaa myös sijainnin:
+objekille voi antaa myös sijainnin:
 obj.Position_x_ = int
+
+KAMERA:
+Objektia seuraava "kamera" toimii niin että
+objektille annetaan kaikki muut objektit:
+robot.AddCamera((obj1,obj2,obj3,jne))
+
+sitten tätä seurattavaa objektia liikutetaan
+obj.CameraMoveY(matka: int)
+obj.CameraMoveX(matka: int)
+Järjestelmä toimii niin että seurattava objekti pysyy paikallaan ja muita objekteja liikutetaan suhteessa seurattavaan
+tämä luo illuusion että kamera seuraisi tätä objektia.
+
+KOORDINAATISTO:
+Näytön koordinaatisto pysyy aina samana, eli kohta 50,50 on aina 50 pikseliä ruudun vasemmasta ylänurkasta.
+Tätä varten on kehitetty liikkuva koordinaatisto järjestelmä joka pitää yllä "kameran" liikkeitä.
+
+obj.ReturnCoordinate(x: int,y: int) metodi palauttaa "alkuperäisen" kohdan näytön kordinaatteina, eli sen kohdan jossa se oli ennen kuin kamera liikkui yhtään.
+eli jos seurattava objekti liikkui alaspäin 100 pikseliä se palauttaa 0,-100 jos siltä kysytään 0,0 kohdan sijaintia.
+
+Lisäksi objektin liikuttamista varten on olemassa 
+obj.PlaceObject(x,y) metodi joka sijoittaa objektin uuteen kohtaan hoitaen myös kameran liikuttamisen ja koordinaatisto asiat.
+tälle metodille annetut koordinaatit eivät ole näytön koordinaatteja vaan "alkuperäisiä" koordinaatteja
+
+
 
 PAINOVOIMA:
 
