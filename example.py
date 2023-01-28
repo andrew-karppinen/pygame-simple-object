@@ -1,5 +1,5 @@
 import pygame
-
+from  copy import *
 from PygameSimpleObject import *
 
 
@@ -22,12 +22,15 @@ block = NewObject(tasokuva, position_x=350, position_y=600)
 block2 = NewObject(tasokuva, position_x=600, position_y=400)
 block3 = NewObject(maalikuva, position_x=700, position_y=335)
 
+
+
 #add collisions
 AddCollision(robot, block)
 AddCollision(robot, block2)
 
-lista = [block, block2, block3]
-robot.AddCamera(lista)
+robot.AddCamera((block, block2, block3))
+
+robot.image_.set_colorkey((0, 0, 0))
 
 block_left = True
 robot_left = False
@@ -93,6 +96,7 @@ while True: #main loop
     screen.blit(block.image_, (block.position_x_, block.position_y_))
     screen.blit(block2.image_, (block2.position_x_, block2.position_y_))
     screen.blit(block3.image_, (block3.position_x_, block3.position_y_))
+
     pygame.draw.circle(screen, (50, 50, 50), robot.ReturnCoordinate(50, 50), 50)
 
     pygame.display.flip() #update screen

@@ -77,7 +77,6 @@ class NewObject:
         self.coordinate_y_ += distance_y
 
         for i in range(len(self.camera_objects_)):
-
             self.camera_objects_[i].position_x_ += distance_x  #place object new location
             self.camera_objects_[i].position_y_ += distance_y
 
