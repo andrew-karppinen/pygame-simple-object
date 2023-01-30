@@ -1,5 +1,5 @@
 import pygame
-from  copy import *
+
 from PygameSimpleObject import *
 
 
@@ -21,14 +21,14 @@ robot = NewObject(robottikuva, position_x=425, position_y=350, gravity_speed = 0
 block = NewObject(tasokuva, position_x=350, position_y=600)
 block2 = NewObject(tasokuva, position_x=600, position_y=400)
 block3 = NewObject(maalikuva, position_x=700, position_y=335)
-
+block4 = NewObject(tasokuva, position_x=700, position_y=0)
 
 
 #add collisions
 AddCollision(robot, block)
 AddCollision(robot, block2)
 
-robot.AddCamera((block, block2, block3))
+robot.AddCamera((block, block2, block4,block3))
 
 robot.image_.set_colorkey((0, 0, 0))
 
@@ -38,6 +38,7 @@ robot_right = False
 ylos = False
 alas = False
 
+i = 0
 
 while True: #main loop
     #event lopp
@@ -51,6 +52,9 @@ while True: #main loop
                 robot_left = True
             if event.key == pygame.K_RIGHT:
                 robot_right = True
+
+            if event.key == pygame.K_t:
+                robot.Rotate(i)
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
@@ -83,16 +87,20 @@ while True: #main loop
         
     robot.Gravity()
 
-
-
+    i += 1
 
     if CollisionCheck(robot, block3): #if two object collision
         robot.PlaceObject(100, 100)
 
 
+
+    robot.UpdateRect()
+    block4.UpdateRect()
+
     #draw all
     screen.fill((0, 0, 0))
-    screen.blit(robot.image_, (robot.position_x_, robot.position_y_))
+    screen.blit(robot.image_, (robot.position_x_,robot.position_y_))
+    screen.blit(block4.image_, block4.rect_)
     screen.blit(block.image_, (block.position_x_, block.position_y_))
     screen.blit(block2.image_, (block2.position_x_, block2.position_y_))
     screen.blit(block3.image_, (block3.position_x_, block3.position_y_))

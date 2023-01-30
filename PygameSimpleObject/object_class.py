@@ -31,13 +31,16 @@ class NewObject:
         self.coordinate_y_ = 0
 
         self.SetImage(image,object_size_x,object_size_y) #sets object image and object size
-
+        self.angle_ = 0
 
 
     def SetImage(self,image = None,object_size_x:int = None,object_size_y:int = None):
 
         if image != None: #if image given
             self.image_ = image
+            self.original_image_  = image #used image rotation
+
+
             if object_size_y != None and object_size_x != None: #if size given
                 self.object_size_y_ = object_size_y
                 self.object_size_x_ = object_size_x
@@ -52,6 +55,35 @@ class NewObject:
             else:
                 self.object_size_y_ = 1
                 self.object_size_x_ = 1
+        self.rect_ = self.image_.get_rect(center=(self.image_.get_width(), self.image_.get_height()))  # create rect object
+
+    def UpdateRect(self):
+        #position --> rect
+        if self.image_ != None: #if image given
+            self.rect_[2] = self.position_x_
+            self.rect_[3] = self.position_y_
+        else:
+            self.rect_ = pygame.Rect((self.position_x_, self.position_y_), (1, 1)) #create rect object
+
+
+        #rect --> obejct size
+        self.object_size_x_ = self.rect_[0]
+        self.object_size_y_ = self.rect_[1]
+
+
+
+    def Rotate(self, angle):
+        """
+        Rotate image around center
+        """
+
+        self.angle_ = angle
+
+        self.image_ = pygame.transform.rotate(self.original_image_, angle)  #rotate image
+
+        self.rect_ = self.image_.get_rect(center=self.rect_.center)
+
+
 
 
     def ReturnCoordinate(self,x,y):
@@ -72,7 +104,7 @@ class NewObject:
         distance_x = self.position_x_ - x
         distance_y = self.position_y_ - y
 
-        print(distance_x,distance_y)
+
         self.coordinate_x_ += distance_x
         self.coordinate_y_ += distance_y
 
@@ -99,6 +131,7 @@ class NewObject:
 
             for i in range(len(self.camera_objects_)): #move
                 self.camera_objects_[i].position_x_ += number
+                self.camera_objects_[i].UpdateRect()
         for i in range(abs(distance)):
             self.coordinate_x_ += number
 
@@ -119,16 +152,9 @@ class NewObject:
 
             for i in range(len(self.camera_objects_)): #move
                 self.camera_objects_[i].position_y_ += number
-
+                self.camera_objects_[i].UpdateRect()
         for i in range(abs(distance)):
             self.coordinate_y_ += number
-
-
-
-
-
-
-            
 
 
 
@@ -147,7 +173,6 @@ class NewObject:
                 else:
                     self.position_x_ += 1 #cancel move
                 return 
-
 
 
     
