@@ -26,8 +26,7 @@ block3 = NewObject(maalikuva, position_x=700, position_y=335)
 AddCollision(robot, block)
 AddCollision(robot, block2)
 
-lista = [block, block2, block3]
-robot.AddCamera(lista)
+robot.AddCamera((block, block2, block3))
 
 block_left = True
 robot_left = False
