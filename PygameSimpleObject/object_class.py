@@ -31,6 +31,9 @@ class NewObject:
         self.coordinate_y_ = 0
 
         self.SetImage(image,object_size_x,object_size_y) #sets object image and object size
+
+
+        self.UpdateRect()
         self.angle_ = 0
 
 
@@ -41,34 +44,35 @@ class NewObject:
             self.original_image_  = image #used image rotation
 
 
-            if object_size_y != None and object_size_x != None: #if size given
-                self.object_size_y_ = object_size_y
-                self.object_size_x_ = object_size_x
-            else: #if size no given
-                self.object_size_y_ = image.get_height() #set object size to image size
-                self.object_size_x_ = image.get_width()
+            self.object_size_y_ = image.get_height() #set object size to image size
+            self.object_size_x_ = image.get_width()
+            self.rect_ = self.image_.get_rect(center=(self.image_.get_width(), self.image_.get_height()))  #create rect object
 
         else: #if image no given
-            if object_size_y != None and object_size_x != None: #if size given
-                self.object_size_y_ = object_size_y
-                self.object_size_x_ = object_size_x
-            else:
-                self.object_size_y_ = 1
-                self.object_size_x_ = 1
-        self.rect_ = self.image_.get_rect(center=(self.image_.get_width(), self.image_.get_height()))  # create rect object
+            self.object_size_y_ = 1
+            self.object_size_x_ = 1
+
+            self.rect_ = pygame.Rect((0, 0), (1, 1)) #create rect object
 
     def UpdateRect(self):
-        #position --> rect
-        if self.image_ != None: #if image given
-            self.rect_[2] = self.position_x_
-            self.rect_[3] = self.position_y_
-        else:
-            self.rect_ = pygame.Rect((self.position_x_, self.position_y_), (1, 1)) #create rect object
 
+        #position --> rect
+        self.rect_[0] = self.position_x_
+        self.rect_[1] = self.position_y_
+
+
+
+    def UpdateRect2(self):
 
         #rect --> obejct size
-        self.object_size_x_ = self.rect_[0]
-        self.object_size_y_ = self.rect_[1]
+        self.object_size_x_ = self.rect_[2]
+        self.object_size_y_ = self.rect_[3]
+
+        #rect --> position
+        self.position_x_ = self.rect_[0]
+        self.position_y_ = self.rect_[1]
+
+
 
 
 
@@ -83,6 +87,7 @@ class NewObject:
 
         self.rect_ = self.image_.get_rect(center=self.rect_.center)
 
+        self.UpdateRect2()
 
 
 

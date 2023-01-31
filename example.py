@@ -17,7 +17,7 @@ maalikuva = pygame.image.load("images/maali.png")
 clock = pygame.time.Clock()
 
 #create objects
-robot = NewObject(robottikuva, position_x=425, position_y=350, gravity_speed = 0.2, jump_strength = 10.0)
+robot = NewObject(image=robottikuva,position_x=425, position_y=350, gravity_speed = 0.2, jump_strength = 10.0)
 block = NewObject(tasokuva, position_x=350, position_y=600)
 block2 = NewObject(tasokuva, position_x=600, position_y=400)
 block3 = NewObject(maalikuva, position_x=700, position_y=335)
@@ -92,20 +92,22 @@ while True: #main loop
     if CollisionCheck(robot, block3): #if two object collision
         robot.PlaceObject(100, 100)
 
-
+    block4.Rotate(i)
 
     robot.UpdateRect()
-    block4.UpdateRect()
+
+
+
 
     #draw all
     screen.fill((0, 0, 0))
-    screen.blit(robot.image_, (robot.position_x_,robot.position_y_))
-    screen.blit(block4.image_, block4.rect_)
+    screen.blit(robot.image_, robot.rect_)
+    screen.blit(block4.image_,block4.rect_)
     screen.blit(block.image_, (block.position_x_, block.position_y_))
     screen.blit(block2.image_, (block2.position_x_, block2.position_y_))
     screen.blit(block3.image_, (block3.position_x_, block3.position_y_))
 
-    pygame.draw.circle(screen, (50, 50, 50), robot.ReturnCoordinate(50, 50), 50)
+    pygame.draw.circle(screen, (50, 50, 50), robot.ReturnCoordinate(800, 40), 50)
 
     pygame.display.flip() #update screen
     
