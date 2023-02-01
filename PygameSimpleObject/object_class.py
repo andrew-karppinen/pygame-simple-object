@@ -4,8 +4,6 @@ try: from PygameSimpleObject.object_collision import CollisionCheck #import Coll
 except: from object_collision import CollisionCheck
 
 
-#camera follow object
-
 
 
 def opposite(number):
@@ -32,8 +30,7 @@ class NewObject:
 
         self.SetImage(image,object_size_x,object_size_y) #sets object image and object size
 
-
-        self.UpdateRect()
+        self.UpdateRect() #update pygame rect object
         self.angle_ = 0
 
 
@@ -55,20 +52,19 @@ class NewObject:
             self.rect_ = pygame.Rect((0, 0), (1, 1)) #create rect object
 
     def UpdateRect(self):
-
         #position --> rect
         self.rect_[0] = self.position_x_
         self.rect_[1] = self.position_y_
 
 
-
     def UpdateRect2(self):
-
         #rect --> obejct size
+        #rect --> position
+
+
         self.object_size_x_ = self.rect_[2]
         self.object_size_y_ = self.rect_[3]
 
-        #rect --> position
         self.position_x_ = self.rect_[0]
         self.position_y_ = self.rect_[1]
 
@@ -116,6 +112,8 @@ class NewObject:
         for i in range(len(self.camera_objects_)):
             self.camera_objects_[i].position_x_ += distance_x  #place object new location
             self.camera_objects_[i].position_y_ += distance_y
+            self.camera_objects_[i].UpdateRect()
+
 
     def AddCamera(self,objectslist: list):
         self.camera_objects_ = objectslist
@@ -178,7 +176,7 @@ class NewObject:
                 else:
                     self.position_x_ += 1 #cancel move
                 return 
-
+        self.UpdateRect()
 
     
     def MoveY(self,distance: int):
@@ -203,7 +201,7 @@ class NewObject:
                 else:
                     self.position_y_ += 1 #cancel move
                 return
-    
+        self.UpdateRect()
         
     def Gravity(self,camera = True): #method makes gravity
 
