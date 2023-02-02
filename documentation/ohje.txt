@@ -31,6 +31,24 @@ liikuttaa objektia annetun matkan verran oikealle tai vasemmalle jos luku negati
 obj.MoveY(matka: int)
 Tekee saman pystysuunnassa
 
+obj.Move(matka:int)
+Liikuttaa objektia sen kulman mukaan automaattisesti x,y suunnissa
+kulma oletuksena 0,0 objekti liikkuu oikealle 
+
+OBJEKTIN KÄÄNTÄMINEN:
+obj.rotate(kulma:int)
+Metodi kääntää objektin kuvaa ja päivittää automaattisesti objektin koon ja sijainnin ja kulman
+Kulman voi antaa objektille kääntämättä kuvaa:
+obj.angle_ = int
+
+
+OBJEKTIN PIIRTÄMINEN:
+Piirtää objektit:
+DRAWOBJECTS((obj1,obj2,obj3)) #funktiolle annetaan lista jossa objektit on
+
+Jos objektit haluaa piirtää manuaalisesti kannattaa käyttää objektin rect_ atribuuttia joka on pygamen rect olio
+Tällöin objekti piirtyy oikein.
+
 
 KAMERA:
 Objektia seuraava "kamera" toimii niin että
@@ -43,6 +61,7 @@ obj.CameraMoveX(matka: int)
 Järjestelmä toimii niin että seurattava objekti pysyy paikallaan ja muita objekteja liikutetaan suhteessa seurattavaan
 tämä luo illuusion että kamera seuraisi tätä objektia.
 
+
 KOORDINAATISTO:
 Näytön koordinaatisto pysyy aina samana, eli kohta 50,50 on aina 50 pikseliä ruudun vasemmasta ylänurkasta.
 Tätä varten on kehitetty liikkuva koordinaatisto järjestelmä joka pitää yllä "kameran" liikkeitä.
@@ -53,18 +72,6 @@ eli jos seurattava objekti liikkui alaspäin 100 pikseliä se palauttaa 0,-100 j
 Lisäksi objektin liikuttamista varten on olemassa 
 obj.PlaceObject(x,y) metodi joka sijoittaa objektin uuteen kohtaan hoitaen myös kameran liikuttamisen ja koordinaatisto asiat.
 tälle metodille annetut koordinaatit eivät ole näytön koordinaatteja vaan "alkuperäisiä" koordinaatteja
-
-OBJEKTIN KÄÄNTÄMINEN:
-obj.rotate(kulma:int)
-Metodi kääntää objektin kuvaa ja päivittää automaattisesti objektin koon ja sijainnin
-
-OBJEKTIN PIIRTÄMINEN:
-Piirtää objektit:
-DRAWOBJECTS((obj1,obj2,obj3)) #funktiolle annetaan lista jossa objektit on
-
-Jos objektit haluaa piirtää manuaalisesti kannattaa käyttää objektin rect_ atribuuttia joka on pygamen rect olio
-Tällöin objekti piirtyy oikein.
-
 
 
 PAINOVOIMA:
