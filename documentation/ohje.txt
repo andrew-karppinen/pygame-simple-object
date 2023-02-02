@@ -72,7 +72,9 @@ ReturnCoordinate metodia pitää käyttää siihen objektiin jota seurataan.
 
 Lisäksi objektin liikuttamista varten on olemassa 
 obj.PlaceObject(x,y) metodi joka sijoittaa objektin uuteen kohtaan hoitaen myös kameran liikuttamisen ja koordinaatisto asiat.
-tälle metodille annetut koordinaatit eivät ole näytön koordinaatteja vaan "alkuperäisiä" koordinaatteja
+Tälle metodille annetaan näytön koordinaatit, ei "alkuperäisiä" koordinaatteja.
+
+
 
 
 PAINOVOIMA:
