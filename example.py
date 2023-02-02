@@ -40,6 +40,8 @@ alas = False
 
 i = 0
 
+#block4.PlaceObject(50,50)
+
 while True: #main loop
     #event lopp
     for event in pygame.event.get():
@@ -90,9 +92,10 @@ while True: #main loop
     i += 1
 
     if CollisionCheck(robot, block3): #if two object collision
-        robot.PlaceObject(100, 100)
+        robot.PlaceObject(50,50)
 
     block4.Rotate(i)
+
 
 
 

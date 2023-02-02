@@ -27,6 +27,7 @@ class NewObject:
 
         self.coordinate_x_ = 0 #moving coordinate system
         self.coordinate_y_ = 0
+        self.tracked_object = False #if the object is followed
 
         self.SetImage(image,object_size_x,object_size_y) #sets object image and object size
 
@@ -100,23 +101,28 @@ class NewObject:
     def PlaceObject(self,x,y):
         #sets object new position
 
-        x,y = self.ReturnCoordinate(x,y)
+        if self.tracked_object: #if the object is followed
+            x,y = self.ReturnCoordinate(x,y)
 
-        distance_x = self.position_x_ - x
-        distance_y = self.position_y_ - y
+            distance_x = self.position_x_ - x
+            distance_y = self.position_y_ - y
 
 
-        self.coordinate_x_ += distance_x
-        self.coordinate_y_ += distance_y
+            self.coordinate_x_ += distance_x
+            self.coordinate_y_ += distance_y
 
-        for i in range(len(self.camera_objects_)):
-            self.camera_objects_[i].position_x_ += distance_x  #place object new location
-            self.camera_objects_[i].position_y_ += distance_y
-            self.camera_objects_[i].UpdateRect()
-
+            for i in range(len(self.camera_objects_)):
+                self.camera_objects_[i].position_x_ += distance_x  #place object new location
+                self.camera_objects_[i].position_y_ += distance_y
+                self.camera_objects_[i].UpdateRect()
+        else:
+            self.position_x_ = x
+            self.position_y_ = y
+            self.UpdateRect()
 
     def AddCamera(self,objectslist: list):
         self.camera_objects_ = objectslist
+        self.tracked_object = True
 
     #test moving methods
     #camera follow object
@@ -175,7 +181,7 @@ class NewObject:
                     self.position_x_ += -1 #cancel move
                 else:
                     self.position_x_ += 1 #cancel move
-                return 
+                return
         self.UpdateRect()
 
     
