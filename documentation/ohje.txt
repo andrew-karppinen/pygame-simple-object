@@ -68,6 +68,7 @@ Tätä varten on kehitetty liikkuva koordinaatisto järjestelmä joka pitää yl
 
 obj.ReturnCoordinate(x: int,y: int) metodi palauttaa "alkuperäisen" kohdan näytön kordinaatteina, eli sen kohdan jossa se oli ennen kuin kamera liikkui yhtään.
 eli jos seurattava objekti liikkui alaspäin 100 pikseliä se palauttaa 0,-100 jos siltä kysytään 0,0 kohdan sijaintia.
+Nämä kordinaatit saa seurattavalta objektilta.
 
 Lisäksi objektin liikuttamista varten on olemassa 
 obj.PlaceObject(x,y) metodi joka sijoittaa objektin uuteen kohtaan hoitaen myös kameran liikuttamisen ja koordinaatisto asiat.
