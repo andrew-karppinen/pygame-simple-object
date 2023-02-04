@@ -8,15 +8,15 @@ pygame.init()
 screen = pygame.display.set_mode((850, 700)) #create window
 clock = pygame.time.Clock()
 
-soldierimage = pygame.image.load("images/soldier.bmp") #load images
+tankimage = pygame.image.load("images/tank.png") #load images
 
-soldier = NewObject(image=soldierimage,position_x=425,position_y=350)
+tank = NewObject(image=tankimage, position_x=425, position_y=350)
 
 
 left = False
 right = False
 move = False
-
+tank.image_.set_colorkey((0, 0, 0))
 
 while True: #main loop
     #event lopp
@@ -44,16 +44,16 @@ while True: #main loop
 
 
     if left:
-        soldier.Rotate(5)
+        tank.Rotate(3)
     if right:
-        soldier.Rotate(-5)
+        tank.Rotate(-3)
     if move:
-        soldier.Move(5)
+        tank.Move(5)
 
 
     #draw all
     screen.fill((0, 0, 0))
-    screen.blit(soldier.image_,soldier.rect_)
+    screen.blit(tank.image_, tank.rect_)
     pygame.display.flip()  # update screen
 
     clock.tick(60)  # fps limit
