@@ -1,4 +1,6 @@
 
+#not used currently
+
 def SetImage(self, image=None, object_size_x: int = None, object_size_y: int = None):
     if image != None:  # if image given
         self.image_ = image

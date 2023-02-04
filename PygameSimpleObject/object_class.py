@@ -4,8 +4,6 @@ try: from PygameSimpleObject.object_collision import CollisionCheck #import Coll
 except: from object_collision import CollisionCheck
 
 
-#camera follow object
-
 
 
 def opposite(number):
@@ -29,11 +27,11 @@ class NewObject:
 
         self.coordinate_x_ = 0 #moving coordinate system
         self.coordinate_y_ = 0
+        self.tracked_object = False #if the object is followed
 
         self.SetImage(image,object_size_x,object_size_y) #sets object image and object size
 
-
-        self.UpdateRect()
+        self.UpdateRect() #update pygame rect object
         self.angle_ = 0
 
 
@@ -55,20 +53,19 @@ class NewObject:
             self.rect_ = pygame.Rect((0, 0), (1, 1)) #create rect object
 
     def UpdateRect(self):
-
         #position --> rect
         self.rect_[0] = self.position_x_
         self.rect_[1] = self.position_y_
 
 
-
     def UpdateRect2(self):
-
         #rect --> obejct size
+        #rect --> position
+
+
         self.object_size_x_ = self.rect_[2]
         self.object_size_y_ = self.rect_[3]
 
-        #rect --> position
         self.position_x_ = self.rect_[0]
         self.position_y_ = self.rect_[1]
 
@@ -104,21 +101,28 @@ class NewObject:
     def PlaceObject(self,x,y):
         #sets object new position
 
-        x,y = self.ReturnCoordinate(x,y)
+        if self.tracked_object: #if the object is followed
+            x,y = self.ReturnCoordinate(x,y)
 
-        distance_x = self.position_x_ - x
-        distance_y = self.position_y_ - y
+            distance_x = self.position_x_ - x
+            distance_y = self.position_y_ - y
 
 
-        self.coordinate_x_ += distance_x
-        self.coordinate_y_ += distance_y
+            self.coordinate_x_ += distance_x
+            self.coordinate_y_ += distance_y
 
-        for i in range(len(self.camera_objects_)):
-            self.camera_objects_[i].position_x_ += distance_x  #place object new location
-            self.camera_objects_[i].position_y_ += distance_y
+            for i in range(len(self.camera_objects_)):
+                self.camera_objects_[i].position_x_ += distance_x  #place object new location
+                self.camera_objects_[i].position_y_ += distance_y
+                self.camera_objects_[i].UpdateRect()
+        else:
+            self.position_x_ = x
+            self.position_y_ = y
+            self.UpdateRect()
 
     def AddCamera(self,objectslist: list):
         self.camera_objects_ = objectslist
+        self.tracked_object = True
 
     #test moving methods
     #camera follow object
@@ -177,8 +181,8 @@ class NewObject:
                     self.position_x_ += -1 #cancel move
                 else:
                     self.position_x_ += 1 #cancel move
-                return 
-
+                return
+        self.UpdateRect()
 
     
     def MoveY(self,distance: int):
@@ -203,7 +207,7 @@ class NewObject:
                 else:
                     self.position_y_ += 1 #cancel move
                 return
-    
+        self.UpdateRect()
         
     def Gravity(self,camera = True): #method makes gravity
 

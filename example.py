@@ -40,6 +40,8 @@ alas = False
 
 i = 0
 
+#block4.PlaceObject(50,50)
+
 while True: #main loop
     #event lopp
     for event in pygame.event.get():
@@ -90,11 +92,10 @@ while True: #main loop
     i += 1
 
     if CollisionCheck(robot, block3): #if two object collision
-        robot.PlaceObject(100, 100)
+        robot.PlaceObject(50,50)
 
     block4.Rotate(i)
 
-    robot.UpdateRect()
 
 
 
@@ -103,9 +104,9 @@ while True: #main loop
     screen.fill((0, 0, 0))
     screen.blit(robot.image_, robot.rect_)
     screen.blit(block4.image_,block4.rect_)
-    screen.blit(block.image_, (block.position_x_, block.position_y_))
-    screen.blit(block2.image_, (block2.position_x_, block2.position_y_))
-    screen.blit(block3.image_, (block3.position_x_, block3.position_y_))
+    screen.blit(block.image_, block.rect_)
+    screen.blit(block2.image_, block2.rect_)
+    screen.blit(block3.image_, block3.rect_)
 
     pygame.draw.circle(screen, (50, 50, 50), robot.ReturnCoordinate(800, 40), 50)
 
