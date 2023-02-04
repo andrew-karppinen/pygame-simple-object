@@ -9,7 +9,7 @@ screen = pygame.display.set_mode((850, 700)) #create window
 
 
 
-robottikuva = pygame.image.load("images/robotti.png") #download images
+robottikuva = pygame.image.load("images/robotti.png") #load images
 tasokuva = pygame.image.load("images/taso.png")
 maalikuva = pygame.image.load("images/maali.png")
 
