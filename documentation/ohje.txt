@@ -77,6 +77,34 @@ obj.PlaceObject(x,y) metodi joka sijoittaa objektin uuteen kohtaan hoitaen myös
 
 
 
+TÖRMÄYKSET:
+
+objektille voi lisätä törmäyksen toisen objektin kanssa:
+
+AddCollision(obj1,obj2)
+tällöin kumpikaan objekti ei voi liikkua kummankaan läpi
+
+Törmäyksen voi poistaa:
+DelteCollision(obj1,obj2)
+
+
+Seuraava tarkista törmääkö kaksi objektia:
+CollisionCheck(obj1, obj2)
+
+funktio käyttää oletuksena objektin sen hetkistä sijaintia mutta sille voi myös antaa sijainnit:
+CollisionCheck(obj1, obj2, obj1_x, obj1_y, obj2_x, obj2_y)
+
+
+
+oletuksena törmäys kattoon hypätessä lopettaa hypyn
+tämän voi halutessaan poistaa asettamalla:
+
+obj.jump_collision_mode_ = 0 (1 niin päällä)
+
+tällöin objekti "liimautuu" kattoon kunnes painovoima alkaa taas vaikuttamaan
+
+
+
 PAINOVOIMA:
 
 seuraava toteuttaa painovoiman:
@@ -117,33 +145,3 @@ oletuksena 1
 
 
 Hyppykin tehdään automaattisesti painvoiman kanssa eri suuntaan
-
-
-
-
-TÖRMÄYKSET:
-
-objektille voi lisätä törmäyksen toisen objektin kanssa:
-
-AddCollision(obj1,obj2)
-tällöin kumpikaan objekti ei voi liikkua kummankaan läpi
-
-Törmäyksen voi poistaa:
-DelteCollision(obj1,obj2)
-
-
-Seuraava tarkista törmääkö kaksi objektia:
-CollisionCheck(obj1, obj2)
-
-funktio käyttää oletuksena objektin sen hetkistä sijaintia mutta sille voi myös antaa sijainnit:
-CollisionCheck(obj1, obj2, obj1_x, obj1_y, obj2_x, obj2_y)
-
-
-
-oletuksena törmäys kattoon hypätessä lopettaa hypyn
-tämän voi halutessaan poistaa asettamalla:
-
-obj.jump_collision_mode_ = 0 (1 niin päällä)
-
-tällöin objekti "liimautuu" kattoon kunnes painovoima alkaa taas vaikuttamaan
-
