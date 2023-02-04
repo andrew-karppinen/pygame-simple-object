@@ -1,9 +1,22 @@
 import pygame
+import math
 
 try: from PygameSimpleObject.object_collision import CollisionCheck #import CollisionCheck function other file
 except: from object_collision import CollisionCheck
 
 
+
+
+def Return_x_y(angle, distance):
+    '''
+    calculates the lengths of the legs of a right triangle from the length of the hypotenuse and the angle
+    '''
+
+    x = math.cos(math.radians(angle)) * distance
+
+    y = math.tan(math.radians(angle)) * x
+
+    return (x, y)
 
 
 def opposite(number):
@@ -78,9 +91,9 @@ class NewObject:
         Rotate image around center
         """
 
-        self.angle_ = angle
+        self.angle_ += angle
 
-        self.image_ = pygame.transform.rotate(self.original_image_, angle)  #rotate image
+        self.image_ = pygame.transform.rotate(self.original_image_, self.angle_)  #rotate image
 
         self.rect_ = self.image_.get_rect(center=self.rect_.center)
 
@@ -166,6 +179,12 @@ class NewObject:
             self.coordinate_y_ += number
 
 
+    def Move(self,distance:int):
+
+        x,y = Return_x_y(opposite(self.angle_),distance)
+
+        self.MoveX(int(x))
+        self.MoveY(int(y))
 
     def MoveX(self,distance: int):
         for i in range(abs(distance)):
