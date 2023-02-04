@@ -134,7 +134,9 @@ class NewObject:
             self.UpdateRect()
 
     def AddCamera(self,objectslist: list):
-        self.camera_objects_ = objectslist
+        for i in range(len(objectslist)):
+            self.camera_objects_.append(objectslist[i])
+
         self.tracked_object = True
 
     #test moving methods
@@ -185,6 +187,13 @@ class NewObject:
 
         self.MoveX(int(x))
         self.MoveY(int(y))
+
+    def CameraMove(self,distance:int):
+
+        x, y = Return_x_y(opposite(self.angle_), distance)
+        self.CameraMoveX(int(x))
+        self.CameraMoveY(int(y))
+
 
     def MoveX(self,distance: int):
         for i in range(abs(distance)):
