@@ -1,5 +1,6 @@
  
 from PygameSimpleObject.object_class import NewObject
 from PygameSimpleObject.tilemap import TileMap
+from PygameSimpleObject.draw import DrawObjects
 
 from PygameSimpleObject.object_collision import CollisionCheck,AddCollision,DelteCollision

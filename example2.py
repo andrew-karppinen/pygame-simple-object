@@ -14,9 +14,9 @@ mineimage = pygame.image.load("examplemedia/mine.png")
 tank = NewObject(image=tankimage, position_x=425, position_y=350)
 mine = NewObject(image=mineimage, position_x=100, position_y=320)
 mine2 = NewObject(image=mineimage, position_x=400, position_y=300)
-TileMap(None,None)
+map =TileMap("examplemedia/map.txt",None)
 
-tank.AddCamera([mine,mine2])
+tank.AddCamera([mine,mine2,map])
 
 left = False
 right = False
@@ -58,9 +58,8 @@ while True: #main loop
 
     #draw all
     screen.fill((0, 0, 0))
-    screen.blit(mine.image_, mine.rect_)
-    screen.blit(mine2.image_, mine2.rect_)
-    screen.blit(tank.image_, tank.rect_)
+    DrawObjects(screen,[map,mine,mine2,tank])
+
     pygame.display.flip()  # update screen
 
     clock.tick(60)  #fps limit

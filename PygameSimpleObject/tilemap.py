@@ -91,11 +91,13 @@ def ReadMap(filepath):
 
 
 
-def TileMap(mapfile_path,tileimage_path):
+def TileMap(mapfile_path:str,tileimage_path):
 
 
     tile1 = pygame.image.load("examplemedia/tile1.png") #loadimage
     tile2 = pygame.image.load("examplemedia/tile2.png")
+
+    images = [tile1,tile2]
 
 
     maplist,rowwidth,rowcout = ReadMap(mapfile_path)
@@ -110,11 +112,22 @@ def TileMap(mapfile_path,tileimage_path):
     #make tiles objects
     for y in range(rowcout):
         for x in range(rowwidth):
-            if maplist[y][x] == "1":
-                objectlist.append(NewObject(image = tile1,position_x=x*32,position_y=y*32))
+            number = ""
+            for i in range(len(maplist[y][x])):
+                if maplist[y][x][i].isnumeric():
+                    number += maplist[y][x][i]
+                else:
+                    if maplist[y][x][i] == "b": #collision = True
+                        pass
+
+
+            number = int(number)
+            if number == 0:
+                continue
+
+
+            objectlist.append(NewObject(image = images[number-1],position_x=x*32,position_y=y*32))
                 
-            elif maplist[y][x] == "2":
-                objectlist.append(NewObject(image = tile2,position_x=x*32,position_y=y*32))
 
 
 
