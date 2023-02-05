@@ -53,7 +53,9 @@ Tällöin objekti piirtyy oikein.
 KAMERA:
 Objektia seuraava "kamera" toimii niin että
 objektille annetaan kaikki muut objektit:
-obj.AddCamera((obj1,obj2,obj3,jne)) #metodille annetaan lista jossa objektit on
+obj.AddCamera([obj1,obj2,obj3,jne]) #metodille annetaan lista jossa objektit on
+Listan alkioiden pitää olla objekteja tai alkioina voi olla myös listoja jossa objekteja
+tämä helpottaa asioita mikäli objekteja on todella suuri määrä.
 
 sitten tätä seurattavaa objektia liikutetaan
 obj.CameraMoveY(matka: int)
