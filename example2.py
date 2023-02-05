@@ -8,13 +8,13 @@ pygame.init()
 screen = pygame.display.set_mode((850, 700)) #create window
 clock = pygame.time.Clock()
 
-tankimage = pygame.image.load("images/tank.png") #load images
-mineimage = pygame.image.load("images/mine.png")
+tankimage = pygame.image.load("examplemedia/tank.png") #load images
+mineimage = pygame.image.load("examplemedia/mine.png")
 
 tank = NewObject(image=tankimage, position_x=425, position_y=350)
 mine = NewObject(image=mineimage, position_x=100, position_y=320)
 mine2 = NewObject(image=mineimage, position_x=400, position_y=300)
-
+TileMap(None,None)
 
 tank.AddCamera([mine,mine2])
 

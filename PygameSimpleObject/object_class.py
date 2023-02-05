@@ -135,7 +135,11 @@ class NewObject:
 
     def AddCamera(self,objectslist: list):
         for i in range(len(objectslist)):
-            self.camera_objects_.append(objectslist[i])
+            if type(objectslist[i]) == list: #if index is list
+                for j in range(len(objectslist[i])):
+                    self.camera_objects_.append(objectslist[i][j])
+            else:
+                self.camera_objects_.append(objectslist[i])
 
         self.tracked_object = True
 
