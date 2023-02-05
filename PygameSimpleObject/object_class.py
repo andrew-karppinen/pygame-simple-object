@@ -25,7 +25,7 @@ def opposite(number):
 
 
 class NewObject:
-    def __init__(self,image = None,object_size_x:int = None,object_size_y:int = None,position_x: int = 0, position_y: int = 0,gravity_speed: float = 0.0,gravity_strength: float = 6.0,jump_strength: float = 0.0,jump_mode: int = 1,jump_collision_mode = 1,map_object:bool = False): #constructor
+    def __init__(self,image = None,object_size_x:int = None,object_size_y:int = None,position_x: int = 0, position_y: int = 0,gravity_speed: float = 0.0,gravity_strength: float = 6.0,jump_strength: float = 0.0,jump_mode: int = 1,jump_collision_mode = 1): #constructor
         self.position_x_ = position_x #screen position
         self.position_y_ = position_y
         self.gravity_value_ = 0.0
@@ -41,7 +41,10 @@ class NewObject:
 
         self.coordinate_x_ = 0 #moving coordinate system
         self.coordinate_y_ = 0
-        self.map_object_ = map_object #if object is map
+        self.map_object_ = False #if object is map
+        self.map_setup_ = None #1 = no collision, 2 = collision,3 = baground tile
+
+
         self.tracked_object = False #if the object is followed
 
         self.SetImage(image,object_size_x,object_size_y) #sets object image and object size

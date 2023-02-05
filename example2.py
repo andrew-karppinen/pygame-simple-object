@@ -10,6 +10,8 @@ clock = pygame.time.Clock()
 
 tankimage = pygame.image.load("examplemedia/tank.png") #load images
 mineimage = pygame.image.load("examplemedia/mine.png")
+mineimage.set_colorkey((0,0,0))
+tankimage.set_colorkey((0, 0, 0))
 
 tank = NewObject(image=tankimage, position_x=425, position_y=350)
 mine = NewObject(image=mineimage, position_x=100, position_y=320)
@@ -24,7 +26,7 @@ tank.AddCamera([mine,mine2,map])
 left = False
 right = False
 move = False
-tank.image_.set_colorkey((0, 0, 0))
+
 
 while True: #main loop
     #event lopp
@@ -52,9 +54,9 @@ while True: #main loop
 
 
     if left:
-        tank.Rotate(3)
+        tank.Rotate(2)
     if right:
-        tank.Rotate(-3)
+        tank.Rotate(-2)
     if move:
         tank.CameraMove(5)
 
