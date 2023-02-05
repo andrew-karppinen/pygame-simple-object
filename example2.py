@@ -14,7 +14,10 @@ mineimage = pygame.image.load("examplemedia/mine.png")
 tank = NewObject(image=tankimage, position_x=425, position_y=350)
 mine = NewObject(image=mineimage, position_x=100, position_y=320)
 mine2 = NewObject(image=mineimage, position_x=400, position_y=300)
-map =TileMap("examplemedia/map.txt",None)
+
+map =TileMap("examplemedia/map.txt",None)#create map
+
+objectslist = [mine,mine2,map]
 
 tank.AddCamera([mine,mine2,map])
 

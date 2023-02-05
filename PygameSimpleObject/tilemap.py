@@ -106,7 +106,25 @@ def TileMap(mapfile_path:str,tileimage_path):
     objectlist = []
 
 
-
+    '''
+    Example file:
+    8,8;
+    1b,1b,1,1,2,1,1,1,1,1
+    1,2,1,1,1,1,1,1,1,1
+    1,2,1,1,1b,2,1,1,1,1
+    1,2,1,1,1,1,1,2,1,1
+    1,2,1,1,1,2,1,1,1,1
+    1,2,1,1,1,2,1,0c,0c,0c
+    
+    number = tile image
+    
+    char:
+    a = no collision
+    b = collision
+    c = baground tile
+    d = no tile
+    
+    '''
             
 
     #make tiles objects
@@ -117,17 +135,19 @@ def TileMap(mapfile_path:str,tileimage_path):
                 if maplist[y][x][i].isnumeric():
                     number += maplist[y][x][i]
                 else:
-                    if maplist[y][x][i] == "b": #collision = True
-                        pass
+                    char = maplist[y][x][i]
+
 
 
             number = int(number)
-            if number == 0:
-                continue
+
+            if char != "d":
+                if number == 0: #if no image
+                    objectlist.append(NewObject(image = None,position_x=x*32,position_y=y*32))
+                else:
+                    objectlist.append(NewObject(image = images[number-1],position_x=x*32,position_y=y*32))
 
 
-            objectlist.append(NewObject(image = images[number-1],position_x=x*32,position_y=y*32))
-                
 
 
 
