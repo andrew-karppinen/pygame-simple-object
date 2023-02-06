@@ -95,6 +95,7 @@ DelteCollision(obj1,obj2)
 
 Seuraava tarkista törmääkö kaksi objektia:
 CollisionCheck(obj1, obj2)
+obj2 voi olla myös lista jossa objekteja
 
 funktio käyttää oletuksena objektin sen hetkistä sijaintia mutta sille voi myös antaa sijainnit:
 CollisionCheck(obj1, obj2, obj1_x, obj1_y, obj2_x, obj2_y)
