@@ -39,8 +39,21 @@ def CollisionCheck(obj1, obj2, obj1_x = None, obj1_y = None, obj2_x = None, obj2
 
 
 def AddCollision(obj1,obj2):
-    obj1.collision_objects_.append(obj2) #add object list
-    obj2.collision_objects_.append(obj1) #add object list
+
+    if type(obj2) == list: #if obj2 is list
+        for i in range(len(obj2)):
+            if obj2[i].map_object_: #if map object
+                if obj2[i].map_setup_ == 2: #if collision tile
+                    obj1.collision_objects_.append(obj2[i])
+                    obj2[i].collision_objects_.append(obj1)
+
+
+            else:
+                obj1.collision_objects_.append(obj2[i])
+                obj2[i].collision_objects_.append(obj1)
+    else:
+        obj1.collision_objects_.append(obj2) #add object list
+        obj2.collision_objects_.append(obj1) #add object list
 
 def DelteCollision(obj1,obj2):
     #Delete object in list

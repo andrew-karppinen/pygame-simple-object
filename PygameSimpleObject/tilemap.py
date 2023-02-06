@@ -44,7 +44,7 @@ def ReadMap(filepath):
     '''
     read txt file to 2d list
 
-    using map function
+    using StringToList function
     
     retrun list,rows width, rows count
     '''
@@ -89,8 +89,6 @@ def ReadMap(filepath):
     return(maplist,rowswidth,rowscount)
 
 
-
-
 def TileMap(mapfile_path:str,tileimage_path):
 
 
@@ -123,7 +121,6 @@ def TileMap(mapfile_path:str,tileimage_path):
     b = collision
     c = baground tile
     d = no tile
-    
     '''
             
 
@@ -147,6 +144,13 @@ def TileMap(mapfile_path:str,tileimage_path):
                 else:
                     objectlist.append(NewObject(image = images[number-1],position_x=x*32,position_y=y*32))
 
+                objectlist[-1].map_object_ = True
+                if char == "a": #no collision tile
+                    objectlist[-1].map_setup_ = 1
+                elif char == "b": #collision tile
+                    objectlist[-1].map_setup_ = 2
+                elif char == "c": #baground tile(no collision)
+                    objectlist[-1].map_setup_ = 3
 
 
 

@@ -38,9 +38,9 @@ class NewObject:
 
         self.collision_objects_ = []
         self.camera_objects_ = []
-
         self.coordinate_x_ = 0 #moving coordinate system
         self.coordinate_y_ = 0
+
         self.map_object_ = False #if object is map
         self.map_setup_ = None #1 = no collision, 2 = collision,3 = baground tile
 
@@ -94,6 +94,7 @@ class NewObject:
     def Rotate(self, angle):
         """
         Rotate image around center
+        Todo: add collision
         """
 
         self.angle_ += angle
