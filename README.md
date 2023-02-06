@@ -4,6 +4,7 @@
 
 
 Tilemap system,
+rotate image,
 update moving and coordinate systems
 
 
