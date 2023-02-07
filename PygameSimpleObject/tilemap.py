@@ -45,7 +45,6 @@ def ReadMap(filepath):
     read txt file to 2d list
 
     using StringToList function
-    
     retrun list,rows width, rows count
     '''
 
@@ -61,14 +60,14 @@ def ReadMap(filepath):
     string = ""
 
 
-    while i < len(rows[0]):
+    while i < len(rows[0]): #read first line
         if rows[0][i] == ",":
             i += 1
             break
         rowscount += rows[0][i]
         i += 1
 
-    while i < len(rows[0]):
+    while i < len(rows[0]): #read first line
         if rows[0][i] == ";":
             break
         rowswidth += rows[0][i]
@@ -90,21 +89,10 @@ def ReadMap(filepath):
 
 
 def TileMap(mapfile_path:str,tileimage_path):
-
-
-    tile1 = pygame.image.load("examplemedia/tile1.png") #loadimage
-    tile2 = pygame.image.load("examplemedia/tile2.png")
-
-    images = [tile1,tile2]
-
-
-    maplist,rowwidth,rowcout = ReadMap(mapfile_path)
-
-    
-    objectlist = []
-
-
     '''
+    Makes tilemap  from txt file
+    tiles is objects
+
     Example file:
     8,8;
     1b,1b,1,1,2,1,1,1,1,1
@@ -122,7 +110,17 @@ def TileMap(mapfile_path:str,tileimage_path):
     c = baground tile
     d = no tile
     '''
-            
+
+
+    tile1 = pygame.image.load("examplemedia/tile1.png")  # load images
+    tile2 = pygame.image.load("examplemedia/tile2.png")
+
+    images = [tile1, tile2]
+
+    maplist, rowwidth, rowcout = ReadMap(mapfile_path)  # read txt file
+
+    objectlist = []
+
 
     #make tiles objects
     for y in range(rowcout):
@@ -148,6 +146,7 @@ def TileMap(mapfile_path:str,tileimage_path):
                 if char == "a": #no collision tile
                     objectlist[-1].map_setup_ = 1
                 elif char == "b": #collision tile
+                    print(objectlist[-1].position_y_)
                     objectlist[-1].map_setup_ = 2
                 elif char == "c": #baground tile(no collision)
                     objectlist[-1].map_setup_ = 3

@@ -247,54 +247,17 @@ class NewObject:
                 return
         self.UpdateRect()
         
-    def Gravity(self,camera = True): #method makes gravity
-
-        if camera:
-            self.CameraMoveY(int(self.gravity_value_))
-        else:
-            self.MoveY(int(self.gravity_value_))
-        
-        if self.gravity_speed_ > 0:
-            if self.gravity_value_ < self.gravity_strength_:
-                self.gravity_value_ += self.gravity_speed_
-        elif self.gravity_speed_ < 0:
-            if self.gravity_value_ > opposite(self.gravity_strength_):
-                self.gravity_value_ += self.gravity_speed_
-
-    
-    def Jump(self): #method makes jump
-        if self.jump_mode_ != 0:
-            if self.jump_mode_ == 1: #jumps only if the object is above another object
-                if self.gravity_speed_ > 0:
-                    self.position_y_ += 1
-                    if self.__Collision():
-                        self.gravity_value_ = opposite(self.jump_strength_)
-                        self.position_y_ -= 1 #cancel move
-                        
-                if self.gravity_speed_ < 0:
-                    self.position_y_ -= 1
-                    if self.__Collision():
-                        self.gravity_value_ = self.jump_strength_
-                        self.position_y_ += 1 #cancel move
-
-            elif self.jump_mode_ == 2: #jump in any case
-                if self.gravity_speed_ > 0:
-                    self.gravity_value_ = opposite(self.jump_strength_)
-                else:
-                    self.gravity_value_ = self.jump_strength_
-                return
-
 
 
     def __Collision(self,position_x = None,position_y = None): #private method
         #return True/False
         #if this object collision
-        if position_x == None: 
+        if position_x == None:
             obj1_x = self.position_x_
         else:
             obj1_x = position_x #if location give
 
-        if position_y == None: 
+        if position_y == None:
             obj1_y = self.position_y_
         else:
             obj1_y = position_y #if location give
@@ -312,8 +275,41 @@ class NewObject:
                             return True
         return False
 
+    def Gravity(self, camera=True):  #method makes gravity
 
+        if camera:
+            self.CameraMoveY(int(self.gravity_value_))
+        else:
+            self.MoveY(int(self.gravity_value_))
 
+        if self.gravity_speed_ > 0:
+            if self.gravity_value_ < self.gravity_strength_:
+                self.gravity_value_ += self.gravity_speed_
+        elif self.gravity_speed_ < 0:
+            if self.gravity_value_ > opposite(self.gravity_strength_):
+                self.gravity_value_ += self.gravity_speed_
+
+    def Jump(self):  # method makes jump
+        if self.jump_mode_ != 0:
+            if self.jump_mode_ == 1:  # jumps only if the object is above another object
+                if self.gravity_speed_ > 0:
+                    self.position_y_ += 1
+                    if self.__Collision():
+                        self.gravity_value_ = opposite(self.jump_strength_)
+                        self.position_y_ -= 1  # cancel move
+
+                if self.gravity_speed_ < 0:
+                    self.position_y_ -= 1
+                    if self.__Collision():
+                        self.gravity_value_ = self.jump_strength_
+                        self.position_y_ += 1  # cancel move
+
+            elif self.jump_mode_ == 2:  # jump in any case
+                if self.gravity_speed_ > 0:
+                    self.gravity_value_ = opposite(self.jump_strength_)
+                else:
+                    self.gravity_value_ = self.jump_strength_
+                return
 
 
 
