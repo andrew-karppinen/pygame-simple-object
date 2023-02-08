@@ -42,7 +42,7 @@ class NewObject:
         self.coordinate_y_ = 0
 
         self.map_object_ = False #if object is map
-        self.map_setup_ = None #1 = no collision, 2 = collision,3 = baground tile
+        self.map_setup_ = None #1 = no collision, 2 = collision,3 = layer 2(draw last, no collision)
 
 
         self.tracked_object = False #if the object is followed

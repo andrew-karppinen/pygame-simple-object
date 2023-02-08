@@ -2,8 +2,6 @@ import pygame
 
 from PygameSimpleObject import *
 
-
-
 pygame.init()
 screen = pygame.display.set_mode((850, 700)) #create window
 clock = pygame.time.Clock()

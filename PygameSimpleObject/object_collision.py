@@ -45,6 +45,7 @@ def AddCollision(obj1,obj2):
                     obj2[i].collision_objects_.append(obj1)
 
 
+
             else:
                 obj1.collision_objects_.append(obj2[i])
                 obj2[i].collision_objects_.append(obj1)

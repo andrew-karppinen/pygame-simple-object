@@ -40,7 +40,6 @@ def StringToList(string,rowswidth,rowcount):
 
 def ReadMap(filepath):
 
-    
     '''
     read txt file to 2d list
 
@@ -70,13 +69,15 @@ def ReadMap(filepath):
     while i < len(rows[0]): #read first line
         if rows[0][i] == ";":
             break
+
         rowswidth += rows[0][i]
         i += 1
 
 
     rowscount = int(rowscount)
-    rowswidth= int(rowswidth)
+    rowswidth = int(rowswidth)
 
+    print(rowscount,rowswidth)
 
     for i in range(1,rowscount +1):
         string += rows[i]
@@ -107,12 +108,15 @@ def TileMap(mapfile_path:str,tileimage_path):
     char:
     a = no collision
     b = collision
-    c = baground tile
+    c = layer2
     d = no tile
+
+    a,b = layer 1(draw first)
+    c = layer2 (draw last)
     '''
 
 
-    tile1 = pygame.image.load("examplemedia/tile1.png")  # load images
+    tile1 = pygame.image.load("examplemedia/tile1.png")  #load images
     tile2 = pygame.image.load("examplemedia/tile2.png")
 
     images = [tile1, tile2]
@@ -148,7 +152,7 @@ def TileMap(mapfile_path:str,tileimage_path):
                 elif char == "b": #collision tile
                     print(objectlist[-1].position_y_)
                     objectlist[-1].map_setup_ = 2
-                elif char == "c": #baground tile(no collision)
+                elif char == "c": #layer2 (draw last) (no collision)
                     objectlist[-1].map_setup_ = 3
 
 
