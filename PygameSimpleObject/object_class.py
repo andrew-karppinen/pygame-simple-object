@@ -99,9 +99,17 @@ class NewObject:
 
         self.image_ = pygame.transform.rotate(self.original_image_, self.angle_)  #rotate image
 
-        self.rect_ = self.image_.get_rect(center=self.rect_.center)
+        self.rect_ = self.image_.get_rect(center=self.rect_.center)#update rect_
+        self.UpdateRect2() #update object position and size
 
-        self.UpdateRect2()
+        if self.__Collision(): #if collision
+            self.angle_ -= angle #cancel rotate
+            self.image_ = pygame.transform.rotate(self.original_image_, self.angle_)  #cancel rotate
+
+
+        self.rect_ = self.image_.get_rect(center=self.rect_.center) #update rect_
+
+        self.UpdateRect2() #update object position and size
 
 
 

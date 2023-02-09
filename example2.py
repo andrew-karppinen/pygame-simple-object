@@ -15,18 +15,21 @@ tank = NewObject(image=tankimage, position_x=425, position_y=350)
 mine = NewObject(image=mineimage, position_x=100, position_y=320)
 mine2 = NewObject(image=mineimage, position_x=400, position_y=300)
 
-map = TileMap("examplemedia/map.txt",None)#create map
+map = TileMap("examplemedia/map.txt",None) #create map
 
-objectslist = [mine,mine2,map]
+
+AddCollision(tank,map)
+AddCollision(tank,[mine,mine2])
 
 tank.AddCamera([mine,mine2,map])
-AddCollision(tank,mine)
-AddCollision(tank,map)
+
 
 left = False
 right = False
 move = False
 move2 = False
+
+
 
 while True: #main loop
     #event lopp
@@ -69,7 +72,7 @@ while True: #main loop
 
     #draw all
     screen.fill((0, 0, 0))
-    DrawObjects(screen,[map,mine,mine2,tank])
+    DrawObjects(screen,[tank,mine,mine2,map])
 
     pygame.display.flip() #update screen
 

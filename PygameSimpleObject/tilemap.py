@@ -8,7 +8,7 @@ def StringToList(string,rowswidth,rowcount):
 
 
     '''
-    String to 2d list
+    String to 2d list Retrun list
     characters are separated comma
     '''
 
@@ -30,7 +30,7 @@ def StringToList(string,rowswidth,rowcount):
             list[y][x] += string[i] #add character to list
 
 
-        elif string[i] == ",": #jos pilkku lisää uuden alkion
+        elif string[i] == ",":
             x += 1 #next index
 
     
@@ -38,7 +38,7 @@ def StringToList(string,rowswidth,rowcount):
     return list #return 2d list
 
 
-def ReadMap(filepath):
+def ReadFile(filepath):
 
     '''
     read txt file to 2d list
@@ -121,7 +121,7 @@ def TileMap(mapfile_path:str,tileimage_path):
 
     images = [tile1, tile2]
 
-    maplist, rowwidth, rowcout = ReadMap(mapfile_path)  # read txt file
+    maplist, rowwidth, rowcout = ReadFile(mapfile_path)  #read txt file
 
     objectlist = []
 
@@ -150,7 +150,6 @@ def TileMap(mapfile_path:str,tileimage_path):
                 if char == "a": #no collision tile
                     objectlist[-1].map_setup_ = 1
                 elif char == "b": #collision tile
-                    print(objectlist[-1].position_y_)
                     objectlist[-1].map_setup_ = 2
                 elif char == "c": #layer2 (draw last) (no collision)
                     objectlist[-1].map_setup_ = 3
