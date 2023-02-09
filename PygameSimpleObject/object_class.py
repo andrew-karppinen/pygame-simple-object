@@ -89,13 +89,17 @@ class NewObject:
 
 
 
-    def Rotate(self, angle):
+    def Rotate(self, angle,option:int = 1):
         """
         Rotate image around center
-        Todo: add collision
-        """
 
-        self.angle_ += angle
+        option 1 = increases angle value
+        option 2 = set angle value
+        """
+        if option == 1:
+            self.angle_ += angle
+        elif option == 2:
+            self.angle_ = angle
 
         self.image_ = pygame.transform.rotate(self.original_image_, self.angle_)  #rotate image
 

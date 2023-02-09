@@ -6,7 +6,7 @@ from PygameSimpleObject import *
 
 pygame.init()
 screen = pygame.display.set_mode((850, 700)) #create window
-
+pygame.display.set_caption('window')
 
 
 robottikuva = pygame.image.load("examplemedia/robotti.png") #load images
@@ -89,12 +89,12 @@ while True: #main loop
         
     robot.Gravity()
 
-    i += 1
+
 
     if CollisionCheck(robot, block3): #if two object collision
         robot.PlaceObject(50,50)
 
-    block4.Rotate(i)
+    block4.Rotate(1)
 
 
 

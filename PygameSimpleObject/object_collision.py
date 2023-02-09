@@ -29,7 +29,6 @@ def CollisionCheck(obj1, obj2, obj1_x = None, obj1_y = None, obj2_x = None, obj2
                 if obj1_x + obj1.object_size_x_ > obj2_x:
                     return True
 
-
     return False
 
 
