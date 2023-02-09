@@ -4,7 +4,8 @@
 pygame object system, add next features:
 automatic collision check system,
 camera follow the object,
-tilemap system
+tilemap system,
+image rotation 
 
 
 Ohje/suunnitelma suomeksi:
