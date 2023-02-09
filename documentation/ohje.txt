@@ -36,10 +36,9 @@ Liikuttaa objektia sen kulman mukaan automaattisesti x,y suunnissa
 kulma oletuksena 0,0 objekti liikkuu oikealle 
 
 OBJEKTIN KÄÄNTÄMINEN:
-obj.rotate(kulma:int)
+obj.rotate(kulma:int,option:int = 1)
 Metodi kääntää objektin kuvaa ja päivittää automaattisesti objektin koon ja sijainnin ja kulman
-Kulman voi antaa objektille kääntämättä kuvaa:
-obj.angle_ = int
+option parametri 1 tarkoittaa että kulmaa kasvatetaan annetun luvun verran ja 2 sitä että annettu kulma asetetaan objektin kulmaksi
 
 
 OBJEKTIN PIIRTÄMINEN:
