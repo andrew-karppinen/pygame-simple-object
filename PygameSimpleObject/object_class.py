@@ -35,7 +35,6 @@ class NewObject:
         self.jump_mode_ = jump_mode
         self.jump_collision_mode_ = jump_collision_mode
 
-
         self.collision_objects_ = []
         self.camera_objects_ = []
         self.coordinate_x_ = 0 #moving coordinate system
@@ -43,7 +42,6 @@ class NewObject:
 
         self.map_object_ = False #if object is map
         self.map_setup_ = None #1 = no collision, 2 = collision,3 = layer 2(draw last, no collision)
-
 
         self.tracked_object = False #if the object is followed
 
@@ -158,14 +156,14 @@ class NewObject:
             number = 1
 
         for i in range(abs(distance)):
-            for j in range(len(self.collision_objects_)): #collison check
+            for j in range(len(self.collision_objects_)): #collision check
 
                 if CollisionCheck(self, self.collision_objects_[j], obj2_x =self.camera_objects_[j].position_x_ + number): #if collision
                     return #exit function
 
-            for i in range(len(self.camera_objects_)): #move
-                self.camera_objects_[i].position_x_ += number
-                self.camera_objects_[i].UpdateRect()
+            for k in range(len(self.camera_objects_)): #move
+                self.camera_objects_[k].position_x_ += number
+                self.camera_objects_[k].UpdateRect()
         for i in range(abs(distance)):
             self.coordinate_x_ += number
 
@@ -177,16 +175,16 @@ class NewObject:
             number = 1
 
         for i in range(abs(distance)):
-            for j in range(len(self.collision_objects_)): #collison check
+            for j in range(len(self.collision_objects_)): #collision check
 
                 if CollisionCheck(self, self.collision_objects_[j], obj2_y =self.camera_objects_[j].position_y_ + number): #if collision
                     if self.jump_collision_mode_ == 1:  # stop jump
                         self.gravity_value_ = 0.0
                     return #exit function
 
-            for i in range(len(self.camera_objects_)): #move
-                self.camera_objects_[i].position_y_ += number
-                self.camera_objects_[i].UpdateRect()
+            for k in range(len(self.camera_objects_)): #move
+                self.camera_objects_[k].position_y_ += number
+                self.camera_objects_[k].UpdateRect()
         for i in range(abs(distance)):
             self.coordinate_y_ += number
 
@@ -207,13 +205,12 @@ class NewObject:
 
     def MoveX(self,distance: int):
         for i in range(abs(distance)):
-
             if distance > 0:
                 self.position_x_ += 1
             else:
                 self.position_x_ += -1
 
-
+            # Todo update this
             if self.__Collision(): #if collision
                 if distance > 0:
                     self.position_x_ += -1 #cancel move
@@ -233,7 +230,7 @@ class NewObject:
                 self.position_y_ += -1
 
 
-            
+            #Todo update this
             if self.__Collision(): #if collision 
 
                 if self.jump_collision_mode_ == 1: #stop jump
