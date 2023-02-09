@@ -44,9 +44,9 @@ obj.angle_ = int
 
 OBJEKTIN PIIRTÄMINEN:
 Piirtää objektit:
-DRAWOBJECTS([obj1,obj2,obj3]) #funktiolle annetaan lista jossa objektit on
+DRAWOBJECTS([obj1,obj2,map,obj3]) #funktiolle annetaan lista jossa objektit on
 Listan alkioiden pitää olla objekteja tai alkioina voi olla myös listoja jossa objekteja
-tämä helpottaa asioita mikäli objekteja on todella suuri määrä.
+tämä helpottaa asioita mikäli objekteja on todella suuri määrä myös tilekartta piirretään näin.
 
 Jos objektit haluaa piirtää manuaalisesti kannattaa käyttää objektin rect_ atribuuttia joka on pygamen rect olio
 Tällöin objekti piirtyy oikein.
@@ -55,7 +55,7 @@ Tällöin objekti piirtyy oikein.
 KAMERA:
 Objektia seuraava "kamera" toimii niin että
 objektille annetaan kaikki muut objektit:
-obj.AddCamera([obj1,obj2,obj3,jne]) #metodille annetaan lista jossa objektit on
+obj.AddCamera([obj1,obj2,map,jne]) #metodille annetaan lista jossa objektit on
 Tässäkin listassa voi olla objektejen lisäksi myös listoja joissa alkiota
 
 sitten tätä seurattavaa objektia liikutetaan
