@@ -158,7 +158,7 @@ class NewObject:
         for i in range(abs(distance)):
             for j in range(len(self.collision_objects_)): #collision check
 
-                if CollisionCheck(self, self.collision_objects_[j], obj2_x =self.camera_objects_[j].position_x_ + number): #if collision
+                if CollisionCheck(self, self.collision_objects_[j], obj2_x =self.collision_objects_[j].position_x_ + number): #if collision
                     return #exit function
 
             for k in range(len(self.camera_objects_)): #move
@@ -177,7 +177,7 @@ class NewObject:
         for i in range(abs(distance)):
             for j in range(len(self.collision_objects_)): #collision check
 
-                if CollisionCheck(self, self.collision_objects_[j], obj2_y =self.camera_objects_[j].position_y_ + number): #if collision
+                if CollisionCheck(self, self.collision_objects_[j], obj2_y =self.collision_objects_[j].position_y_ + number): #if collision
                     if self.jump_collision_mode_ == 1:  # stop jump
                         self.gravity_value_ = 0.0
                     return #exit function
