@@ -19,7 +19,7 @@ mine2 = NewObject(image=mineimage, position_x=400, position_y=300)
 bullet = NewObject(image=bulletimage)
 map = TileMap("examplemedia/map.txt",None) #create map
 
-objectslist = [mine,mine2,tank,bullet,map]
+objectslist = [mine,mine2,bullet,tank,map]
 
 AddCollision(tank,map)
 AddCollision(tank,[mine,mine2])
