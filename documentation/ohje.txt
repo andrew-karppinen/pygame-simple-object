@@ -38,8 +38,9 @@ kulma oletuksena 0,0 objekti liikkuu oikealle
 OBJEKTIN KÄÄNTÄMINEN:
 obj.rotate(kulma:int,option:int = 1)
 Metodi kääntää objektin kuvaa ja päivittää automaattisesti objektin koon ja sijainnin ja kulman
-option parametri 1 tarkoittaa että kulmaa kasvatetaan annetun luvun verran ja 2 sitä että annettu kulma asetetaan objektin kulmaksi
-
+option parametri:
+1 tarkoittaa että kulmaa kasvatetaan annetun luvun verran ja 2 sitä että annettu kulma asetetaan objektin kulmaksi
+oletuksena 1
 
 OBJEKTIN PIIRTÄMINEN:
 Piirtää objektit:
