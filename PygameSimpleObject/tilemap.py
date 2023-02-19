@@ -1,7 +1,6 @@
 import pygame
 from PygameSimpleObject import *
-
-
+from PIL import Image
 #tilemap test
 
 def StringToList(string,rowswidth,rowcount):
@@ -89,8 +88,54 @@ def ReadFile(filepath):
     return(maplist,rowswidth,rowscount)
 
 
-def TileMap(mapfile_path:str,tileimage_path):
+def ReadTileset(tileset_path,tilesize = (32,32)):
     '''
+    tilesize = (x,y)
+
+    Read tileset image
+    using pillow library
+
+    convert pillow image to pygame surface
+
+    retun images as list
+    '''
+
+    image = Image.open(tileset_path) #open imagefile
+    tilesetsize = image.size
+    imagelist = []
+
+    if tilesetsize[0] % tilesize[0] != 0 or tilesetsize[1] % tilesize[1] != 0: #check is image size correct
+        raise Exception("invalid tileset image size")
+
+
+    mapheight = tilesetsize[1] // tilesize[1] #map height in tiles
+
+
+    for i in range(mapheight):#crop image to tiles
+        for j in range(0,tilesetsize[0],tilesize[0]):
+
+            #Setting the points for cropped image
+            left = j
+            top = i*tilesize[1]
+            right = j+tilesize[0]
+            bottom = i*tilesize[1] + tilesize[1]
+
+            croppedimage = image.crop((left, top, right, bottom)) #crop image
+
+            #convert image to pygame surface
+            mode = image.mode
+            data = croppedimage.tobytes()
+            imagelist.append(pygame.image.fromstring(data, tilesize, mode)) #add cropped image to list
+
+
+    return(imagelist)
+
+
+
+def TileMap(mapfile_path:str,tileset_path,tilesize = (32,32)):
+    '''
+    tilesize = (x,y)
+
     Makes tilemap  from txt file
     tiles is objects
 
@@ -113,14 +158,12 @@ def TileMap(mapfile_path:str,tileimage_path):
 
     a,b = layer 1(draw first)
     c = layer2 (draw last)
+
+    read tileset image from left to right and from top to bottom
+
     '''
 
-
-    tile1 = pygame.image.load("examplemedia/tile1.png")  #load images
-    tile2 = pygame.image.load("examplemedia/tile2.png")
-
-    images = [tile1, tile2]
-
+    images = ReadTileset(tileset_path,tilesize) #read tileset
     maplist, rowwidth, rowcout = ReadFile(mapfile_path)  #read txt file
 
     objectlist = []
@@ -142,9 +185,9 @@ def TileMap(mapfile_path:str,tileimage_path):
 
             if char != "d":
                 if number == 0: #if no image
-                    objectlist.append(NewObject(image = None,position_x=x*32,position_y=y*32))
+                    objectlist.append(NewObject(image = None,position_x=x*tilesize[0],position_y=y*tilesize[1]))
                 else:
-                    objectlist.append(NewObject(image = images[number-1],position_x=x*32,position_y=y*32))
+                    objectlist.append(NewObject(image = images[number-1],position_x=x*tilesize[0],position_y=y*tilesize[1]))
 
                 objectlist[-1].map_object_ = True
                 if char == "a": #no collision tile

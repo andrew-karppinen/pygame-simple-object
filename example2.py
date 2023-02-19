@@ -15,9 +15,9 @@ tankimage.set_colorkey((0, 0, 0))
 
 tank = NewObject(image=tankimage, position_x=425, position_y=350) #create objects
 mine = NewObject(image=mineimage, position_x=100, position_y=320)
-mine2 = NewObject(image=mineimage, position_x=400, position_y=300)
+mine2 = NewObject(image=mineimage, position_x=400, position_y=600)
 bullet = NewObject(image=bulletimage)
-map = TileMap("examplemedia/map.txt",None) #create map
+map = TileMap("examplemedia/map.txt","examplemedia/tileset.png",tilesize=(32,32)) #create map
 
 objectslist = [mine,mine2,bullet,tank,map]
 
