@@ -1,0 +1,55 @@
+Yksinkertainen 2d kartta järjestelmä
+
+
+huom, näihi saattaa tulla muutoksia!!
+
+kartta  tekstitiedosto, 
+tekstitiedosto koostuu pilkuilla erotelluista numeroista jota ohjelma lukee
+jos kohdassa 1 kohtaan tile kuva1 jos 2 niin tilekuva2 jne
+jos kohdassa 0 ei kuvaa
+
+nämä kuvat erillisessä tile kuvassa
+josta ne luetaan vasemmalta oikealle 32pikselin välein
+
+lisäksi kohdassa kirjain a tai b
+
+a = ei törmäystä 
+b = törmäys
+c = päälimmäinen kerros
+d = ei tileä
+
+a ja b piirretään ensimmäisenä
+c piirretään viimeisenä
+
+Tiedosto näyttää tältä
+esimerkki:
+8,7;
+1a,1a,1a,2a,2a,1a,3a,1a
+1a,1a,1a,2a,2a,1a,3a,1a
+1a,1a,1a,2a,2a,1a,3a,1a
+1a,3b,1a,2a,2a,1a,3a,1a
+1a,3b,3b,2a,2a,1a,3a,1a
+1a,1a,1a,3a,2a,1c,3c,1c
+4a,1a,1a,4a,4a,4c,4c,1c
+
+
+
+TILEKARTAN KÄYTTÖ:
+map = TileMap(tilemap_path,tileste_path, tile_size=(32,32)) 
+
+tile_size = (x,y)
+
+ohjelma tekee tästä kartasta objekteja ja laittaa ne listaan palauttaa listan 
+karttaobjekti on samanlainen kun muutkin objektit se sisältää vain kaksi atribuuttia mitä muut eivät sisällä:
+self.map_object_ = False #onko objekti kartta
+self.map_setup_ = None #tilen asetus 1 = normaali tile 2 = törmäys 3 = päälimmäinen kerros(piirretään viimeisenä)
+
+Kartan voi viedä draw funktioon joka hoitaa piirtämisjärjestyksen automaattisesti
+DrawObjects(obj1,obj2,map,obj3)
+
+
+TILESET:
+Tileset on kuvatiedosta josta tilet poimitaan kuvan mittojen tulee olla jaollinen tilen koon kanssa
+Tilet luetaan kuvasta listaan vasemmalta oikealle ja ylhäältä alas niin että vasen ylänurkka on tile1
+
+
