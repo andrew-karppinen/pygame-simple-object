@@ -1,7 +1,7 @@
 import pygame
 import math
 
-try: from PygameSimpleObject.object_collision import CollisionCheck #import CollisionCheck function other file
+try: from pygamesimpleobject.object_collision import CollisionCheck #import CollisionCheck function other file
 except: from object_collision import CollisionCheck
 
 

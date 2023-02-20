@@ -1,6 +1,6 @@
 import pygame
 
-from PygameSimpleObject import *
+from pygamesimpleobject import *
 
 
 

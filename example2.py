@@ -1,5 +1,5 @@
 import pygame
-from PygameSimpleObject import *
+from pygamesimpleobject import *
 
 pygame.init()
 screen = pygame.display.set_mode((850, 700)) #create window
