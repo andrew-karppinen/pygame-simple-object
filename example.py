@@ -1,115 +1,89 @@
 import pygame
-
 from pygamesimpleobject import *
-
-
 
 pygame.init()
 screen = pygame.display.set_mode((850, 700)) #create window
-pygame.display.set_caption('window')
-
-
-robottikuva = pygame.image.load("examplemedia/robotti.png") #load images
-tasokuva = pygame.image.load("examplemedia/taso.png")
-maalikuva = pygame.image.load("examplemedia/maali.png")
-
-
+pygame.display.set_caption('tank')
 clock = pygame.time.Clock()
 
-#create objects
-robot = NewObject(image=robottikuva,position_x=425, position_y=350, gravity_speed = 0.2, jump_strength = 10.0)
-block = NewObject(tasokuva, position_x=350, position_y=600)
-block2 = NewObject(tasokuva, position_x=600, position_y=400)
-block3 = NewObject(maalikuva, position_x=700, position_y=335)
-block4 = NewObject(tasokuva, position_x=700, position_y=0)
+tankimage = pygame.image.load("examplemedia/tank.png") #load images
+mineimage = pygame.image.load("examplemedia/mine.png")
+bulletimage = pygame.image.load("examplemedia/bullet.png")
+
+mineimage.set_colorkey((0,0,0))
+tankimage.set_colorkey((0, 0, 0))
+
+tank = NewObject(image=tankimage, position_x=425, position_y=350) #create objects
+mine = NewObject(image=mineimage, position_x=100, position_y=320)
+mine2 = NewObject(image=mineimage, position_x=400, position_y=600)
+bullet = NewObject(image=bulletimage)
+map = TileMap("examplemedia/map.txt","examplemedia/tileset.png",tilesize=(32,32)) #create map
+
+objectslist = [mine,mine2,bullet,tank,map]
+
+AddCollision(tank,map)
+AddCollision(tank,[mine,mine2])
+tank.AddCamera([mine,mine2,map])
 
 
-#add collisions
-AddCollision(robot, block)
-AddCollision(robot, block2)
 
-robot.AddCamera((block, block2, block4,block3))
+left = False
+right = False
+move = False
+move2 = False
 
-robot.image_.set_colorkey((0, 0, 0))
-
-block_left = True
-robot_left = False
-robot_right = False
-ylos = False
-alas = False
-
-i = 0
-
-#block4.PlaceObject(50,50)
+shoot = False
 
 while True: #main loop
     #event lopp
     for event in pygame.event.get():
-        
         #keyboards event
         if event.type == pygame.KEYDOWN:
+            if event.key  == pygame.K_t:
+                shoot = True
             if event.key  == pygame.K_UP:
-                robot.Jump()
+                move = True
+            if event.key == pygame.K_DOWN:
+                move2 = True
             if event.key == pygame.K_LEFT:
-                robot_left = True
+                left = True
             if event.key == pygame.K_RIGHT:
-                robot_right = True
+                right = True
 
-            if event.key == pygame.K_t:
-                robot.Rotate(i)
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
-                robot_left = False
+                left = False
             if event.key == pygame.K_RIGHT:
-                robot_right = False
+                right = False
+            if event.key == pygame.K_UP:
+                move = False
+            if event.key == pygame.K_DOWN:
+                move2 = False
 
         if event.type == pygame.QUIT:
-            exit() 
-        
+            exit()
 
+    if shoot: #shoot
+        bullet.PlaceObject(tank.position_x_+tank.object_size_x_//2,tank.position_y_+tank.object_size_y_//2)
+        bullet.Rotate(tank.angle_,2)
+        shoot = False
 
-    if robot_right:
-        robot.CameraMoveX(4)
-    if robot_left:
-        robot.CameraMoveX(-4)
+    if left:
+        tank.Rotate(2)
+    if right:
+        tank.Rotate(-2)
+    if move:
+        tank.CameraMove(5)
+    if move2:
+        tank.CameraMove(-5)
 
-
-    x,y = robot.ReturnCoordinate(0, 0) #coordinate system
-
-    if block.position_x_ == x + 850:
-       block_left = True
-    if block.position_x_ == x:
-        block_left = False
-        
-    if block_left:
-        block.MoveX(-1)
-    else:
-        block.MoveX(1)
-        
-    robot.Gravity()
-
-
-
-    if CollisionCheck(robot, block3): #if two object collision
-        robot.PlaceObject(50,50)
-
-    block4.Rotate(1)
-
-
-
-
+    bullet.Move(15)
 
     #draw all
     screen.fill((0, 0, 0))
-    screen.blit(robot.image_, robot.rect_)
-    screen.blit(block4.image_,block4.rect_)
-    screen.blit(block.image_, block.rect_)
-    screen.blit(block2.image_, block2.rect_)
-    screen.blit(block3.image_, block3.rect_)
-
-    pygame.draw.circle(screen, (50, 50, 50), robot.ReturnCoordinate(800, 40), 50)
+    DrawObjects(screen,objectslist)
 
     pygame.display.flip() #update screen
-    
-    clock.tick(60) #fps limit
+
+    clock.tick(60)  #fps limit
