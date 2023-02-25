@@ -183,11 +183,11 @@ def TileMap(mapfile_path:str,tileset_path,tilesize = (32,32)):
 
             number = int(number)
 
-            if char != "d":
+            if char != "d": #create objects
                 if number == 0: #if no image
                     objectlist.append(NewObject(image = None,position_x=x*tilesize[0],position_y=y*tilesize[1]))
                 else:
-                    objectlist.append(NewObject(image = images[number-1],position_x=x*tilesize[0],position_y=y*tilesize[1]))
+                    objectlist.append(NewObject(image = images[number-1].copy(),position_x=x*tilesize[0],position_y=y*tilesize[1]))
 
                 objectlist[-1].map_object_ = True
                 if char == "a": #no collision tile

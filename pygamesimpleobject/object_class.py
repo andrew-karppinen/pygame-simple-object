@@ -25,20 +25,14 @@ def opposite(number):
 
 
 class NewObject:
-    def __init__(self,image = None,object_size_x:int = None,object_size_y:int = None,position_x: int = 0, position_y: int = 0,gravity_speed: float = 0.0,gravity_strength: float = 6.0,jump_strength: float = 0.0,jump_mode: int = 1,jump_collision_mode = 1): #constructor
+    def __init__(self,image = None,object_size_x:int = 1,object_size_y:int = 1,position_x: int = 0, position_y: int = 0): #constructor
         self.position_x_ = position_x #screen position
         self.position_y_ = position_y
-        self.gravity_value_ = 0.0
-        self.gravity_strength_ = gravity_strength
-        self.gravity_speed_ = gravity_speed #gravity  < 0 = downwards > 0 = upwards
-        self.jump_strength_ = jump_strength
-        self.jump_mode_ = jump_mode
-        self.jump_collision_mode_ = jump_collision_mode
 
-        self.collision_objects_ = []
-        self.camera_objects_ = []
         self.coordinate_x_ = 0 #moving coordinate system
         self.coordinate_y_ = 0
+        self.collision_objects_ = []
+        self.camera_objects_ = []
 
         self.map_object_ = False #if object is map
         self.map_setup_ = None #1 = no collision, 2 = collision,3 = layer 2(draw last, no collision)
@@ -63,8 +57,9 @@ class NewObject:
             self.rect_ = self.image_.get_rect(center=(self.image_.get_width(), self.image_.get_height()))  #create rect object
 
         else: #if image no given
-            self.object_size_y_ = 1
-            self.object_size_x_ = 1
+            self.image_ = None
+            self.object_size_y_ = object_size_y
+            self.object_size_x_ = object_size_x
 
             self.rect_ = pygame.Rect((0, 0), (1, 1)) #create rect object
 
@@ -101,17 +96,17 @@ class NewObject:
         elif option == 2:
             self.angle_ = angle
 
-        self.image_ = pygame.transform.rotate(self.original_image_, self.angle_)  #rotate image
-
-        self.rect_ = self.image_.get_rect(center=self.rect_.center)#update rect_
-        self.UpdateRect2() #update object position and size
+        if self.image_ != None: #only if the image exists
+            self.image_ = pygame.transform.rotate(self.original_image_, self.angle_)  #rotate image
+            self.rect_ = self.image_.get_rect(center=self.rect_.center)#update rect_
+            self.UpdateRect2() #update object position and size
 
         if self.__Collision(): #if collision
             self.angle_ -= angle #cancel rotate
             self.image_ = pygame.transform.rotate(self.original_image_, self.angle_)  #cancel rotate
 
 
-        self.rect_ = self.image_.get_rect(center=self.rect_.center) #update rect_
+            self.rect_ = self.image_.get_rect(center=self.rect_.center) #update rect_
 
         self.UpdateRect2() #update object position and size
 
@@ -190,8 +185,6 @@ class NewObject:
             for j in range(len(self.collision_objects_)): #collision check
 
                 if CollisionCheck(self, self.collision_objects_[j], obj2_y =self.collision_objects_[j].position_y_ + number): #if collision
-                    if self.jump_collision_mode_ == 1:  # stop jump
-                        self.gravity_value_ = 0.0
                     return #exit function
 
             for k in range(len(self.camera_objects_)): #move
@@ -243,10 +236,7 @@ class NewObject:
 
 
             #Todo update this
-            if self.__Collision(): #if collision 
-
-                if self.jump_collision_mode_ == 1: #stop jump
-                    self.gravity_value_= 0.0
+            if self.__Collision(): #if collision
 
                 if distance > 0:
                     self.position_y_ += -1 #cancel move
@@ -284,41 +274,6 @@ class NewObject:
                             return True
         return False
 
-    def Gravity(self, camera=True):  #method makes gravity
-
-        if camera:
-            self.CameraMoveY(int(self.gravity_value_))
-        else:
-            self.MoveY(int(self.gravity_value_))
-
-        if self.gravity_speed_ > 0:
-            if self.gravity_value_ < self.gravity_strength_:
-                self.gravity_value_ += self.gravity_speed_
-        elif self.gravity_speed_ < 0:
-            if self.gravity_value_ > opposite(self.gravity_strength_):
-                self.gravity_value_ += self.gravity_speed_
-
-    def Jump(self):  # method makes jump
-        if self.jump_mode_ != 0:
-            if self.jump_mode_ == 1:  # jumps only if the object is above another object
-                if self.gravity_speed_ > 0:
-                    self.position_y_ += 1
-                    if self.__Collision():
-                        self.gravity_value_ = opposite(self.jump_strength_)
-                        self.position_y_ -= 1  # cancel move
-
-                if self.gravity_speed_ < 0:
-                    self.position_y_ -= 1
-                    if self.__Collision():
-                        self.gravity_value_ = self.jump_strength_
-                        self.position_y_ += 1  # cancel move
-
-            elif self.jump_mode_ == 2:  # jump in any case
-                if self.gravity_speed_ > 0:
-                    self.gravity_value_ = opposite(self.jump_strength_)
-                else:
-                    self.gravity_value_ = self.jump_strength_
-                return
 
 
 
