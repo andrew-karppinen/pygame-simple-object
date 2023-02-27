@@ -70,7 +70,7 @@ while True: #main loop
         shoot = False
 
     if left:
-        tank.Rotate(2)
+        tank.Rotate(2,option=2)
     if right:
         tank.Rotate(-2)
     if move:

@@ -91,6 +91,8 @@ class NewObject:
         option 1 = increases angle value
         option 2 = set angle value
         """
+        original_angle = self.angle_
+
         if option == 1:
             self.angle_ += angle
         elif option == 2:
@@ -102,11 +104,11 @@ class NewObject:
             self.UpdateRect2() #update object position and size
 
         if self.__Collision(): #if collision
-            self.angle_ -= angle #cancel rotate
-            self.image_ = pygame.transform.rotate(self.original_image_, self.angle_)  #cancel rotate
+            self.angle_ = original_angle #cancel rotate
+            if self.image_ != None:  #only if the image exists
+                self.image_ = pygame.transform.rotate(self.original_image_, self.angle_)  #cancel image rotate
+                self.rect_ = self.image_.get_rect(center=self.rect_.center) #update rect_
 
-
-            self.rect_ = self.image_.get_rect(center=self.rect_.center) #update rect_
 
         self.UpdateRect2() #update object position and size
 
