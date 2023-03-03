@@ -8,10 +8,8 @@ tekstitiedosto koostuu pilkuilla erotelluista numeroista jota ohjelma lukee
 jos kohdassa 1 kohtaan tile kuva1 jos 2 niin tilekuva2 jne
 jos kohdassa 0 ei kuvaa
 
-nämä kuvat erillisessä tile kuvassa
-josta ne luetaan vasemmalta oikealle 32pikselin välein
 
-lisäksi kohdassa kirjain a tai b
+lisäksi kohdassa kirjain a,b,c tai d
 
 a = ei törmäystä 
 b = törmäys
