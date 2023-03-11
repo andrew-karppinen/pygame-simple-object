@@ -1,7 +1,7 @@
 import pygame
-from pygamesimpleobject import *
+from pygamesimpleobject import Tile
 from PIL import Image
-#tilemap test
+
 
 def StringToList(string,rowswidth,rowcount):
 
@@ -132,7 +132,7 @@ def ReadTileset(tileset_path,tilesize = (32,32)):
 
 
 
-def TileMap(mapfile_path:str,tileset_path,tilesize = (32,32)):
+def TileMap(mapfile_path:str,tileset_path:str,tilesize = (32,32)):
     '''
     tilesize = (x,y)
 
@@ -149,7 +149,8 @@ def TileMap(mapfile_path:str,tileset_path,tilesize = (32,32)):
     1,2,1,1,1,2,1,0c,0c,0c
     
     number = tile image
-    
+    0 = no image
+
     char:
     a = no collision
     b = collision
@@ -185,11 +186,11 @@ def TileMap(mapfile_path:str,tileset_path,tilesize = (32,32)):
 
             if char != "d": #create objects
                 if number == 0: #if no image
-                    objectlist.append(NewObject(image = None,position_x=x*tilesize[0],position_y=y*tilesize[1]))
+                    objectlist.append(Tile(image = None,position_x=x*tilesize[0],position_y=y*tilesize[1]))
                 else:
-                    objectlist.append(NewObject(image = images[number-1].copy(),position_x=x*tilesize[0],position_y=y*tilesize[1]))
+                    objectlist.append(Tile(image = images[number-1].copy(),position_x=x*tilesize[0],position_y=y*tilesize[1]))
 
-                objectlist[-1].map_object_ = True
+
                 if char == "a": #no collision tile
                     objectlist[-1].map_setup_ = 1
                 elif char == "b": #collision tile
