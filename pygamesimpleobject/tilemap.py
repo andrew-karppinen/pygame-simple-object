@@ -190,6 +190,7 @@ def TileMap(mapfile_path:str,tileset_path:str,tilesize = (32,32)):
                 else:
                     objectlist.append(Tile(image = images[number-1].copy(),position_x=x*tilesize[0],position_y=y*tilesize[1]))
 
+
                 if char == "a": #no collision tile
                     objectlist[-1].map_setup_ = 1
                 elif char == "b": #collision tile

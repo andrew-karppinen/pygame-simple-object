@@ -2,8 +2,6 @@ import pygame
 from pygamesimpleobject import *
 
 
-
-
 pygame.init()
 screen = pygame.display.set_mode((850, 700)) #create window
 pygame.display.set_caption('tank')
@@ -27,6 +25,7 @@ objectslist = [mine,mine2,bullet,tank,map]
 AddCollision(tank,map) #add collisions
 AddCollision(tank,[mine,mine2])
 tank.AddCamera([mine,mine2,map])
+
 
 
 left = False
