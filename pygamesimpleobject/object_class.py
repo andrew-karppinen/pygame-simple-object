@@ -34,15 +34,21 @@ class NewObject:
         self.collision_objects_ = []
         self.camera_objects_ = []
 
-        self.map_object_ = False #if object is map
-        self.map_setup_ = None #1 = no collision, 2 = collision,3 = layer 2(draw last, no collision)
+        self.map_object_ = False #Object is not map
 
-        self.tracked_object = False #if the object is followed
+        self.tracked_object_ = False #if the object is followed
 
-        self.SetImage(image,object_size_x,object_size_y) #sets object image and object size
+        self.SetImage(image,object_size_x,object_size_y) #sets object image, object size and create create object
 
         self.UpdateRect() #update pygame rect object
         self.angle_ = 0
+
+        #Variables that are not visible here:
+        #self.object_size_x_
+        #self.object_size_y_
+        #self.rect_
+        #self.image_
+
 
 
     def SetImage(self,image = None,object_size_x:int = None,object_size_y:int = None):
@@ -127,7 +133,7 @@ class NewObject:
     def PlaceObject(self,x,y):
         #sets object new position
 
-        if self.tracked_object: #if the object is followed
+        if self.tracked_object_: #if the object is followed
             x,y = self.ReturnCoordinate(x,y)
 
             distance_x = self.position_x_ - x
@@ -154,7 +160,7 @@ class NewObject:
             else:
                 self.camera_objects_.append(objectslist[i])
 
-        self.tracked_object = True
+        self.tracked_object_ = True
 
     #test moving methods
     #camera follow object
