@@ -2,10 +2,11 @@
 
 
 
-
-
+instruction in english:
 https://github.com/andrew-karppinen/pygame-simple-object/blob/main/documentation/instruction%20in%20english.txt
 
+
+ohje/suunnitelma suomeksi:
 https://github.com/andrew-karppinen/pygame-simple-object/blob/main/documentation/ohje%20suomeksi.txt
 
 
