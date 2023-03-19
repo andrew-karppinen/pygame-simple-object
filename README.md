@@ -1,4 +1,8 @@
-# pygame-simple-object-system
+# pygame simple gameengine system
+
+add next features:
+camera follow the object, automatic collision system, tiemapsystem(beta)
+
 
 
 
