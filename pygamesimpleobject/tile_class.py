@@ -3,7 +3,6 @@ import pygame
 class Tile:
     #class variables
     tileset = []
-
     tilesize = (32,32) #x,y default: 32,32
 
 
@@ -17,7 +16,7 @@ class Tile:
 
         self.tilenumber_ = 0
 
-        Tile.tileset.insert(0,pygame.Surface(Tile.tilesize))
+
 
 
         self.SetImage(tilenumber)  # sets object image and object size
@@ -43,13 +42,11 @@ class Tile:
         self.tilenumber_ = tilenumber
 
 
-        self.rect_ = Tile.tileset[self.tilenumber_-1].get_rect(center=(Tile.tilesize[0], Tile.tilesize[1]))  #create rect object
+        self.rect_ = Tile.tileset[self.tilenumber_].get_rect(center=(Tile.tilesize[0], Tile.tilesize[1]))  #create rect object
 
 
     @property
     def image_(self):
-
-
         return Tile.tileset[self.tilenumber_]
     @property
     def object_size_x_(self):

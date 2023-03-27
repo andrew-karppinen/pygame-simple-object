@@ -171,6 +171,7 @@ def TileMap(mapfile_path:str,tileset_path:str,tilesize = (32,32)):
 
     Tile.tileset = images #set tileset to Tile class
     Tile.tilesize = tilesize #set tilesize to Tile class
+    Tile.tileset.insert(0, pygame.Surface(Tile.tilesize))
 
     #make tiles objects
     for y in range(rowcout):
