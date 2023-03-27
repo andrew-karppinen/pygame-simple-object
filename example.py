@@ -22,10 +22,11 @@ map = TileMap("examplemedia/map.txt","examplemedia/tileset.png",tilesize=(32,32)
 
 objectslist = [mine,mine2,bullet,tank,map]
 
+
+
 AddCollision(tank,map) #add collisions
 AddCollision(tank,[mine,mine2])
 tank.AddCamera([mine,mine2,map])
-
 
 
 left = False
