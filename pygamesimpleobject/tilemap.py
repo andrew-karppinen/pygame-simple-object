@@ -149,7 +149,7 @@ def TileMap(mapfile_path:str,tileset_path:str,tilesize = (32,32)):
     1,2,1,1,1,2,1,0c,0c,0c
     
     number = tile image
-    0 = no image
+    0 = no image (image is only black)
 
     char:
     a = no collision
@@ -169,6 +169,9 @@ def TileMap(mapfile_path:str,tileset_path:str,tilesize = (32,32)):
 
     objectlist = []
 
+    Tile.tileset = images #set tileset to Tile class
+    Tile.tilesize = tilesize #set tilesize to Tile class
+    Tile.tileset.insert(0, pygame.Surface(Tile.tilesize))
 
     #make tiles objects
     for y in range(rowcout):
@@ -186,9 +189,9 @@ def TileMap(mapfile_path:str,tileset_path:str,tilesize = (32,32)):
 
             if char != "d": #create objects
                 if number == 0: #if no image
-                    objectlist.append(Tile(image = None,position_x=x*tilesize[0],position_y=y*tilesize[1]))
+                    objectlist.append(Tile(0,position_x=x*tilesize[0],position_y=y*tilesize[1]))
                 else:
-                    objectlist.append(Tile(image = images[number-1].copy(),position_x=x*tilesize[0],position_y=y*tilesize[1]))
+                    objectlist.append(Tile(number,position_x=x*tilesize[0],position_y=y*tilesize[1]))
 
 
                 if char == "a": #no collision tile

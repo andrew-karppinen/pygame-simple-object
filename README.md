@@ -4,7 +4,8 @@ add next features:
 camera follow the object, automatic collision system,object rotate, tilemapsystem(beta)
 
 
-
+todo:
+update tilemap system
 
 instruction in english:
 https://github.com/andrew-karppinen/pygame-simple-object/blob/main/documentation/instruction%20in%20english.txt
