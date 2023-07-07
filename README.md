@@ -1,7 +1,7 @@
 # pygame simple game engine system
 
 add next features:
-camera follow the object, automatic collision system,object rotate, tilemapsystem(beta)
+camera tracking, automatic collision detection system, object rotation, tilemapsystem (beta)
 
 
 todo:
