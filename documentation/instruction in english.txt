@@ -1,4 +1,4 @@
-Note: these are planned features and not all of them are functioning yet. Additionally, these may change and new features may be added!
+Note: these properties may be changed!
 
 IMPORTING MODULES:
 
@@ -12,6 +12,14 @@ Attributes can be given to the object during creation (and later)
 
 Current parameters for the constructor:
 (self, image=None, object_size_x: int = 1, object_size_y: int = 1, position_x: int = 0,position_y: int = 0)
+
+IMAGE:
+
+set/change image:
+obj.SetImage(new_image)
+
+the black areas in the image are transparent!
+
 
 MOVEMENT:
 

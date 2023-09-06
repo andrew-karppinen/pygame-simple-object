@@ -7,7 +7,7 @@ except: from object_collision import CollisionCheck
 
 
 
-def Return_x_y(angle, distance):
+def Return_x_y(angle, distance)->tuple:
     '''
     calculates the lengths of the legs of a right triangle from the length of the hypotenuse and the angle
     '''
@@ -51,7 +51,7 @@ class NewObject:
 
 
 
-    def SetImage(self,image = None,object_size_x:int = None,object_size_y:int = None):
+    def SetImage(self,image = None,object_size_x:int = None,object_size_y:int = None)->None:
 
         if image != None: #if image given
             self.image_ = image
@@ -69,13 +69,16 @@ class NewObject:
 
             self.rect_ = pygame.Rect((0, 0), (1, 1)) #create rect object
 
-    def UpdateRect(self):
+        self.image_.set_colorkey((0,0,0)) #the black areas in the image are transparent
+
+
+    def UpdateRect(self)->None:
         #position --> rect
         self.rect_[0] = self.position_x_
         self.rect_[1] = self.position_y_
 
 
-    def UpdateRect2(self):
+    def UpdateRect2(self)->None:
         #rect --> obejct size
         #rect --> position
 
@@ -90,7 +93,7 @@ class NewObject:
 
 
 
-    def Rotate(self, angle,option:int = 1):
+    def Rotate(self, angle,option:int = 1)->None:
         """
         Rotate image around center
 
@@ -120,7 +123,7 @@ class NewObject:
 
 
 
-    def ReturnCoordinate(self,x,y):
+    def ReturnCoordinate(self,x,y)->tuple:
         #moving coordinate system
         #return screen coordinatte
 
@@ -130,7 +133,7 @@ class NewObject:
         return(opposite(x-self.coordinate_x_), opposite(y - self.coordinate_y_))
 
 
-    def PlaceObject(self,x,y):
+    def PlaceObject(self,x,y)->None:
         #sets object new position
 
         if self.tracked_object_: #if the object is followed
@@ -152,7 +155,7 @@ class NewObject:
             self.position_y_ = y
             self.UpdateRect()
 
-    def AddCamera(self,objectslist: list):
+    def AddCamera(self,objectslist: list)->None:
         for i in range(len(objectslist)):
             if type(objectslist[i]) == list: #if index is list
                 for j in range(len(objectslist[i])):
@@ -162,9 +165,8 @@ class NewObject:
 
         self.tracked_object_ = True
 
-    #test moving methods
     #camera follow object
-    def CameraMoveX(self,distance: int):
+    def CameraMoveX(self,distance: int)->None:
         if distance > 0:
             number = -1
         if distance < 0:
@@ -183,7 +185,7 @@ class NewObject:
             self.coordinate_x_ += number
 
 
-    def CameraMoveY(self,distance: int):
+    def CameraMoveY(self,distance: int)->None:
         if distance > 0:
             number = -1
         if distance < 0:
@@ -202,21 +204,21 @@ class NewObject:
             self.coordinate_y_ += number
 
 
-    def Move(self,distance:int):
+    def Move(self,distance:int)->None:
 
         x,y = Return_x_y(opposite(self.angle_),distance)
 
         self.MoveX(int(x))
         self.MoveY(int(y))
 
-    def CameraMove(self,distance:int):
+    def CameraMove(self,distance:int)->None:
 
         x, y = Return_x_y(opposite(self.angle_), distance)
         self.CameraMoveX(int(x))
         self.CameraMoveY(int(y))
 
 
-    def MoveX(self,distance: int):
+    def MoveX(self,distance: int)->None:
         for i in range(abs(distance)):
             if distance > 0:
                 self.position_x_ += 1
@@ -233,7 +235,7 @@ class NewObject:
         self.UpdateRect()
 
     
-    def MoveY(self,distance: int):
+    def MoveY(self,distance: int)->None:
 
         for i in range(abs(distance)):
 
@@ -256,7 +258,7 @@ class NewObject:
         
 
 
-    def __Collision(self,position_x = None,position_y = None): #private method
+    def __Collision(self,position_x = None,position_y = None)->bool: #private method
         #return True/False
         #if this object collision
         if position_x == None:
@@ -285,6 +287,5 @@ class NewObject:
 
 
 
-    def PrintOther(self):
-        for i in range(len(self.collision_objects_)):
-            print(self.collision_objects_[i])
+    def GetCollisionObjects(self):
+        return self.collision_objects_

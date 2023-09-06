@@ -1,7 +1,6 @@
 
 
-Huom, nämä ovat suunniteltuja ominaisuuksia eikä kaikki viellä toimi
-Lisäksi nämä saattaa muuttua ja ominaisuuksia tulla lisää!
+Huom, näihin ominaisuuksiin saattaa tulla muutoksia!
 
 
 MODUULEJEN IMPORTTAUS:
@@ -21,7 +20,12 @@ tämänhetkiset parametrit construktorille:
 (self, image=None, object_size_x: int = 1, object_size_y: int = 1, position_x: int = 0,position_y: int = 0)
 
 
+KUVA:
 
+kuvaa voi vaihtaa
+obj.SetImage(kuva)
+
+kuvan täysin mustat kohdat ovat läpinäkyviä!
 
 LIIKKUMINEN:
 
