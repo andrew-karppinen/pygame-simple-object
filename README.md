@@ -5,7 +5,7 @@ Camera tracking, automatic collision detection system, object rotation, tilemaps
 
 
 
-### Download the latest version from the release tab!
+
 
 Instruction in english:
 https://github.com/andrew-karppinen/pygame-simple-object/blob/main/documentation/instruction%20in%20english.txt

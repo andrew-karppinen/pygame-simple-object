@@ -76,7 +76,6 @@ def ReadFile(filepath):
     rowscount = int(rowscount)
     rowswidth = int(rowswidth)
 
-    print(rowscount,rowswidth)
 
     for i in range(1,rowscount +1):
         string += rows[i]

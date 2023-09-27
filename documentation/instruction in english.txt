@@ -1,91 +1,85 @@
-Note: these properties may be changed!
+Note, these features may undergo changes!
 
-IMPORTING MODULES:
+MODULE IMPORT:
 
-from PygameSimpleObject import *
+from pygamesimpleobject import *
 
-CREATING AN OBJECT:
+OBJECT CREATION:
 
 obj = NewObject()
 
-Attributes can be given to the object during creation (and later)
+You can assign properties to the object during creation (or later).
 
 Current parameters for the constructor:
-(self, image=None, object_size_x: int = 1, object_size_y: int = 1, position_x: int = 0,position_y: int = 0)
+(image = None, position_x: int = 0, position_y: int = 0, object_size_x: int = 1, object_size_y: int = 1)
+
+The object's dimensions are equal to the image dimensions.
+If the object doesn't have an image, you can manually set its dimensions, defaulting to 1x1.
 
 IMAGE:
 
-set/change image:
-obj.SetImage(new_image)
+You can change the image.
+obj.SetImage(image)
 
-the black areas in the image are transparent!
-
+Completely black areas in the image are transparent!
 
 MOVEMENT:
 
 obj.MoveX(distance: int)
-moves the object to the right or left by the given distance if the number is negative.
+Moves the object by the given distance to the right or left if the value is negative.
 
 obj.MoveY(distance: int)
-does the same in the vertical direction.
+Performs the same action in the vertical direction.
 
 obj.Move(distance: int)
-moves the object in the x and y directions automatically based on the angle of the object
-default angle is 0,0 which moves the object to the right
+Moves the object automatically in the x and y directions based on its angle. Default angle is 0, meaning the object moves to the right.
 
-ROTATING AN OBJECT:
-obj.rotate(angle:int,option:int = 1)
-The method rotates the image of the object and automatically updates the size, position, and angle of the object.
-option parameter:
-1 means the angle is increased by the given number and 2 means the given angle is set as the angle of the object
-default is 1
+OBJECT ROTATION:
 
-DRAWING AN OBJECT:
-Draws the objects:
-DRAWOBJECTS([obj1,obj2,map,obj3]) #a list containing the objects is given as an argument
-The elements of the list must be objects or the elements can also be lists containing objects
-this makes things easier if there are a lot of objects to draw, tile maps are also drawn this way.
+obj.rotate(angle: int, option: int = 1)
+This method rotates the object's image and automatically updates the object's size, position, and angle.
+The option parameter:
+1 means that the angle is increased by the given value, and 2 sets the given angle as the object's angle. Default is 1.
+Note: By default, the object's angle is 0, and it moves directly to the right!
 
-If you want to draw objects manually, it is recommended to use the object's rect_ attribute which is a pygame rect object
-This way the object is drawn correctly.
+DRAWING OBJECTS:
+
+DrawObjects([obj1, obj2, map, obj3])
+Draws the objects. Provide a list of objects to the function.
+The list elements must be objects or lists containing objects. This is useful if there are a large number of objects or if a tilemap needs to be drawn this way.
+If you want to manually draw objects, use the object's rect_ attribute to ensure correct rendering.
 
 CAMERA:
-The "camera" that follows an object works as follows:
-all other objects are given to the object being followed:
-obj.AddCamera([obj1,obj2,map,etc.]) #a list containing the objects is given as an argument
-In this list, there may also be lists containing objects
 
-then the object being followed is moved
+A "camera" that follows an object works by giving the object all other objects:
+obj.AddCamera([obj1, obj2, map, etc.])
+This list can also contain lists with objects.
+Then, the object being followed is moved using:
 obj.CameraMoveY(distance: int)
 obj.CameraMoveX(distance: int)
-obj.CameraMove
-The system works so that the object being followed stays in place and other objects are moved relative to it
-this creates the illusion that the camera is following this object.
+obj.CameraMove()
+The system keeps the followed object stationary, and other objects move relative to it, creating the illusion that the camera is following that object.
 
 COORDINATE SYSTEM:
-The screen coordinate system always remains the same, i.e. point 50,50 is always 50 pixels from the top left corner of the screen.
-For this purpose, a moving coordinate system has been developed to keep track of the movements of the "camera".
 
-The obj.ReturnCoordinate(x: int, y: int) method returns the "original" point as screen coordinates, i.e. the point where it was before the camera moved.
-so if the object being followed moves down by 100 pixels, it returns 0,-100 if asked for the location of the 0,0 point.
-ReturnCoordinate method must be used on the object being followed.
-
-In addition, for moving the object, there is a
-obj.PlaceObject(x, y) method which places the object in a new position, taking care of moving the camera and the coordinate system.
+The screen coordinate system always remains the same; i.e., point 50,50 is always 50 pixels from the top-left corner of the screen. To address this, a moving coordinate system has been developed to keep track of the "camera" movements.
+obj.ReturnCoordinate(x: int, y: int) method returns the "original" point in screen coordinates, i.e., the point where it was before the camera moved. So, if the followed object moved down by 100 pixels, it returns 0, -100 when asked for the location of point 0,0.
+Use the ReturnCoordinate method for the object being followed.
+Additionally, there's the obj.PlaceObject(x, y) method for moving the object to a new location, taking care of camera movement and coordinate system issues.
 
 COLLISIONS:
 
-A collision with another object can be added to the object:
-
-AddCollision(obj1,obj2)
-then neither object can move through the other.
-A list of objects can also be given:
-AddCollision(obj1, list)
-
-The collision can be removed:
-DelteCollision(obj1,obj2)
-
-The following checks if two objects collide:
+To check if two objects collide, use:
 CollisionCheck(obj1, obj2)
 
-The function uses the object's current position by default, but it can be given
+The function defaults to using the current position of the objects, but you can also provide positions explicitly:
+CollisionCheck(obj1, obj2, obj1_x, obj1_y, obj2_x, obj2_y)
+
+You can add collisions for an object with another object:
+AddCollision(obj1, obj2)
+
+In this case, neither object can move through each other. You can also provide a list of objects:
+AddCollision(obj1, list)
+
+Collisions can be removed:
+DeleteCollision(obj1, obj2)

@@ -1,9 +1,7 @@
 import pygame
 import math
 
-try: from pygamesimpleobject.object_collision import CollisionCheck #import CollisionCheck function other file
-except: from object_collision import CollisionCheck
-
+from pygamesimpleobject import *
 
 
 
@@ -25,7 +23,7 @@ def opposite(number):
 
 
 class NewObject:
-    def __init__(self,image = None,object_size_x:int = 1,object_size_y:int = 1,position_x: int = 0, position_y: int = 0): #constructor
+    def __init__(self,image = None,position_x: int = 0, position_y: int = 0,object_size_x:int = 1,object_size_y:int = 1): #constructor
         self.position_x_ = position_x #screen position
         self.position_y_ = position_y
 
@@ -38,7 +36,13 @@ class NewObject:
 
         self.tracked_object_ = False #if the object is followed
 
-        self.SetImage(image,object_size_x,object_size_y) #sets object image, object size and create create object
+        if image != None: #if image given
+            self.SetImage(image) #sets object image, object size and create create object
+        else: #if image no given
+            #set object size:
+            self.object_size_x_ = object_size_x
+            self.object_size_y_ = object_size_y
+            self.rect_ = pygame.Rect((0, 0), (1, 1)) #create rect object
 
         self.UpdateRect() #update pygame rect object
         self.angle_ = 0
@@ -48,29 +52,24 @@ class NewObject:
         #self.object_size_y_
         #self.rect_
         #self.image_
+        #self.__original_image_
 
 
 
-    def SetImage(self,image = None,object_size_x:int = None,object_size_y:int = None)->None:
-
-        if image != None: #if image given
-            self.image_ = image
-            self.original_image_  = image #used image rotation
+    def SetImage(self,image)->None:
 
 
-            self.object_size_y_ = image.get_height() #set object size to image size
-            self.object_size_x_ = image.get_width()
-            self.rect_ = self.image_.get_rect(center=(self.image_.get_width(), self.image_.get_height()))  #create rect object
 
-        else: #if image no given
-            self.image_ = None
-            self.object_size_y_ = object_size_y
-            self.object_size_x_ = object_size_x
 
-            self.rect_ = pygame.Rect((0, 0), (1, 1)) #create rect object
-
+        self.image_ = image
         self.image_.set_colorkey((0,0,0)) #the black areas in the image are transparent
+        self.__original_image_  = image #used image rotation
 
+        self.object_size_y_ = image.get_height() #set object size to image size
+        self.object_size_x_ = image.get_width()
+        self.rect_ = self.image_.get_rect(center=(self.image_.get_width(), self.image_.get_height()))  #create rect object
+
+        self.UpdateRect()
 
     def UpdateRect(self)->None:
         #position --> rect
@@ -108,18 +107,19 @@ class NewObject:
             self.angle_ = angle
 
         if self.image_ != None: #only if the image exists
-            self.image_ = pygame.transform.rotate(self.original_image_, self.angle_)  #rotate image
+            self.image_ = pygame.transform.rotate(self.__original_image_, self.angle_)  #rotate image
             self.rect_ = self.image_.get_rect(center=self.rect_.center)#update rect_
             self.UpdateRect2() #update object position and size
 
         if self.__Collision(): #if collision
             self.angle_ = original_angle #cancel rotate
             if self.image_ != None:  #only if the image exists
-                self.image_ = pygame.transform.rotate(self.original_image_, self.angle_)  #cancel image rotate
+                self.image_ = pygame.transform.rotate(self.__original_image_, self.angle_)  #cancel image rotate
                 self.rect_ = self.image_.get_rect(center=self.rect_.center) #update rect_
 
 
         self.UpdateRect2() #update object position and size
+        self.image_.set_colorkey((0,0,0)) #the black areas in the image are transparent
 
 
 

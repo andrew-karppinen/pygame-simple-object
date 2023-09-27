@@ -7,29 +7,29 @@ screen = pygame.display.set_mode((850, 700)) #create window
 pygame.display.set_caption('tank')
 clock = pygame.time.Clock()
 
-tankimage = pygame.image.load("examplemedia/tank.png") #load images
-mineimage = pygame.image.load("examplemedia/mine.png")
 
-tank = NewObject(image=tankimage, position_x=425, position_y=350) #create objects
+mineimage = pygame.image.load("examplemedia/mine.png") #load images
+tankimage = pygame.image.load("examplemedia/tank.png") #load images
+
+
+tank = NewObject(image=tankimage, position_x=425, position_y=300) #create objects
 mine = NewObject(image=mineimage, position_x=100, position_y=320)
 mine2 = NewObject(image=mineimage, position_x=400, position_y=600)
 
 map = TileMap("examplemedia/map.txt","examplemedia/tileset.png",tilesize=(32,32)) #create map
 
+
 objectslist = [mine,mine2,tank,map]
-
-
 
 AddCollision(tank,map) #add collisions
 AddCollision(tank,[mine,mine2])
-tank.AddCamera([mine,mine2,map])
+tank.AddCamera([mine,mine2,map]) #camera follow the tank object
 
 
 left = False
 right = False
 move = False
 move2 = False
-
 
 
 while True: #main loop
@@ -70,7 +70,6 @@ while True: #main loop
         tank.CameraMove(5)
     if move2:
         tank.CameraMove(-5)
-
 
 
     #draw all
