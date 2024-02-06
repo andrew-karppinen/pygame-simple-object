@@ -23,7 +23,6 @@ objectslist = [mine,mine2,tank,map]
 
 AddCollision(tank,map) #add collisions
 AddCollision(tank,[mine,mine2])
-tank.AddCamera([mine,mine2,map]) #camera follow the tank object
 
 
 left = False
@@ -67,15 +66,16 @@ while True: #main loop
     if right:
         tank.Rotate(-2)
     if move:
-        tank.CameraMove(5)
+        tank.Move(5)
     if move2:
-        tank.CameraMove(-5)
+        tank.Move(-5)
+
 
 
     #draw all
     screen.fill((0, 0, 0))
-    DrawObjects(screen,objectslist)
+    DrawObjects(screen,objectslist,tank)
 
     pygame.display.flip() #update screen
 
-    clock.tick(60)  #fps limit
+    clock.tick(50)  #fps limit

@@ -27,14 +27,10 @@ class NewObject:
         self.position_x_ = position_x #screen position
         self.position_y_ = position_y
 
-        self.coordinate_x_ = 0 #moving coordinate system
-        self.coordinate_y_ = 0
         self.collision_objects_ = []
-        self.camera_objects_ = []
 
         self.map_object_ = False #Object is not map
 
-        self.tracked_object_ = False #if the object is followed
 
         if image != None: #if image given
             self.SetImage(image) #sets object image, object size and create create object
@@ -56,10 +52,8 @@ class NewObject:
 
 
 
+
     def SetImage(self,image)->None:
-
-
-
 
         self.image_ = image
         self.image_.set_colorkey((0,0,0)) #the black areas in the image are transparent
@@ -70,6 +64,9 @@ class NewObject:
         self.rect_ = self.image_.get_rect(center=(self.image_.get_width(), self.image_.get_height()))  #create rect object
 
         self.UpdateRect()
+
+
+
 
     def UpdateRect(self)->None:
         #position --> rect
@@ -123,85 +120,18 @@ class NewObject:
 
 
 
-    def ReturnCoordinate(self,x,y)->tuple:
-        #moving coordinate system
-        #return screen coordinatte
 
-        x = opposite(x)
-        y = opposite(y)
-
-        return(opposite(x-self.coordinate_x_), opposite(y - self.coordinate_y_))
 
 
     def PlaceObject(self,x,y)->None:
         #sets object new position
 
-        if self.tracked_object_: #if the object is followed
-            x,y = self.ReturnCoordinate(x,y)
 
-            distance_x = self.position_x_ - x
-            distance_y = self.position_y_ - y
-
-
-            self.coordinate_x_ += distance_x
-            self.coordinate_y_ += distance_y
-
-            for i in range(len(self.camera_objects_)):
-                self.camera_objects_[i].position_x_ += distance_x  #place object new location
-                self.camera_objects_[i].position_y_ += distance_y
-                self.camera_objects_[i].UpdateRect()
-        else:
-            self.position_x_ = x
-            self.position_y_ = y
-            self.UpdateRect()
-
-    def AddCamera(self,objectslist: list)->None:
-        for i in range(len(objectslist)):
-            if type(objectslist[i]) == list: #if index is list
-                for j in range(len(objectslist[i])):
-                    self.camera_objects_.append(objectslist[i][j])
-            else:
-                self.camera_objects_.append(objectslist[i])
-
-        self.tracked_object_ = True
-
-    #camera follow object
-    def CameraMoveX(self,distance: int)->None:
-        if distance > 0:
-            number = -1
-        if distance < 0:
-            number = 1
-
-        for i in range(abs(distance)):
-            for j in range(len(self.collision_objects_)): #collision check
-
-                if CollisionCheck(self, self.collision_objects_[j], obj2_x =self.collision_objects_[j].position_x_ + number): #if collision
-                    return #exit function
-
-            for k in range(len(self.camera_objects_)): #move
-                self.camera_objects_[k].position_x_ += number
-                self.camera_objects_[k].UpdateRect()
-        for i in range(abs(distance)):
-            self.coordinate_x_ += number
+        self.position_x_ = x
+        self.position_y_ = y
+        self.UpdateRect()
 
 
-    def CameraMoveY(self,distance: int)->None:
-        if distance > 0:
-            number = -1
-        if distance < 0:
-            number = 1
-
-        for i in range(abs(distance)):
-            for j in range(len(self.collision_objects_)): #collision check
-
-                if CollisionCheck(self, self.collision_objects_[j], obj2_y =self.collision_objects_[j].position_y_ + number): #if collision
-                    return #exit function
-
-            for k in range(len(self.camera_objects_)): #move
-                self.camera_objects_[k].position_y_ += number
-                self.camera_objects_[k].UpdateRect()
-        for i in range(abs(distance)):
-            self.coordinate_y_ += number
 
 
     def Move(self,distance:int)->None:
@@ -211,11 +141,6 @@ class NewObject:
         self.MoveX(int(x))
         self.MoveY(int(y))
 
-    def CameraMove(self,distance:int)->None:
-
-        x, y = Return_x_y(opposite(self.angle_), distance)
-        self.CameraMoveX(int(x))
-        self.CameraMoveY(int(y))
 
 
     def MoveX(self,distance: int)->None:

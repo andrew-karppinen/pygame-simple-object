@@ -65,31 +65,10 @@ Tällöin objekti piirtyy oikein.
 
 
 KAMERA:
-Objektia seuraava "kamera" toimii niin että,
-objektille annetaan kaikki muut objektit:
-obj.AddCamera([obj1,obj2,map,jne]) #metodille annetaan lista jossa objektit on
-Tässäkin listassa voi olla objektejen lisäksi myös listoja joissa on objekteja.
 
-Sitten tätä seurattavaa objektia liikutetaan
-obj.CameraMoveY(matka: int)
-obj.CameraMoveX(matka: int)
-obj.CameraMove
-Järjestelmä toimii niin että seurattava objekti pysyy paikallaan ja muita objekteja liikutetaan suhteessa seurattavaan
-tämä luo illuusion että kamera seuraisi tätä objektia.
+Voit viedä DrawObjects funktiolle yhden objektin tällöin asiat piirretään niin että kyseinen objekti on ruudun keskellä ja saadaan aikaiseksi se että kamera seuraa tätä objektia:
 
-
-KOORDINAATISTO:
-Näytön koordinaatisto pysyy aina samana, eli kohta 50,50 on aina 50 pikseliä ruudun vasemmasta ylänurkasta.
-Tätä varten on kehitetty liikkuva koordinaatisto järjestelmä joka pitää yllä "kameran" liikkeitä.
-
-obj.ReturnCoordinate(x: int,y: int) metodi palauttaa "alkuperäisen" kohdan näytön kordinaatteina, eli sen kohdan jossa se oli ennen kuin kamera liikkui yhtään.
-eli jos seurattava objekti liikkui alaspäin 100 pikseliä se palauttaa 0,-100 jos siltä kysytään 0,0 kohdan sijaintia.
-ReturnCoordinate metodia pitää käyttää siihen objektiin jota seurataan.
-
-Lisäksi objektin liikuttamista varten on olemassa 
-obj.PlaceObject(x,y) metodi joka sijoittaa objektin uuteen kohtaan hoitaen myös kameran liikuttamisen ja koordinaatisto asiat.
-
-
+DrawObjects([obj1,obj2,map,obj3],tracked_object)
 
 
 

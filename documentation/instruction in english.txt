@@ -51,21 +51,11 @@ If you want to manually draw objects, use the object's rect_ attribute to ensure
 
 CAMERA:
 
-A "camera" that follows an object works by giving the object all other objects:
-obj.AddCamera([obj1, obj2, map, etc.])
-This list can also contain lists with objects.
-Then, the object being followed is moved using:
-obj.CameraMoveY(distance: int)
-obj.CameraMoveX(distance: int)
-obj.CameraMove()
-The system keeps the followed object stationary, and other objects move relative to it, creating the illusion that the camera is following that object.
+You can pass a single object to the DrawObjects function, in which case things will be drawn so that the object is in the center of the screen, and thus achieve the effect of the camera following this object.
 
-COORDINATE SYSTEM:
+DrawObjects([obj1,obj2,map,obj3],tracked_object)
 
-The screen coordinate system always remains the same; i.e., point 50,50 is always 50 pixels from the top-left corner of the screen. To address this, a moving coordinate system has been developed to keep track of the "camera" movements.
-obj.ReturnCoordinate(x: int, y: int) method returns the "original" point in screen coordinates, i.e., the point where it was before the camera moved. So, if the followed object moved down by 100 pixels, it returns 0, -100 when asked for the location of point 0,0.
-Use the ReturnCoordinate method for the object being followed.
-Additionally, there's the obj.PlaceObject(x, y) method for moving the object to a new location, taking care of camera movement and coordinate system issues.
+
 
 COLLISIONS:
 
