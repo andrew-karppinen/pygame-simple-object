@@ -43,6 +43,9 @@ class NewObject:
         self.UpdateRect() #update pygame rect object
         self.angle_ = 0
 
+        self.camera_x_ = position_x
+        self.camera_y_ = position_y
+
         #Variables that are not visible here:
         #self.object_size_x_
         #self.object_size_y_
@@ -126,9 +129,12 @@ class NewObject:
     def PlaceObject(self,x,y)->None:
         #sets object new position
 
-
         self.position_x_ = x
         self.position_y_ = y
+
+        self.camera_x_ = x
+        self.camera_y_ = y
+
         self.UpdateRect()
 
 
@@ -147,15 +153,20 @@ class NewObject:
         for i in range(abs(distance)):
             if distance > 0:
                 self.position_x_ += 1
+                self.camera_x_ += 1
             else:
                 self.position_x_ += -1
-
+                self.camera_x_ += -1
             # Todo update this
             if self.__Collision(): #if collision
                 if distance > 0:
                     self.position_x_ += -1 #cancel move
+                    self.camera_x_ += -1
+
                 else:
                     self.position_x_ += 1 #cancel move
+                    self.camera_x_ += +1
+
                 return
         self.UpdateRect()
 
@@ -166,8 +177,10 @@ class NewObject:
 
             if distance > 0:
                 self.position_y_ += 1
+                self.camera_y_ += 1
             else:
                 self.position_y_ += -1
+                self.camera_y_ += -1
 
 
             #Todo update this
@@ -175,10 +188,14 @@ class NewObject:
 
                 if distance > 0:
                     self.position_y_ += -1 #cancel move
-
+                    self.camera_y_ += -1
                 else:
                     self.position_y_ += 1 #cancel move
+                    self.camera_y_ += 1
                 return
+
+
+
         self.UpdateRect()
         
 

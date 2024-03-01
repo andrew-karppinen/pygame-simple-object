@@ -1,5 +1,5 @@
 import pygame
-from copy import  deepcopy
+from copy import deepcopy
 
 def DrawObjects(surface, objects:list, tracked_object:object=None):
 
@@ -37,21 +37,21 @@ def DrawObjects(surface, objects:list, tracked_object:object=None):
         #draw objects
         for i in (list1):
             rect_copy = deepcopy(i.rect_)
-            rect_copy[0] -= tracked_object.position_x_ - screen_sixe_x // 2
-            rect_copy[1] -= tracked_object.position_y_ - screen_sixe_y // 2
+            rect_copy[0] -= tracked_object.camera_x_ - screen_sixe_x // 2
+            rect_copy[1] -= tracked_object.camera_y_ - screen_sixe_y // 2
 
             surface.blit(i.image_,rect_copy) #draw object
 
         for i in (list2):
             rect_copy = deepcopy(i.rect_)
-            rect_copy[0] -= tracked_object.position_x_ - screen_sixe_x // 2
-            rect_copy[1] -= tracked_object.position_y_ - screen_sixe_y // 2
+            rect_copy[0] -= tracked_object.camera_x_ - screen_sixe_x // 2
+            rect_copy[1] -= tracked_object.camera_y_ - screen_sixe_y // 2
 
             surface.blit(i.image_,rect_copy) #draw object
 
         for i in (list3):
             rect_copy = deepcopy(i.rect_)
-            rect_copy[0] -= tracked_object.position_x_ - screen_sixe_x // 2
-            rect_copy[1] -= tracked_object.position_y_ - screen_sixe_y // 2
+            rect_copy[0] -= tracked_object.camera_x_ - screen_sixe_x // 2
+            rect_copy[1] -= tracked_object.camera_y_ - screen_sixe_y // 2
 
             surface.blit(i.image_, rect_copy) #draw object
