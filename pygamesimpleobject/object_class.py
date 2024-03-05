@@ -24,6 +24,10 @@ def opposite(number):
 
 class NewObject:
     def __init__(self,image = None,position_x: int = 0, position_y: int = 0,object_size_x:int = 1,object_size_y:int = 1): #constructor
+
+        self.image_ = None
+
+
         self.position_x_ = position_x #screen position
         self.position_y_ = position_y
 
@@ -43,11 +47,12 @@ class NewObject:
         self.UpdateRect() #update pygame rect object
         self.angle_ = 0
 
+
         #Variables that are not visible here:
         #self.object_size_x_
         #self.object_size_y_
         #self.rect_
-        #self.image_
+
         #self.__original_image_
 
 
@@ -116,7 +121,9 @@ class NewObject:
 
 
         self.UpdateRect2() #update object position and size
-        self.image_.set_colorkey((0,0,0)) #the black areas in the image are transparent
+
+        if self.image_ != None: #only if the image exists
+            self.image_.set_colorkey((0, 0, 0))  # the black areas in the image are transparent
 
 
 
@@ -125,7 +132,6 @@ class NewObject:
 
     def PlaceObject(self,x,y)->None:
         #sets object new position
-
 
         self.position_x_ = x
         self.position_y_ = y

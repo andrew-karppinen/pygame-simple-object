@@ -1,5 +1,5 @@
 import pygame
-from copy import  deepcopy
+from copy import deepcopy
 
 def DrawObjects(surface, objects:list, tracked_object:object=None):
 
@@ -27,11 +27,14 @@ def DrawObjects(surface, objects:list, tracked_object:object=None):
     if tracked_object == None: #if tracked object no given
         #draw objects
         for i in (list1):
-            surface.blit(i.image_,i.rect_)
+            if i.image_ != None: #only if the image exists
+                surface.blit(i.image_,i.rect_)
         for i in (list2):
-            surface.blit(i.image_,i.rect_)
+            if i.image_ != None: #only if the image exists
+                surface.blit(i.image_,i.rect_)
         for i in (list3):
-            surface.blit(i.image_, i.rect_)
+            if i.image_ != None: #only if the image exists
+                surface.blit(i.image_, i.rect_)
 
     else: #camera tracking system:
         #draw objects
@@ -40,18 +43,20 @@ def DrawObjects(surface, objects:list, tracked_object:object=None):
             rect_copy[0] -= tracked_object.position_x_ - screen_sixe_x // 2
             rect_copy[1] -= tracked_object.position_y_ - screen_sixe_y // 2
 
-            surface.blit(i.image_,rect_copy) #draw object
+            if i.image_ != None: #only if the image exists
+                surface.blit(i.image_,rect_copy) #draw object
 
         for i in (list2):
             rect_copy = deepcopy(i.rect_)
             rect_copy[0] -= tracked_object.position_x_ - screen_sixe_x // 2
             rect_copy[1] -= tracked_object.position_y_ - screen_sixe_y // 2
 
-            surface.blit(i.image_,rect_copy) #draw object
+            if i.image_ != None: #only if the image exists
+                surface.blit(i.image_,rect_copy) #draw object
 
         for i in (list3):
             rect_copy = deepcopy(i.rect_)
             rect_copy[0] -= tracked_object.position_x_ - screen_sixe_x // 2
             rect_copy[1] -= tracked_object.position_y_ - screen_sixe_y // 2
-
-            surface.blit(i.image_, rect_copy) #draw object
+            if i.image_ != None: #only if the image exists
+                surface.blit(i.image_, rect_copy) #draw object
