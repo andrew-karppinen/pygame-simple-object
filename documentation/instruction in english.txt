@@ -65,6 +65,8 @@ CollisionCheck(obj1, obj2)
 The function defaults to using the current position of the objects, but you can also provide positions explicitly:
 CollisionCheck(obj1, obj2, obj1_x, obj1_y, obj2_x, obj2_y)
 
+Also for this, instead of providing a single object, you can provide a list of objects. However, the list cannot be given an alternative location.
+
 You can add collisions for an object with another object:
 AddCollision(obj1, obj2)
 

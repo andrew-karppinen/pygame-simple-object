@@ -82,6 +82,8 @@ CollisionCheck(obj1, obj2)
 Funktio käyttää oletuksena objektin sen hetkistä sijaintia mutta sille voi myös antaa sijainnit:
 CollisionCheck(obj1, obj2, obj1_x, obj1_y, obj2_x, obj2_y)
 
+Myös tälle voi antaa yksittäisen objektin sijasta listan jossa objekteja, listalle ei voi antaa vaihtoehtoista sijaintia.
+
 
 Objektille voi lisätä törmäyksen toisen objektin kanssa:
 
