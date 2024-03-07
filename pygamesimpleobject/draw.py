@@ -38,25 +38,30 @@ def DrawObjects(surface, objects:list, tracked_object:object=None):
 
     else: #camera tracking system:
         #draw objects
+
+        screen_center_x = (tracked_object.position_x_+tracked_object.object_size_x_//2) - screen_sixe_x // 2 #calculate center of screen
+        screen_center_y = (tracked_object.position_y_+tracked_object.object_size_y_//2) - screen_sixe_y // 2 #calculate center of screen
+
+
         for i in (list1):
             rect_copy = deepcopy(i.rect_)
-            rect_copy[0] -= tracked_object.position_x_ - screen_sixe_x // 2
-            rect_copy[1] -= tracked_object.position_y_ - screen_sixe_y // 2
+            rect_copy[0] -= screen_center_x
+            rect_copy[1] -= screen_center_y
 
             if i.image_ != None: #only if the image exists
                 surface.blit(i.image_,rect_copy) #draw object
 
         for i in (list2):
             rect_copy = deepcopy(i.rect_)
-            rect_copy[0] -= tracked_object.position_x_ - screen_sixe_x // 2
-            rect_copy[1] -= tracked_object.position_y_ - screen_sixe_y // 2
+            rect_copy[0] -= screen_center_x
+            rect_copy[1] -= screen_center_y
 
             if i.image_ != None: #only if the image exists
                 surface.blit(i.image_,rect_copy) #draw object
 
         for i in (list3):
             rect_copy = deepcopy(i.rect_)
-            rect_copy[0] -= tracked_object.position_x_ - screen_sixe_x // 2
-            rect_copy[1] -= tracked_object.position_y_ - screen_sixe_y // 2
+            rect_copy[0] -= screen_center_x
+            rect_copy[1] -= screen_center_y
             if i.image_ != None: #only if the image exists
                 surface.blit(i.image_, rect_copy) #draw object
