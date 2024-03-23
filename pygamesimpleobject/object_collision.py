@@ -1,6 +1,6 @@
 import pygame
 
-
+from  pygamesimpleobject import Tile
 
 def CollisionCheck(obj1, obj2, obj1_x = None, obj1_y = None, obj2_x = None, obj2_y = None):
     '''
@@ -14,6 +14,7 @@ def CollisionCheck(obj1, obj2, obj1_x = None, obj1_y = None, obj2_x = None, obj2
             for obj in obj1:
 
                 if type(obj2) != list: #obj2 is not list
+
                     if obj2_x != None and obj2_y != None: #obj2 position is given
                         if CollisionCheck(obj, obj2,obj2_x = obj2_x,obj2_y=obj2_y) == True:
                             return True
@@ -29,6 +30,7 @@ def CollisionCheck(obj1, obj2, obj1_x = None, obj1_y = None, obj2_x = None, obj2
             for obj in obj2:
 
                 if type(obj1) != list: #obj1 is not list
+
                     if obj1_x != None and obj1_y != None: #obj1 position is given
                         if CollisionCheck(obj, obj1,obj2_x = obj1_x,obj2_y=obj1_y) == True:
                             return True
@@ -52,7 +54,15 @@ def CollisionCheck(obj1, obj2, obj1_x = None, obj1_y = None, obj2_x = None, obj2
         obj2_y = obj2.position_y_
 
 
-        
+    #if obj is map object
+    if obj1.map_object_ == True:
+        if obj1.map_setup_ != 2:
+            return  False
+    if obj2.map_object_ == True:
+        if obj2.map_setup_ != 2:
+            return  False
+
+
     if obj1_y < obj2_y + obj2.object_size_y_:
         if obj1_y + obj1.object_size_y_> obj2_y:
 
