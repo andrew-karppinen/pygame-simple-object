@@ -10,11 +10,16 @@ def Return_x_y(angle, distance)->tuple:
     calculates the lengths of the legs of a right triangle from the length of the hypotenuse and the angle
     '''
 
-    x = math.cos(math.radians(angle)) * distance
 
-    y = math.tan(math.radians(angle)) * x
+    scaled_distance = distance
 
-    return (x, y)
+    x = math.cos(math.radians(angle)) * scaled_distance
+
+    y = math.sin(math.radians(angle)) * scaled_distance
+
+    return (x,y)
+
+
 
 
 def opposite(number):
@@ -144,8 +149,11 @@ class NewObject:
 
         x,y = Return_x_y(opposite(self.angle_),distance)
 
-        self.MoveX(int(x))
-        self.MoveY(int(y))
+        y = round(y)
+        x = round(x)
+
+        self.MoveX(x)
+        self.MoveY(y)
 
 
 

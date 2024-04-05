@@ -1,7 +1,23 @@
 import pygame
-from pygamesimpleobject import Tile
+from pygamesimpleobject import *
 from PIL import Image
 
+
+
+def ReturnTilesHitByObject(map:list,object):
+    '''
+    Return the tiles that the object hits
+    '''
+    tiles = []
+    counter = 0
+
+    for i in range(len(map)):
+        if CollisionCheck(map[i],object,check_all_tiles=True):
+            tiles.append(counter)
+
+        counter += 1
+
+    return tiles
 
 def StringToList(string,rowswidth,rowcount):
 
