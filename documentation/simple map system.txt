@@ -1,45 +1,57 @@
-Simple 2D map system
+Simple 2D Map System
 
-Note that there may be changes to this!
+Note: Subject to changes!
 
-The map is a text file composed of comma-separated numbers that the program reads. If the value is 1, image is 1,if value is 2, image is 2, and so on. If the value is 0, there is no image.
+Map File
 
-These images are taken from a separate tileset image, which is read from left to right.
+The map is a text file composed of comma-separated numbers that the program reads. Each number corresponds to a tile image from a tileset, where 0 represents no image.
 
-In addition, there are letters a, b, c, or d.
+there is a letter in that place:
 
-a = no collision
-b = collision
-c = top layer
-d = no tile
-
-"a" and "b" are drawn first, and "c" is drawn last.
+    a = no collision
+    b = collision
+    c = top layer
+    d = no tile
 
 The file looks like this:
-
 Example:
+
 8,7;
 1a,1a,1a,2a,2a,1a,3a,1a
-1a,1a,1a,2a,2a,1a,3a,1a
+1a,1a,1a,2ae1,2a,1a,3a,1a
 1a,1a,1a,2a,2a,1a,3a,1a
 1a,3b,1a,2a,2a,1a,3a,1a
 1a,3b,3b,2a,2a,1a,3a,1a
 1a,1a,1a,3a,2a,1c,3c,1c
 4a,1a,1a,4a,4a,4c,4c,1c
 
-The first line indicates the size of the map.
+(The first line indicates the map dimensions)
 
-To use the tile map, enter:
+In addition to layers, it's possible to add data to a tile using the letter 'e', for example:
+b2e1 (This indicates a collidable tile with image 2 and additional data 1)
 
-map = TileMap(tilemap_path, tileset_path, tile_size=(32,32))
+Data can be an integer ranging from 1 to 500.
 
-where tile_size = (x, y)
+Tile Map Usage
 
-The program creates objects from this map and puts them into a list, which is then returned. The tile is a similar object to the others, but it lacks some features that are not needed for its operation.
+The program generates objects from this map and adds them to a list, returning the list. A tile is similar to any other object but lacks functionalities unnecessary for its operation.
 
-The map can be exported to the draw function, which handles the drawing order automatically:
+The map can be passed to the draw function, which automatically handles the drawing order.
 
-DrawObjects(obj1, obj2, map, obj3)
+Tileset
 
-Tileset:
-The tileset is an image file from which tiles are extracted. The dimensions of the image must be divisible by the size of the tile. The tiles are read from the image into a list from left to right and top to bottom, with the upper-left corner being tile 1.
+A tileset is an image file from which tiles are extracted. The dimensions of the image must be divisible by the tile size. Tiles are read from the image from left to right and top to bottom, starting from the top-left corner as tile 1.
+
+Order Number
+
+Each tile has a unique order number calculated from left to right and top to bottom, starting from 1.
+
+Functions
+
+    ReturnTilesHitByObject(map: list, object):
+    Returns a list of order numbers of tiles affected by the object.
+
+
+    ReturnTilesWithData(map: list, data_number: int):
+    Returns a list of order numbers of tiles containing the specified data number. If the data number is not found, it returns an empty list.
+

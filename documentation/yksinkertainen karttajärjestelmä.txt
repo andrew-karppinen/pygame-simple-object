@@ -18,6 +18,8 @@ b = törmäys
 c = päälimmäinen kerros
 d = ei tileä
 
+
+
 a ja b piirretään ensimmäisenä
 c piirretään viimeisenä
 
@@ -25,7 +27,7 @@ Tiedosto näyttää tältä
 esimerkki:
 8,7;
 1a,1a,1a,2a,2a,1a,3a,1a
-1a,1a,1a,2a,2a,1a,3a,1a
+1a,1a,1a,2ae1,2a,1a,3a,1a
 1a,1a,1a,2a,2a,1a,3a,1a
 1a,3b,1a,2a,2a,1a,3a,1a
 1a,3b,3b,2a,2a,1a,3a,1a
@@ -33,6 +35,21 @@ esimerkki:
 4a,1a,1a,4a,4a,4c,4c,1c
 
 ensimmäinen rivi kertoo kartan mitat
+
+
+DATA:
+
+kerrosten lisäksi tileen on mahdollista listä data kerros jota voi käyttää ohjelmassa johonkin:
+
+data asetetaan tileen e kirjaimella esim:
+
+tuossa on törmättävä tile kuvalla 2 ja siihen on lisätty data 1:
+b2e1
+
+data voi olla kokonaisluku välillä 1-500
+
+
+
 
 
 TILEKARTAN KÄYTTÖ:
@@ -50,5 +67,33 @@ DrawObjects(obj1,obj2,map,obj3)
 TILESET:
 Tileset on kuvatiedosta josta tilet poimitaan kuvan mittojen tulee olla jaollinen tilen koon kanssa
 Tilet luetaan kuvasta listaan vasemmalta oikealle ja ylhäältä alas niin että vasen ylänurkka on tile1
+
+
+JÄRJESTYSNUMERO
+
+Jokaisella tilellä on oma järjestysnumero joka lasketaan vasemmalta oikealle ja ylhäältä alas, alkaen 1,
+vasen ylänurkka on 1 jne
+
+
+
+Palauttaa listassa kaikkien niiden tilejen järjestysnumron joihin objekti sillä hetkellä koskee:
+
+ReturnTilesHitByObject(map:list,object)
+
+
+Palauttaa sen objektin järjestysnumeron joka tässä sijainnissa on:
+
+ReturnTileFromPosition(position_x:int,position_y:int)
+
+
+DATA
+
+Palauttaa listassa niiden tilejen järjestysnumeron joissa on tämä data numero.
+
+ReturnTilesWithData(map:list,data_number:int)
+
+jos data numeroa ei ole missään palauttaa tyhjän listan
+
+Ei suositella käytettäväksi jatkuvasti, koska tämä iteroi koko kartan läpi.
 
 

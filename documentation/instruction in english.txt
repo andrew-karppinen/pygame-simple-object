@@ -68,10 +68,9 @@ CollisionCheck(obj1, obj2, obj1_x, obj1_y, obj2_x, obj2_y, check_all_tiles: bool
 
 You can also provide a list of objects instead of a single object, but you cannot provide alternative positions for the list.
 
-You can also pass a map as a parameter to this function. In this case, it defaults to checking collisions only with those tiles specified as collidable. However, if the check_all_tiles parameter is set to True, collision is checked with all tiles.
+You can also pass a map as a parameter to the function. In this case, by default, collision detection is only performed on those tiles specified as collidable. However, if the check_all_tiles parameter is set to True, collision detection will be performed on all tiles.
 
-Returns a list of the numbers of all tiles that the object is currently touching:
-ReturnTilesHitByObject(map: list, object)
+
 
 You can add collisions for an object with another object:
 AddCollision(obj1, obj2)

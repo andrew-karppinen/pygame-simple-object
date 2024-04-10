@@ -80,9 +80,18 @@ CollisionCheck(obj1, obj2)
 
 
 Funktio käyttää oletuksena objektin sen hetkistä sijaintia mutta sille voi myös antaa sijainnit:
-CollisionCheck(obj1, obj2, obj1_x, obj1_y, obj2_x, obj2_y)
+CollisionCheck(obj1, obj2, obj1_x, obj1_y, obj2_x, obj2_y,check_all_tiles:bool=False)
 
 Myös tälle voi antaa yksittäisen objektin sijasta listan jossa objekteja, listalle ei voi antaa vaihtoehtoista sijaintia.
+
+Tälle voi viedä myös kartan parametrinä, tällöin se toimii oletuksena niin että törmäys tarkistetaan vain niihin tileihin mitkä määritetty törmättäviksi,
+kuitenkin jos check_all_tiles parametriksi asetetaan True tarkistetaan törmäys kaikkiin tileihin.
+
+
+
+
+
+
 
 
 Objektille voi lisätä törmäyksen toisen objektin kanssa:

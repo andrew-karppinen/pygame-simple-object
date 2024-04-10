@@ -4,6 +4,20 @@ from PIL import Image
 
 
 
+
+
+
+
+def ReturnTilesWithData(tilemap:list, data_number:int):
+
+    tile_list = []
+
+    for i in tilemap: #iterate map
+        if i.data_ != None: #if data tile
+            if i.data_ == data_number: #check data number
+                tile_list.append(i.tile_number_)
+    return(tile_list)
+
 def ReturnTilesHitByObject(map:list,object):
     '''
     Return the tiles that the object hits
@@ -20,8 +34,6 @@ def ReturnTilesHitByObject(map:list,object):
     return tiles
 
 def StringToList(string,rowswidth,rowcount):
-
-
     '''
     String to 2d list Retrun list
     characters are separated comma
@@ -189,25 +201,43 @@ def TileMap(mapfile_path:str,tileset_path:str,tilesize = (32,32)):
     Tile.tileset.insert(0, pygame.Surface(Tile.tilesize))
 
     #make tiles objects
+
+    counter = 1
     for y in range(rowcout):
         for x in range(rowwidth):
-            number = ""
+            image_number = ""
+
+
+            data = None
+
+            is_data = False
+            data_index = maplist[y][x].find("e")
+
+            if data_index != -1: #if data tile
+                is_data = True
+                data = int(maplist[y][x][data_index+1:])
+
+
             for i in range(len(maplist[y][x])):
+
+                if is_data == True and i == data_index:
+                    break
+
                 if maplist[y][x][i].isnumeric():
-                    number += maplist[y][x][i]
+                    image_number += maplist[y][x][i]
                 else:
                     char = maplist[y][x][i]
 
 
-
-            number = int(number)
+            image_number = int(image_number)
 
             if char != "d": #create objects
-                if number == 0: #if no image
-                    objectlist.append(Tile(0,position_x=x*tilesize[0],position_y=y*tilesize[1]))
+                if image_number == 0: #if no image
+                    objectlist.append(Tile(0,position_x=x*tilesize[0],position_y=y*tilesize[1],data=data))
                 else:
-                    objectlist.append(Tile(number,position_x=x*tilesize[0],position_y=y*tilesize[1]))
+                    objectlist.append(Tile(image_number,position_x=x*tilesize[0],position_y=y*tilesize[1],data=data))
 
+                objectlist[-1].tile_number_ = counter
 
                 if char == "a": #no collision tile
                     objectlist[-1].map_setup_ = 1
@@ -217,7 +247,7 @@ def TileMap(mapfile_path:str,tileset_path:str,tilesize = (32,32)):
                     objectlist[-1].map_setup_ = 3
 
 
-
+            counter += 1
 
     return(objectlist)
 
