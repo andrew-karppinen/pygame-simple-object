@@ -15,7 +15,7 @@ def DrawObjects(surface, objects:list, tracked_object:object=None):
         if type(objects[i]) == list:
             for j in range(len(objects[i])):#if list
                 if objects[i][j].map_object_: #if map object
-                    if objects[i][j].map_setup_ == 1 or objects[i][j].map_setup_ == 2: #if map type 1 or 2
+                    if objects[i][j].tile_setup_ == 1 or objects[i][j].tile_setup_ == 2: #if map type 1 or 2
                         list1.append(objects[i][j]) #list1
                     else:#if map type 3
                         list3.append(objects[i][j])  #list3

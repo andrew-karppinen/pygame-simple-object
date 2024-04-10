@@ -5,6 +5,29 @@ from PIL import Image
 
 
 
+def ReturnTileFrom(map:list,position_x,position_y)->object:
+
+    '''
+    Return Tile object from given position
+    '''
+
+
+    position_x=position_x//Tile.tilesize[0]
+    position_y=position_y//Tile.tilesize[1]
+
+
+    if position_y == 0:
+        number = position_x
+    else:
+        number = position_y*Tile.map_size[1]+position_x
+
+
+    if number > Tile.map_size[0] * Tile.map_size[1]:
+        return None
+    elif number < 0:
+        return None
+    else:
+        return map[number ]
 
 
 
@@ -200,6 +223,8 @@ def TileMap(mapfile_path:str,tileset_path:str,tilesize = (32,32)):
     Tile.tilesize = tilesize #set tilesize to Tile class
     Tile.tileset.insert(0, pygame.Surface(Tile.tilesize))
 
+    Tile.map_size = rowwidth,rowcout #set map size to tile class
+
     #make tiles objects
 
     counter = 1
@@ -240,11 +265,11 @@ def TileMap(mapfile_path:str,tileset_path:str,tilesize = (32,32)):
                 objectlist[-1].tile_number_ = counter
 
                 if char == "a": #no collision tile
-                    objectlist[-1].map_setup_ = 1
+                    objectlist[-1].tile_setup_ = 1
                 elif char == "b": #collision tile
-                    objectlist[-1].map_setup_ = 2
+                    objectlist[-1].tile_setup_ = 2
                 elif char == "c": #layer2 (draw last) (no collision)
-                    objectlist[-1].map_setup_ = 3
+                    objectlist[-1].tile_setup_ = 3
 
 
             counter += 1

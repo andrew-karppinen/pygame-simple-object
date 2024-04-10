@@ -61,12 +61,12 @@ def CollisionCheck(obj1, obj2, obj1_x = None, obj1_y = None, obj2_x = None, obj2
 
     #if obj is map object
     if obj1.map_object_ == True:
-        if obj1.map_setup_ != 2: #no collision tile
+        if obj1.tile_setup_ != 2: #no collision tile
             if check_all_tiles == False:
                 return  False
 
     if obj2.map_object_ == True:
-        if obj2.map_setup_ != 2: #no collision tile
+        if obj2.tile_setup_ != 2: #no collision tile
             if check_all_tiles == False:
                 return False
 
@@ -90,7 +90,7 @@ def AddCollision(obj1,obj2):
     if type(obj2) == list: #if obj2 is list
         for i in range(len(obj2)):
             if obj2[i].map_object_: #if map object
-                if obj2[i].map_setup_ == 2: #if collision tile
+                if obj2[i].tile_setup_ == 2: #if collision tile
                     obj1.collision_objects_.append(obj2[i])
                     obj2[i].collision_objects_.append(obj1)
             else:

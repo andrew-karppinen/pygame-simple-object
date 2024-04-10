@@ -22,11 +22,12 @@ class Tile:
         self.SetImage(tilenumber)  # sets object image and object size
 
         self.map_object_ = True # object is map
-        self.map_setup_ = None #1 = no collision, 2 = collision,3 = layer 2(draw last, no collision)
+        self.tile_setup_ = None #1 = no collision, 2 = collision,3 = layer 2(draw last, no collision)
 
         self.data_ = data #1-500 or None
 
         self.UpdateRect()
+
 
 
 
