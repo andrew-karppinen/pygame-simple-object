@@ -27,7 +27,7 @@ def ReturnTileFrom(map:list,position_x,position_y)->object:
     elif number < 0:
         return None
     else:
-        return map[number ]
+        return map[int(number)]
 
 
 
