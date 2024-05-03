@@ -25,7 +25,8 @@ Example:
 1a,1a,1a,3a,2a,1c,3c,1c
 4a,1a,1a,4a,4a,4c,4c,1c
 
-(The first line indicates the map dimensions)
+
+The first line indicates the map dimensions(x,y)
 
 In addition to layers, it's possible to add data to a tile using the letter 'e', for example:
 b2e1 (This indicates a collidable tile with image 2 and additional data 1)

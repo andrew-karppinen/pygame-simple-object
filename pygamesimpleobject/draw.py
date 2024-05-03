@@ -1,7 +1,34 @@
 import pygame
 from copy import deepcopy
 
+
+
+
+def DrawImage(surface, image,position:tuple,tracked_object:object=None):
+    '''
+    Draw given pygame image on given pygame surface.
+    tracked_object is optionaly
+    '''
+
+
+    if tracked_object == None:
+        surface.blit(image, position)
+
+    else: #tracked object is given
+        screen_sixe_x, screen_sixe_y = surface.get_size()  # get surface size
+
+        screen_center_x = (tracked_object.position_x_+tracked_object.object_size_x_//2) - screen_sixe_x // 2 #calculate center of screen
+        screen_center_y = (tracked_object.position_y_+tracked_object.object_size_y_//2) - screen_sixe_y // 2 #calculate center of screen
+
+
+        surface.blit(image, (position[0]-screen_center_x, position[1]-screen_center_y))
+
+
 def DrawObjects(surface, objects:list, tracked_object:object=None):
+    '''
+    Draw given objects image on given pygame surface.
+    tracked_object is optionaly
+    '''
 
 
     list1 = [] #draw first

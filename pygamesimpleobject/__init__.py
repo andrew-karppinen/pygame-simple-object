@@ -5,7 +5,7 @@ from pygamesimpleobject.tile_class import Tile
 from pygamesimpleobject.tilemap import TileMap, ReturnTilesHitByObject,ReturnTilesWithData,ReturnTileFrom
 
 
-from pygamesimpleobject.draw import DrawObjects
+from pygamesimpleobject.draw import DrawObjects, DrawImage
 
 
 
