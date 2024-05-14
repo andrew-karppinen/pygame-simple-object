@@ -14,6 +14,7 @@ class Tile:
         self.coordinate_x_ = 0 #moving coordinate system
         self.coordinate_y_ = 0
         self.collision_objects_ = []
+        self.rounded_collision_check_ = False
 
         self.image_number_ = 0
 

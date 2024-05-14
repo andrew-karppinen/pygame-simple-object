@@ -1,6 +1,39 @@
 import pygame
+import math
 
 from  pygamesimpleobject import *
+
+
+def RectAndCircleCollide(obj1,obj2):
+    '''
+    obj1 circle
+    obj2 rect
+    '''
+
+    circle_x = obj1.position_x_+obj1.object_size_x_//2
+    circle_y = obj1.position_y_+obj1.object_size_y_//2
+
+    circle_radius = 15
+
+    rect_x = obj2.position_x_
+    rect_y = obj2.position_y_
+
+    rect_width = obj2.object_size_x_
+    rect_height = obj2.object_size_y_
+
+
+    # Tarkistetaan, onko ympyrä suorakulmion sisällä
+    if (circle_x >= rect_x and circle_x <= rect_x + rect_width and
+            circle_y >= rect_y and circle_y <= rect_y + rect_height):
+        return True
+
+    # Tarkistetaan, onko ympyrä suorakulmion reunan läheisyydessä
+    closest_x = max(rect_x, min(circle_x, rect_x + rect_width))
+    closest_y = max(rect_y, min(circle_y, rect_y + rect_height))
+    distance = math.sqrt((circle_x - closest_x) ** 2 + (circle_y - closest_y) ** 2)
+
+    return distance < circle_radius
+
 
 def CollisionCheck(obj1, obj2, obj1_x = None, obj1_y = None, obj2_x = None, obj2_y = None,check_all_tiles:bool=False):
     '''
@@ -71,6 +104,20 @@ def CollisionCheck(obj1, obj2, obj1_x = None, obj1_y = None, obj2_x = None, obj2
                 return False
 
 
+    #rounded_collision_check_
+    if obj1.rounded_collision_check_ == True: #obj1 is circle
+        if RectAndCircleCollide(obj1,obj2) == True:
+            return True
+        else:
+            return False
+
+    elif obj2.rounded_collision_check_ == True: #obj2 is circle
+        if RectAndCircleCollide(obj2,obj1) == True:
+            return True
+        else:
+            return False
+
+    #normal collision check
     if obj1_y < obj2_y + obj2.object_size_y_:
         if obj1_y + obj1.object_size_y_> obj2_y:
 
@@ -78,6 +125,8 @@ def CollisionCheck(obj1, obj2, obj1_x = None, obj1_y = None, obj2_x = None, obj2
                 if obj1_x + obj1.object_size_x_ > obj2_x:
                     return True
     return False
+
+
 
 
 

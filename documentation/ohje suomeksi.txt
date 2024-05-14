@@ -104,3 +104,16 @@ AddCollision(obj1,lista)
 Törmäyksen voi poistaa:
 DelteCollision(obj1,obj2)
 
+
+PYÖRISTETTY TÖRMÄYSTARKISTUS
+
+Normaalisti törmäys tarkistetaan objektin suorakulmion mittojen mukaan, tämä saatta olla hiukan tökkivä menetelmä.
+
+Objekteille esim pelaajalle voi asettaa seuraavan atribuutin:
+
+obj.rounded_collision_check_ = True #normaalisti tämä on False
+
+Tämä luo objektin sisälle ympyränmuotoisen alueen jonka perusteella törmäys tarkistetaan.
+
+
+

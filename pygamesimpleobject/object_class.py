@@ -37,6 +37,7 @@ class NewObject:
         self.position_y_ = position_y
 
         self.collision_objects_ = []
+        self.rounded_collision_check_ = False
 
         self.map_object_ = False #Object is not map
 
@@ -214,13 +215,10 @@ class NewObject:
         for i in range(len(self.collision_objects_)):
             obj2 = self.collision_objects_[i]
 
+            if CollisionCheck(self,obj2,obj1_x,obj1_y) == True: #if collide
+                return  True
 
-            if obj1_y < obj2.position_y_ + obj2.object_size_y_:
-                if obj1_y + self.object_size_y_ > obj2.position_y_:
 
-                    if obj1_x < obj2.position_x_ + obj2.object_size_x_:
-                        if obj1_x + self.object_size_x_ > obj2.position_x_:
-                            return True
         return False
 
 
