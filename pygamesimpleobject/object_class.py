@@ -38,6 +38,7 @@ class NewObject:
 
         self.collision_objects_ = []
         self.rounded_collision_check_ = False
+        self.circle_radius_ = 20
 
         self.map_object_ = False #Object is not map
 

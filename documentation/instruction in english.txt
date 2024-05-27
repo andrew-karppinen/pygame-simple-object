@@ -88,7 +88,8 @@ ROUNDED COLLISION CHECK
 Normally collision is checked based on the object's rectangular dimensions, which can be a bit clunky.
 
 For objects such as a player, you can set the following attribute:
-
 obj.rounded_collision_check_ = True #normally this is False
 
 This creates a circular area inside the object for collision checking.
+the radius of the circle is by default 20 pixels, it can be changed:
+obj.circle_radius_ = new_radius_int

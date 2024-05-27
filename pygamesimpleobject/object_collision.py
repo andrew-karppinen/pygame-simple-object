@@ -10,10 +10,12 @@ def RectAndCircleCollide(obj1,obj2):
     obj2 rect
     '''
 
+    circle_radius = obj1.circle_radius_ #get circle radius
+
     circle_x = obj1.position_x_+obj1.object_size_x_//2
     circle_y = obj1.position_y_+obj1.object_size_y_//2
 
-    circle_radius = 15
+
 
     rect_x = obj2.position_x_
     rect_y = obj2.position_y_
