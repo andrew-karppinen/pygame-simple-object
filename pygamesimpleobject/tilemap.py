@@ -175,7 +175,7 @@ def ReadTileset(tileset_path,tilesize = (32,32)):
             #convert image to pygame surface
             mode = image.mode
             data = croppedimage.tobytes()
-            imagelist.append(pygame.image.fromstring(data, tilesize, mode)) #add cropped image to list
+            imagelist.append(pygame.image.fromstring(data, tilesize, mode).convert()) #add cropped image to list after converting
 
 
     return(imagelist)
